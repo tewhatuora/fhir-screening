@@ -9,27 +9,28 @@ name: Te Whatu Ora FHIR Screening Implementation Guide
 title: Te Whatu Ora FHIR Screening Implementation Guide
 description: Te Whatu Ora FHIR Screening Implementation Guide
 status: active
-version: 0.0.0
+version: 0.1.0
 fhirVersion: 4.0.1
 copyrightYear: 2024+
-releaseLabel: release # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+releaseLabel: draft # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
-# jurisdiction: urn:iso:std:iso:3166#NZ "New Zealand"
-# publisher:
-#   name: Te Whatu Ora
-#   url: https://www.tewhatuora.govt.nz/
-  # email: test@example.org
+jurisdiction: urn:iso:std:iso:3166#NZ "New Zealand"
+publisher:
+  name: Te Whatu Ora
+  url: https://www.tewhatuora.govt.nz/
+  email: test@example.org
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
 # use cases, the value can be an object with keys for id, uri, and version.
 #
-# dependencies:
-#   fhir.org.nz.ig.base: 
-#     uri: http://fhir.org.nz/ig/base/ImplementationGuide/fhir.org.nz.ig.base
-#     version: 3.0.0
-#
-#
+dependencies:
+  fhir.org.nz.ig.base: 
+    uri: http://fhir.org.nz/ig/base/ImplementationGuide/fhir.org.nz.ig.base
+    version: 3.0.0
+#  hl7.fhir.uv.sdc: 3.0.0
+
+
 # The pages property corresponds to IG.definition.page. SUSHI can
 # auto-generate the page list, but if the author includes pages in
 # this file, it is assumed that the author will fully manage the
@@ -92,6 +93,13 @@ menu:
 # Those who need more control or want to add additional details to the contact values can use
 # contact directly and follow the format outlined in the ImplementationGuide resource and
 # ContactDetail.
+contact:
+   - name: David Grainger
+     telecom:
+       - system: email 
+         value: david.grainger@middleware.co.nz
+         use: work
+
 #
 #
 # The global property corresponds to the IG.global property, but it
