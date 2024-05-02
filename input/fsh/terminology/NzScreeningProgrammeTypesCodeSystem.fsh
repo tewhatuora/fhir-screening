@@ -1,5 +1,5 @@
 CodeSystem: NzScreeningProgrammeTypes
-Id: nz-screening-programmetypes-codesystem
+Id: nz-screening-programmetypes
 Title: "Codes identifying the type of national screening programme"
 Description:  "This code system defines the types of national screening programmes patients may participate in"
 * ^version = "1.0.0"

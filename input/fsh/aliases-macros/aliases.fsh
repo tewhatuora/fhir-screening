@@ -1,5 +1,5 @@
 Alias: $sct = http://snomed.info/sct
-Alias: $MediaTypes = http://terminology.hl7.org/ValueSet/v3-MediaType
+Alias: $MediaTypesCS = http://terminology.hl7.org/CodeSystem/v3-mediaType
 Alias: $UoM = http://unitsofmeasure.org
 Alias: $resource-types = http://hl7.org/fhir/resource-types
 Alias: $restful-security-service = http://terminology.hl7.org/CodeSystem/restful-security-service

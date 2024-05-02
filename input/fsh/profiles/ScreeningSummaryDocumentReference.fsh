@@ -4,6 +4,7 @@ Description: "A FHIR DocumentReference representation of a screening summary rep
 * ^version = "0.1.0"
 
 // elements modified from parent profile
+* docStatus 0..0
 * category from NzScreeningProgrammeTypesVS (required)
 * authenticator 0..0
 * subject only Reference(Patient)
@@ -17,3 +18,4 @@ Description: "A FHIR DocumentReference representation of a screening summary rep
 * extension 0..0
 * language 0..0
 * modifierExtension 0..0
+* context 0..0
