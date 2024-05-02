@@ -8,7 +8,7 @@ canonical: https://build.fhir.org/ig/tewhatuora/fhir-screening.fhir.ig
 name: Te Whatu Ora FHIR Screening Implementation Guide
 title: Te Whatu Ora FHIR Screening Implementation Guide
 description: Te Whatu Ora FHIR Screening Implementation Guide
-status: active
+status: draft
 version: 0.1.0
 fhirVersion: 4.0.1
 copyrightYear: 2024+
