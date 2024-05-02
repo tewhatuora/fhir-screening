@@ -1,6 +1,8 @@
 Profile: ScreeningSummaryDocumentReference
 Parent: DocumentReference
 Description: "A FHIR DocumentReference representation of a screening summary report"
+Id: nz-screening-summary
+
 * ^version = "0.1.0"
 
 // elements modified from parent profile
