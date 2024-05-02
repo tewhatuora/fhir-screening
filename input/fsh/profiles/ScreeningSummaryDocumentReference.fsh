@@ -11,6 +11,8 @@ Description: "A FHIR DocumentReference representation of a screening summary rep
 * date obeys fhir-hnz-period-utc-1
 * author only Reference(Organization)
 * custodian only Reference(Organization)
+* description 0..0
+* securityLabel 0..0
 * relatesTo 0..0
 * content.format from NzScreeningDocumentMediaTypesVS|1.0.0 (required)
 * implicitRules 0..0
@@ -19,3 +21,5 @@ Description: "A FHIR DocumentReference representation of a screening summary rep
 * language 0..0
 * modifierExtension 0..0
 * context 0..0
+* content.extension 0..0
+* content.modifierExtension 0..0
