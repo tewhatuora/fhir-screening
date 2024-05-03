@@ -13,6 +13,7 @@ Description: "Example of an FHIR cervical screening summary as a PDF attachment 
 * identifier insert DocIdentifier(1,[[National Screening Unit]])
 * custodian insert OrganisationRefByName([[National Screening Unit]])
 * status = #current
+* type = $loinc#11503-0 "Medical records"
 * category = nz-screening-programmetypes#NCSP
 * content.attachment insert ExampleDoc1PDFContent()
 * content.format = $MediaTypesCS#application/pdf
