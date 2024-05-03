@@ -5,9 +5,9 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: tewhatuora.fhir.screening
 canonical: https://build.fhir.org/ig/tewhatuora/fhir-screening.fhir.ig
-name: Te Whatu Ora FHIR Screening Implementation Guide
-title: Te Whatu Ora FHIR Screening Implementation Guide
-description: Te Whatu Ora FHIR Screening Implementation Guide
+name: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
+title: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
+description: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 status: draft
 version: 0.1.0
 fhirVersion: 4.0.1
@@ -16,7 +16,7 @@ releaseLabel: draft # ci-build | draft | qa-preview | ballot | trial-use | relea
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: urn:iso:std:iso:3166#NZ "New Zealand"
 publisher:
-  name: Health New Zealand / Te Whatu Ora
+  name: Health New Zealand | Te Whatu Ora
   url: https://www.tewhatuora.govt.nz/
   email: test@example.org
 
@@ -29,35 +29,6 @@ dependencies:
     uri: http://fhir.org.nz/ig/base/ImplementationGuide/fhir.org.nz.ig.base
     version: 3.0.0
 #  hl7.fhir.uv.sdc: 3.0.0
-
-
-# The pages property corresponds to IG.definition.page. SUSHI can
-# auto-generate the page list, but if the author includes pages in
-# this file, it is assumed that the author will fully manage the
-# pages section and SUSHI will not generate any page entries.
-# The page file name is used as the key. If title is not provided,
-# then the title will be generated from the file name.  If a
-# generation value is not provided, it will be inferred from the
-# file name extension.  Any subproperties that are valid filenames
-# with supported extensions (e.g., .md/.xml) will be treated as
-# sub-pages.
-#
-# pages:
-#   index.md:
-#     title: Example Home 
-#   implementation.xml:
-#   examples.xml:
-#     title: Examples Overview
-#     simpleExamples.xml:
-#     complexExamples.xml:
-#
-#
-# The parameters property represents IG.definition.parameter. Rather
-# than a list of code/value pairs (as in the ImplementationGuide
-# resource), the code is the YAML key. If a parameter allows repeating
-# values, the value in the YAML should be a sequence/array. For a
-# partial list of allowed parameters see:
-# https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
 #
 parameters:
   show-inherited-invariants: false
@@ -67,17 +38,10 @@ parameters:
   default-version: true
   suppressed-ids: $examples
   display-warnings: true
-#   excludettl: true
+  excludexml: true
+  excludettl: true
 #   validation: [allow-any-extensions, no-broken-links]
 #
-# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
-# │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
-# │ as a simple structure where the YAML key is the menu item name and the value is the URL.       │
-# │ The IG publisher currently only supports one level deep on sub-menus. To provide a             │
-# │ custom menu.xml file, do not include this property and include a `menu.xml` file in            │
-# │ input/includes. To use a provided input/includes/menu.xml file, delete the "menu"              │
-# │ property below.                                                                                │
-# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
   Business view: businessview.html
@@ -85,14 +49,6 @@ menu:
   Use cases: usecases.html
   Artifacts: artifacts.html
 
-# ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
-# │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │
-# │  resource. These properties are less commonly needed than those above.                         │
-# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-#
-# Those who need more control or want to add additional details to the contact values can use
-# contact directly and follow the format outlined in the ImplementationGuide resource and
-# ContactDetail.
 contact:
    - name: David Grainger
      telecom:
