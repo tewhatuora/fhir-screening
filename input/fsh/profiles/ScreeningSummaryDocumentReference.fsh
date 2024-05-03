@@ -8,6 +8,7 @@ Id: nz-screening-summary
 // elements modified from parent profile
 * docStatus 0..0
 * category from NzScreeningProgrammeTypesVS (required)
+* type = $loinc#11503-0 "Medical records"
 * authenticator 0..0
 * subject only Reference(Patient)
 * date obeys fhir-hnz-period-utc-1
