@@ -5,7 +5,7 @@ Usage: #definition
 * name = "FHIRScreeningCapabilityStatement"
 * title = "National Screening FHIR API Capability Statement"
 * status = #draft
-* date = "2023-10-19"
+* date = "2024-05-03"
 * jurisdiction = urn:iso:std:iso:3166#NZ "New Zealand"
 * publisher = "Health New Zealand / Te Whatu Ora"
 * description = "National Screening FHIR API"
@@ -28,17 +28,40 @@ Usage: #definition
 // 
 * rest.resource[+].type = #DocumentReference
 * rest.resource[=].profile = Canonical(ScreeningSummaryDocumentReference)
-* rest.resource[=] insert GenericCRUDInteractions
+* rest.resource[=] insert QuerySearchInteraction
 * rest.resource[=] insert ResourceDocumentation([[This server profiles FHIR DocumentReference to support NZ national screening programme summary reports]])
+
 * rest.resource[=].searchParam[0].name = "identifier"
-* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#Patient-identifier"
+* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-masterIdentifier"
 * rest.resource[=].searchParam[=].type = #token
-* rest.resource[=].searchParam[=].documentation = "The patient's official NHI identifier"
-* rest.resource[=].searchParam[+].name = "_profile"
+* rest.resource[=].searchParam[=].documentation = "The identifier of the versioned master document"
+
+* rest.resource[=].searchParam[0].name = "_profile"
 * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#Resource-profile"
 * rest.resource[=].searchParam[=].type = #reference
-* rest.resource[=].searchParam[=].documentation = "Filter **NZ screening instances** using ?Resource-profile=https://build.fhir.org/ig/tewhatuora/fhir-screening/StructureDefinition/nz-screening-summary"
-* rest.resource[=].searchParam[+].name = "_id"
-* rest.resource[=].searchParam[=].definition = "http://hl7.org/fhir/SearchParameter/Resource-id"
+* rest.resource[=].searchParam[=].documentation = "Filter document instances tagged with the **NZ screening document** profile eg. ?_profile=https://build.fhir.org/ig/tewhatuora/fhir-screening.fhir.ig/StructureDefinition/nz-screening-summary"
+
+* rest.resource[=].searchParam[+].name = "category"
+* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-category"
 * rest.resource[=].searchParam[=].type = #token
-* rest.resource[=].searchParam[=].documentation = "Logical id of this artifact"
+* rest.resource[=].searchParam[=].documentation = "Filters screening summaries by selecting the type of screening programme" 
+
+* rest.resource[=].searchParam[+].name = "contenttype"
+* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-contenttype"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].documentation = "Filters documents by mime type of the attachnemnt content eg. #application/pdf" 
+
+* rest.resource[=].searchParam[+].name = "patient"
+* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#clinical-patient"
+* rest.resource[=].searchParam[=].type = #reference
+* rest.resource[=].searchParam[=].documentation = "NHI of the patient who is the subject of the screening summary document"
+
+* rest.resource[=].searchParam[+].name = "subject"
+* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-subject"
+* rest.resource[=].searchParam[=].type = #reference
+* rest.resource[=].searchParam[=].documentation = "NHI of the patient who is the subject of the screening summary document"
+
+* rest.resource[=].searchParam[+].name = "type"
+* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#clinical-type"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].documentation = "Filters the kind of document" 
