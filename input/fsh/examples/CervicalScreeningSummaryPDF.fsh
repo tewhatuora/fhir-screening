@@ -7,7 +7,7 @@ Description: "Example of an FHIR cervical screening summary as a PDF attachment 
 * meta.versionId = "1"
 * meta.lastUpdated = "2024-05-01T22:00:00Z"
 
-* text insert ExampleDoc1Narrative([[generated]])
+//  * text insert ExampleDoc1Narrative([[generated]]) // this interferes with the IG publisher's HTML narrative generation
 
 * masterIdentifier insert DocIdentifier(1,[[National Screening Unit]])
 * identifier insert DocIdentifier(1,[[National Screening Unit]])
