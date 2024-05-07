@@ -33,7 +33,7 @@ frame "HNZ FHIR API resources under management" as HNZMain {
     object "denyConsentExample\n<size:16>**:CONSENT**" as CONSENT #GhostWhite/LightCoral {
       * status: ""**#active**""
       * scope: ""**#patient-privacy**""
-      * dateTime: ""2023-01-21""
+      * dateTime: ""2023-04-23""
       * policy: reference to NZ Privacy Act / HIPC
     }
 
