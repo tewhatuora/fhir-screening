@@ -1,7 +1,7 @@
 CodeSystem: NzScreeningProgrammeTypes
 Id: nz-screening-programmetypes
 Title: "Codes identifying the type of national screening programme"
-Description:  "This code system defines the types of national screening programmes patients may participate in"
+Description:  "This code system defines the types of NZ screening programmes"
 * ^version = "1.0.0"
 * ^publisher = "Health New Zealand / Te Whatu Ora"
 * ^experimental = false
