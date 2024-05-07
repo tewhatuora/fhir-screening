@@ -7,7 +7,7 @@ Id: nz-screening-summary
 
 // elements modified from parent profile
 * docStatus 0..0
-* category from NzScreeningProgrammeTypesVS (required)
+* category from NzScreeningDocCategoriesVS (required)
 * type = $sct#422735006 "Summary clinical document (record artifact)"
 * authenticator 0..0
 * subject only Reference(Patient)

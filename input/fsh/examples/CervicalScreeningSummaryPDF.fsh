@@ -11,8 +11,12 @@ Description: "Example of an FHIR cervical screening summary as a PDF attachment 
 * identifier insert DocIdentifier(1,[[National Screening Unit]])
 * custodian insert OrganisationRefByName([[National Screening Unit]])
 * status = #current
-* type = $sct#422735006 "Summary clinical document (record artifact)"
-* category = nz-screening-programmetypes#NCSP
+* type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
+
+// 2 categories
+* category[0] = nz-screening-programmetypes#NCSP
+* category[+] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
+
 * content.attachment insert ExampleDoc1PDFContent
 * content.format = $MediaTypesCS#application/pdf
 
