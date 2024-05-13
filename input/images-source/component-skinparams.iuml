@@ -1,0 +1,43 @@
+@startuml component-skinparams
+
+footer "Generated from PlantUML source on %date('dd/MM/yyyy')"
+
+skinparam nodesep 15 ' component left-right spacing
+skinparam ranksep 5 ' component up-down spacing
+skinparam BoxPadding 2
+skinparam ParticipantPadding 5
+
+skinparam roundcorner 10
+skinparam actorStyle spacelab
+skinparam RectangleFontSize 14
+skinparam RectangleFontStyle bold
+
+skinparam arrow {
+  fontSize 14
+  fontStyle bold
+  fontColor IndianRed
+  messageAlignment right
+}
+
+skinparam component {
+  fontStyle bold
+  fontSize 14
+}
+
+skinparam interface {
+  fontStyle bold
+  fontSize 14
+  backgroundColor RosyBrown
+  borderColor orange
+}
+
+skinparam LegendFontSize 16
+skinparam LegendFontName Arial
+
+skinparam NoteFontSize 15
+skinparam NoteTextAlignment left
+skinparam NoteBackgroundColor #PaleYellow
+
+skinparam TitleFontSize 16
+
+@enduml

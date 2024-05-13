@@ -1,7 +1,7 @@
-Instance: CervicalScreeningSummaryPDF
+Instance: BowelScreeningSummaryPDF
 InstanceOf: ScreeningSummaryDocumentReference
 Usage: #example
-Description: "Example of an NZ cervical screening summary as a FHIR DocumentReference with PDF content"
+Description: "Example of an NZ bowel screening summary as a FHIR DocumentReference with PDF content"
 
 * meta.profile = Canonical(ScreeningSummaryDocumentReference)
 * meta.versionId = "1"
@@ -13,10 +13,10 @@ Description: "Example of an NZ cervical screening summary as a FHIR DocumentRefe
 * status = #current
 * type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
 
-* category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
+* category[0] insert SNOMEDCodeableConcept(1163003002,[[Colorectal cancer screening service (qualifier value)]])
 
 * content.attachment insert ExampleDoc1PDFContent
 * content.format = $MediaTypesCS#application/pdf
 
-* contained = screening-subject-madeleine-meringue
-* subject.reference = "#screening-subject-madeleine-meringue"
+* contained = screening-subject-mick-mahoe
+* subject.reference = "#screening-subject-mick-mahoe"
