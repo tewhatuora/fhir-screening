@@ -7,19 +7,23 @@ Id: nz-screening-summary
 
 // elements modified from parent profile
 * docStatus 0..0
-* category from NzScreeningDocCategoriesVS (required)
+* category from nz-screening-programmetype-code (required)
 * type = $sct#422735006 "Summary clinical document (record artifact)"
 * authenticator 0..0
 * subject only Reference(Patient)
-* date obeys fhir-hnz-period-utc-1
+* date obeys fhir-hnz-instant-utc-1
 * author only Reference(Organization)
 * custodian only Reference(Organization)
 * description 0..0
 * securityLabel 0..0
 * relatesTo 0..0
+* content.attachment.contentType 1..1
+* content.attachment.creation 1..1
+* content.attachment.creation obeys fhir-hnz-dateTime-utc-1
 * content.format from NzScreeningDocumentMediaTypesVS|1.0.0 (required)
 * implicitRules 0..0
-* contained 0..0
+* contained 0..1
+* contained only Patient
 * extension 0..0
 * language 0..0
 * modifierExtension 0..0
