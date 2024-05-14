@@ -9,7 +9,7 @@ name: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 title: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 description: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 status: draft
-version: 0.2.0
+version: 0.3.0
 fhirVersion: 4.0.1
 copyrightYear: 2024+
 releaseLabel: draft # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
@@ -48,6 +48,13 @@ menu:
   Onboarding: onboarding.html
   Use cases: usecases.html
   Artifacts: artifacts.html
+  Developer Support:
+    Artifacts (Json): definitions.json.zip
+    Artifacts (Xml): definitions.xml.zip
+    Changelog: changelog.html
+    Data Model and Mapping: data.html
+    Download IG : full-ig.zip
+    OpenAPI Specification: FHIRScreeningCapabilityStatement.openapi.json
 
 contact:
    - name: David Grainger

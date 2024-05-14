@@ -3,7 +3,7 @@ InstanceOf: ScreeningSummaryDocumentReference
 Usage: #example
 Description: "Example of an FHIR cervical screening summary as an HTMNL attachment (inline)"
 
-* meta.profile = Canonical(ScreeningSummaryDocumentReference|1.0.0)
+* meta.profile = Canonical(ScreeningSummaryDocumentReference)
 * meta.versionId = "1"
 * meta.lastUpdated = "2024-05-01T22:00:00Z"
 
@@ -13,10 +13,10 @@ Description: "Example of an FHIR cervical screening summary as an HTMNL attachme
 * status = #current
 * type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
 
-// 2 categories
-* category[0] = nz-screening-programmetypes#NCSP
-* category[+] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
+* category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
 
 * content.attachment insert ExampleDoc1HTMLContent
 * content.format = $MediaTypesCS#text/html
 
+* contained = screening-subject-madeleine-meringue
+* subject.reference = "#screening-subject-madeleine-meringue"
