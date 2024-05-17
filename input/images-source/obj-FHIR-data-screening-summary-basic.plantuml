@@ -15,7 +15,7 @@ skinparam ranksep 5 ' component up-down spacing
 
 allow_mixing
 
-title FHIR instance data model - screening summary document
+title FHIR object data model - screening summary document instance
 
 !procedure $Coding($Alias,$System,$Code,$Display)
 object "<color:GhostWhite>$System" as $Alias #MediumPurple {
@@ -32,12 +32,14 @@ BINAPI -d- FHIRAPI
 frame "screening summary FHIR data" as BINARY #GhostWhite {
 
   object "<size:14>**:DOCUMENTREFERENCE**" as DOCREF <<profiled>> #GhostWhite/LightCoral {
-      * masterIdentifier: identifier
-      * status: ""#current""
-      * date: 2024-05-12 (UTC)
+    * masterIdentifier: identifier
+    * status: ""#current""
+    * author: Ref(Organization) <size:10>"National Screening Unit"</size>
+    * custodian: Ref(Organization) <size:10>"National Screening Unit"</size>
+    * date: {"as-at" report date}
   }
 
-  object ":ATTACHMENT" as DOC #GhostWhite {
+  object "DocumentReference.content.attachment\n:**ATTACHMENT**" as DOC #GhostWhite {
       * data.base64Binary: base64-enc. PDF | HTML
       * creation: 2024-05-12T10-00-00Z (UTC)
       * size: nnn
@@ -52,7 +54,7 @@ frame "screening summary FHIR data" as BINARY #GhostWhite {
   }
 
   DOCREF ".content\n.attachment" -d-* DOC
-  DOCREF ".subject" --* PATIENT
+  DOCREF ".subject\n(contained)" --o PATIENT
 }
 
 $Coding(DocumentType,"Clinical document type (SNOMED)","#422735006","Summary clinical document     ")
@@ -64,9 +66,8 @@ $Coding(ProgrammeType,"Screening programme type (SNOMED screening services)","#3
 
 ' connectors
 FHIRAPI -d- BINARY
-DOCREF ".type" -[#MediumPurple,dotted]u-> DocumentType
-DOCREF ".category" -[#MediumPurple,dotted]--> ProgrammeType
-
+DOCREF "<color:purple>.type" -[#MediumPurple,thickness=3,dashed]u-> DocumentType
+DOCREF "<color:purple>.category" -[#MediumPurple,thickness=3,dashed]--> ProgrammeType
 
 
 ' legend

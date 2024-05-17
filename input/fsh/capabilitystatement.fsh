@@ -51,6 +51,11 @@ Usage: #definition
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].documentation = "Filters documents by mime type of the attachnemnt content eg. #application/pdf" 
 
+* rest.resource[=].searchParam[+].name = "date"
+* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#clinical-date"
+* rest.resource[=].searchParam[=].type = #date
+* rest.resource[=].searchParam[=].documentation = "Filters by the 'as-at' date of screening summary reports"
+
 * rest.resource[=].searchParam[+].name = "patient"
 * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#clinical-patient"
 * rest.resource[=].searchParam[=].type = #reference
