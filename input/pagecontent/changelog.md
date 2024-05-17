@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.4.0 (2024-05-17)
+
+Refinements after presentation to HL7NZ FHIR Working Group
+
+- Improved short descriptions of profiled elements
+- The .date element is now purposed to convey the screening summary report 'as-at' date instead of instance creation date
+- Date search parameter type added to API capability statement
+- Minor improvements to FHIR data model
+
 ## v0.3.0 (2024-05-13)
 
 - Patient demographic attributes now represented using a contained [NzPatient](https://fhir.org.nz/ig/base/StructureDefinition-NzPatient.html) (NZ Base IG) instance
