@@ -30,11 +30,13 @@ Id: nz-screening-summary
 * implicitRules 0..0
 * contained 0..1
 * contained only Patient
-* contained ^short = "A single contained Patient instance conveys patient demographic attributes.  The contained instance must be referenced by .sourcePatientInfo"
+* contained ^short = "A single contained Patient instance conveys patient demographic attributes."
 * extension 0..0
 * language 0..0
 * modifierExtension 0..0
 * context.sourcePatientInfo 1..1
 * context.sourcePatientInfo only Reference(Patient)
+* context.sourcePatientInfo ^short = "Must reference the contained (inline) Patient instance which conveys patient demographic attributes."
+
 * content.extension 0..0
 * content.modifierExtension 0..0
