@@ -18,5 +18,7 @@ Description: "Example of an NZ bowel screening summary as a FHIR DocumentReferen
 * content.attachment insert ExampleDoc1PDFContent
 * content.format = $MediaTypesCS#application/pdf
 
-* contained = screening-subject-mick-mahoe
-* subject.reference = "#screening-subject-mick-mahoe"
+* contained = screening-subject-2
+* subject insert NHIPatientRef(SCF7826,[[Mick Mahoe]])
+
+* context.sourcePatientInfo.reference = "#screening-subject-2"
