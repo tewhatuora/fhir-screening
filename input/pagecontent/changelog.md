@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.5.0 (2024-05-23)
+
+### Adjustments to patient referencing within the DocumentReference profile / examples
+
+- The DocumentReference profile now requires two Reference(Patient)s -- **.subject** and **context.sourcePatientInfo** -- the first is a reference to NHI while the second is a reference to the inline (contained)
+NzPatient instance.  This change was needed so that searches by GET DocumentReference?subject= searches work in the expected FHIR way
+
+- The example DocumentReference instances have been adjusted to reflect the revised Patient instance referencing/linking per above.
+
+---
+
 ## v0.4.0 (2024-05-17)
 
 Refinements after presentation to HL7NZ FHIR Working Group

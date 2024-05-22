@@ -13,6 +13,7 @@ Id: nz-screening-summary
 * type ^short = "All screening summary DocRefs have this type code"
 * authenticator 0..0
 * subject only Reference(Patient)
+* subject ^short = "Identifies the patient by NHI identifier (a FHIR logical reference)"
 * date ^short = "The 'as-at' date (UTC) of the screening summary report"
 * author only Reference(Organization)
 * custodian only Reference(Organization)
@@ -29,10 +30,11 @@ Id: nz-screening-summary
 * implicitRules 0..0
 * contained 0..1
 * contained only Patient
-* contained ^short = "A single contained Patient instance conveys patient demographic attributes"
+* contained ^short = "A single contained Patient instance conveys patient demographic attributes.  The contained instance must be referenced by .sourcePatientInfo"
 * extension 0..0
 * language 0..0
 * modifierExtension 0..0
-* context 0..0
+* context.sourcePatientInfo 1..1
+* context.sourcePatientInfo only Reference(Patient)
 * content.extension 0..0
 * content.modifierExtension 0..0

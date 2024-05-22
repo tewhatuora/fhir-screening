@@ -18,5 +18,7 @@ Description: "Example of an FHIR cervical screening summary as an HTMNL attachme
 * content.attachment insert ExampleDoc1HTMLContent
 * content.format = $MediaTypesCS#text/html
 
-* contained = screening-subject-madeleine-meringue
-* subject.reference = "#screening-subject-madeleine-meringue"
+* contained = screening-subject-1
+* subject insert NHIPatientRef(SCF7824,[[Madeleine Meringue]])
+
+* context.sourcePatientInfo.reference = "#screening-subject-1"

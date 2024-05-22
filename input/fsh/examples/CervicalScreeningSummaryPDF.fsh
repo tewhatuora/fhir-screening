@@ -18,5 +18,8 @@ Description: "Example of an NZ cervical screening summary as a FHIR DocumentRefe
 * content.attachment insert ExampleDoc1PDFContent
 * content.format = $MediaTypesCS#application/pdf
 
-* contained = screening-subject-madeleine-meringue
-* subject.reference = "#screening-subject-madeleine-meringue"
+* contained = screening-subject-1
+* subject insert NHIPatientRef(SCF7824,[[Madeleine Meringue]])
+
+* context.sourcePatientInfo.reference = "#screening-subject-1"
+
