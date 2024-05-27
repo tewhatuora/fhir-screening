@@ -15,7 +15,7 @@ skinparam RectangleFontStyle bold
 skinparam arrow {
   fontSize 14
   fontStyle bold
-  fontColor IndianRed
+'  fontColor IndianRed
   messageAlignment right
 }
 
