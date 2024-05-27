@@ -1,6 +1,22 @@
+# Data model and API design
+
+### API consumption sequence diagrams
+
+<div width="70%">
+<!-- Generated from `input/images-source/seq-fhir-screening-API.plantuml` -->
+{% include seq-fhir-screening-API.svg %}
+</div>
+
+<div width="70%">
+<!-- Generated from `input/images-source/seq-fhir-screening-API.plantuml` -->
+{% include seq-fhir-screening-API_001.svg %}
+</div>
+
+<br clear="all">
+
 ### FHIR data model
 
-The object diagram below illustrates the FHIR resource instances returned by enquiries to this FHIR API.
+The object diagram below illustrates the structure of FHIR DocumentReference instances returned by enquiries to this FHIR API.
 
 <div width="100%">
 <!-- Generated from `input/images-source/obj-FHIR-data-screening-summary-basic.plantuml` -->
