@@ -1,1 +1,15 @@
-Content
+### Use cases and API operations
+
+
+| Clinical use case | Description | API operations <br>(^For NHI operations see the [NHI IG](https://nhi-ig.hip.digital.health.nz/index.html)) |
+|:--------------|:---------------------------------|:----------------|
+| `01` *Check register for new cervical screening patient* | A new patient presents for cervical screening e.g. A casual patient books an appointment with GP practice. This is a new patient not yet registered in the primary care providers system, and has no Cervical Screening History data in the local system. | [`NHI.Match Patient^`](https://nhi-ig.hip.digital.health.nz/matchPatient.html), `DocumentReference.Search/Read` |
+| `02` *Check history for patient presenting for colposcopy* | A patient is referred for colposcopy subsequent to a non-normal HPV or Cytology result. The Colposcopy practitioner requires access to the patient’s screening history to determine their healthcare needs. | `DocumentReference.Search/Read` |
+| `03` *Check register and history for patient returning for cervical screening* | An existing patient known to the primary care provider or GP practice presents for cervical screening e.g. Enrolled patient books or attends an appointment. The patient details are already in the local system and a record of cervical screening might exist in local system. (the patient might have received other healthcare in the past) | `DocumentReference.Search/Read` |
+| `04` *Check for patient history and eligibility as part of opportunistic screening* | An existing patient known to the primary care provider or GP practice presents for healthcare and is identified for opportunistic cervical screening e.g. Enrolled patient books or attends an appointment and is due for screening, or the patient is newly identified as eligible for cervical screening. The patient details are already in the local system and a record of cervical screening might exist in local system | `DocumentReference.Search/Read` |
+| `05` *Determine if a patient is enrolled in the screening program | A user at the primary care or GP practice is reviewing the patients enrolled at the practice for screening, e.g. to identify unscreened and under-screened patients. | `DocumentReference.Search/Read` |
+| `06` *Lookup patient contact details*  | A user at the primary care or GP practice is going through patients enrolled at the practice to book eligible patients for routine screening (recall). | `DocumentReference.Search/Read`, possibly also `NHI.Get Patient` |
+| `07` *Confirm eligibility for recall* (pathway status, next event, next event due etc.) | .. | - |
+| `08` *Confirm patient’s correspondence preferences* | .. | - |
+| `09` *Update practitioner's system with latest patient screening summary information* | .. | - | 
+| `10` *Review screening results as notified by another primary care provider* | An existing patient known to the primary care or GP practice presents for healthcare at another primary provider (e.g Family planning, a community event, etc.) and was opportunistically-screened. The GP practice is advised of the screening. The GP Practice requests screening history to review results and/ or update the local system and workflow. | `DocumentReference.Search/Read` |

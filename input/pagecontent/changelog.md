@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.6.0 (2024-05-27)
+
+- Added draft use cases and API operations that support these.
+
+- Added API sequence diagrams
+
+---
+
 ## v0.5.0 (2024-05-23)
 
 ### Adjustments to patient referencing within the DocumentReference profile / examples

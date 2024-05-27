@@ -23,12 +23,6 @@ object "<color:GhostWhite>$System" as $Alias #MediumPurple {
 }
 !endprocedure
 
-() "/DocumentReference endpoint" as BINAPI
-
-interface FHIRAPI as "<size:16>FHIR screening summary API\n(convenience document variant)"
-
-BINAPI -d- FHIRAPI
-
 frame "screening summary FHIR data" as BINARY #GhostWhite {
 
   object "<size:14>**:DOCUMENTREFERENCE**" as DOCREF <<profiled>> #GhostWhite/LightCoral {
@@ -46,7 +40,7 @@ frame "screening summary FHIR data" as BINARY #GhostWhite {
       * contentType: application/pdf | text/html
   }
 
-  object "NzPatient:PATIENT" as PATIENT #GhostWhite {
+  object "NzPatient:PATIENT" as PATIENT <<contained>> #GhostWhite {
       * identifier: NHI reference
       * birthDate
       * ethnicity(extension)
@@ -54,7 +48,13 @@ frame "screening summary FHIR data" as BINARY #GhostWhite {
   }
 
   DOCREF ".content\n.attachment" -d-* DOC
-  DOCREF ".subject\n(contained)" --o PATIENT
+  'DOCREF ".subject\n(contained)" --o PATIENT
+  DOCREF ".context\n.sourcePatientInfo" --o PATIENT
+
+}
+
+class "Patient (NHI)" as NHIPATIENT <<logical resource>> #SkyBlue {
+  * logical id: NHI
 }
 
 $Coding(DocumentType,"Clinical document type (SNOMED)","#422735006","Summary clinical document     ")
@@ -65,10 +65,9 @@ $Coding(ProgrammeType,"Screening programme type (SNOMED screening services)","#3
 $Coding(ProgrammeType,"Screening programme type (SNOMED screening services)","#310009009", "Neonatal audiological screening service")
 
 ' connectors
-FHIRAPI -d- BINARY
 DOCREF "<color:purple>.type" -[#MediumPurple,thickness=3,dashed]u-> DocumentType
 DOCREF "<color:purple>.category" -[#MediumPurple,thickness=3,dashed]--> ProgrammeType
-
+DOCREF ".subject" .[#SkyBlue]r. "1" NHIPATIENT
 
 ' legend
 '   **Notes**
