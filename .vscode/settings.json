@@ -1,0 +1,11 @@
+{
+  "plantuml.render": "server",
+  "plantuml.server": "http://localhost:8000/plantuml",
+  "plantuml.exportFormat": "svg",
+  "plantuml.commandArgs": [
+      "-DPLANTUML_LIMIT_SIZE=8192",
+  ],
+  "plantuml.diagramsRoot": "input/images-source",
+  "plantuml.exportIncludeFolderHeirarchy": false,
+  "plantuml.exportOutDir": "input/images",
+}
