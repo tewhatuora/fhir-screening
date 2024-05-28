@@ -6,7 +6,9 @@
 
 - Added API sequence diagrams
 
-- Added example instance of a search result Bundle with two matches
+- Added page describing API search behaviour
+
+- Added examples showing results for different search scenarios as combinations of ScreeningSummary and OperationOutcome instances
 
 ---
 

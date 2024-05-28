@@ -5,11 +5,6 @@
 {% include seq-fhir-screening-API.svg %}
 </div>
 
-<div width="70%">
-<!-- Generated from `input/images-source/seq-fhir-screening-API.plantuml` -->
-{% include seq-fhir-screening-API_001.svg %}
-</div>
-
 <br clear="all">
 
 ### FHIR data model
