@@ -36,10 +36,14 @@ entity "NHI FHIR API" as NHI
 
 autonumber stop
 
-title "PMS search for screening history using FHIR screening API (1 of 2)"
+title "PMS search for screening summary(s) using FHIR screening API"
+
+== initialisation ==
 
 APIC -> ROSIE++: OAUTH2.0 Client Credentials Flow\n<size:10>(client credentials and requested scope)</size>
 return OAUTH token
+
+== operations ==
 
 USER -> APIC++ #YellowGreen: enter patient name, NHI
 APIC -> NHI: NHI search
@@ -47,15 +51,24 @@ APIC -> USER--: present NHI matches
 
 USER -> APIC++ #YellowGreen: request screening summaries for\n selected NHI and programme type 
 
-APIC -> APIG: ""GET"" /**DocumentReference**?\n\t**subject:identifier={NHI}&**\n\t**category={screening service type SNOMED}**
+APIC -> APIG: ""GET"" /**DocumentReference**?<params>
+note right
+  search request query parameters:
+  ""?"" **subject:identifier** = <NHI>
+  ""&"" **category** = <screening service type SNOMED>
+  ""&"" **contenttype** = ""application/pdf""
+end note
 APIG -> APIG: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
 APIG -> FHIR++: ""GET /DocumentReference?..""
 FHIR -> FHIR: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
 alt #LightGreen normal report generation
-FHIR -> FHIR: generate screening summary
-FHIR -> APIC: ""200 OK"", FHIR ""DocumentReference Bundle"" (0 or more MATCH items)
-APIC -> APIC: record instance logical identifier(s)
-note right of APIC #LightYellow: The API consumer can use the instance's logical identifier to later directly retrieve it, instead of searching.
+FHIR -> FHIR: generate screening summary(s) / OperationOutcome
+FHIR -> APIC: ""200 OK"", FHIR ""Bundle""
+note left of FHIR #LightYellow
+  The search result Bundle comprises 0 or more instances of
+   ""DocumentReference"" and up to one* ""OperationOutcome""
+   (*if needed for an abnormal search outcome)
+end note
 
 else #Orange patient NHI doesn't exist
 FHIR -> APIC: ""200 OK"", empty ""Bundle""
@@ -63,47 +76,49 @@ else #Red technical error
 FHIR -> APIC--: HTTP ""4xx|5xx"" error code, FHIR ""OperationOutcome""
 end
 
+APIC -> APIC: process results and determine what to display for user 
+
 APIC -> USER--: present screening summary / search result
 
 
-newpage PMS retrieve a specific version of a patient's screening history using FHIR screening API (2 of 2)
+' newpage PMS retrieve a specific version of a patient's screening history using FHIR screening API (2 of 2)
 
-actor "health practitioner (screening)" as USER
-participant "practitioner's APP/PMS" as APIC #Orange
+' actor "health practitioner (screening)" as USER
+' participant "practitioner's APP/PMS" as APIC #Orange
 
-box "HNZ digital services hub" #LightGrey
-  entity "API authn. server" as ROSIE #IndianRed
-  entity "API gateway" as APIG #IndianRed
-end box
+' box "HNZ digital services hub" #LightGrey
+'   entity "API authn. server" as ROSIE #IndianRed
+'   entity "API gateway" as APIG #IndianRed
+' end box
 
-entity "**screening summary FHIR API**" as FHIR #LightSalmon
-entity "NHI FHIR API" as NHI
+' entity "**screening summary FHIR API**" as FHIR #LightSalmon
+' entity "NHI FHIR API" as NHI
 
-autonumber stop
+' autonumber stop
 
-APIC -> ROSIE++: OAUTH2.0 Client Credentials Flow\n<size:10>(client credentials and requested scope)</size>
-return OAUTH token
+' APIC -> ROSIE++: OAUTH2.0 Client Credentials Flow\n<size:10>(client credentials and requested scope)</size>
+' return OAUTH token
 
-USER -> APIC++ #YellowGreen: request specific version of a patient\n cervical screening summary doc
+' USER -> APIC++ #YellowGreen: request specific version of a patient\n cervical screening summary doc
 
-note right of APIC #LightYellow
-  The app may request a DocumentReference instance by specific logical identifier 
-  as returned by an earlier screening summary search interaction.
-end note
+' note right of APIC #LightYellow
+'   The app may request a DocumentReference instance by specific logical identifier 
+'   as returned by an earlier screening summary search interaction.
+' end note
 
-APIC -> APIG: ""GET"" /**DocumentReference/{logical instance identifier}**
-APIG -> APIG: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
-APIG -> FHIR++: ""GET /DocumentReference/..""
-FHIR -> FHIR: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
-alt #LightGreen normal report generation
-FHIR -> FHIR: generate/retrieve screening summary
-FHIR -> APIC: ""200 OK"", one specific FHIR ""DocumentReference"" instance
-else #Orange instance doesn't exist
-FHIR -> APIC: ""404 NOT FOUND""
-else #Red technical error
-FHIR -> APIC: HTTP ""4xx|5xx"" error code, FHIR ""OperationOutcome""
-end
+' APIC -> APIG: ""GET"" /**DocumentReference/{logical instance identifier}**
+' APIG -> APIG: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
+' APIG -> FHIR++: ""GET /DocumentReference/..""
+' FHIR -> FHIR: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
+' alt #LightGreen normal report generation
+' FHIR -> FHIR: generate/retrieve screening summary
+' FHIR -> APIC: ""200 OK"", one specific FHIR ""DocumentReference"" instance
+' else #Orange instance doesn't exist
+' FHIR -> APIC: ""404 NOT FOUND""
+' else #Red technical error
+' FHIR -> APIC: HTTP ""4xx|5xx"" error code, FHIR ""OperationOutcome""
+' end
 
-APIC -> USER: present screening summary / search result
+' APIC -> USER: present screening summary / search result
 
 @enduml
