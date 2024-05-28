@@ -53,6 +53,7 @@ menu:
     Artifacts (Xml): definitions.xml.zip
     Changelog: changelog.html
     API sequences and data model: data.html
+    API search behaviour: search.html
     Download IG : full-ig.zip
     OpenAPI Specification: FHIRScreeningCapabilityStatement.openapi.json
 

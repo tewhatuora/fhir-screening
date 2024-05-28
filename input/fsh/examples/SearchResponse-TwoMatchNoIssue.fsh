@@ -1,12 +1,12 @@
-Instance: SearchByPatientProgrammeReturningTwoMatchingSummaries
+Instance: SearchResponse-TwoMatchNoIssue
 InstanceOf: Bundle
 Usage: #example
-Description: "Example of response to search by patient and programme type, with matches returned inline"
+Description: "Example of response to search comprising two screening summary matches"
 
 * meta.versionId = "1"
 * meta.lastUpdated = "2024-05-28T01:00:00Z"
 
-* id = "c56c7765-d991-4f7d-8c8e-fd0612e6228c"
+* id = "ResponseBundleExample-TwoMatchNoIssue"
 * type = #searchset
 * total = 2
 * link[0].relation = "self"
