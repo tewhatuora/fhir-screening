@@ -66,7 +66,7 @@ Usage: #definition
 * rest.resource[=].searchParam[=].type = #reference
 * rest.resource[=].searchParam[=].documentation = "NHI of the patient who is the subject of the screening summary document"
 
-* rest.resource[=].searchParam[+].name = "type"
-* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#clinical-type"
-* rest.resource[=].searchParam[=].type = #token
-* rest.resource[=].searchParam[=].documentation = "Filters the kind of document" 
+// * rest.resource[=].searchParam[+].name = "type"
+// * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#clinical-type"
+// * rest.resource[=].searchParam[=].type = #token
+// * rest.resource[=].searchParam[=].documentation = "Filters the kind of document" 

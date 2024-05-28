@@ -4,8 +4,8 @@ Instance: screening-subject-1
 InstanceOf: NzPatient
 Usage: #inline
 
-* meta.profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient|1.0.0)
-// * meta.versionId = "1" NOT ALLOWED HERE AS THIS IS CONTAINED IN VERSIONED INSTANCES
+* meta.profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient)
+// * meta.versionId = "1" cannot be used here as this content is used in contained instances where the container is versioned
 
 * identifier[NHI] insert NHIIdentifier(SCF7824)
 
@@ -33,8 +33,8 @@ Instance: screening-subject-2
 InstanceOf: NzPatient
 Usage: #inline
 
-* meta.profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient|1.0.0)
-// * meta.versionId = "1" NOT ALLOWED HERE AS THIS IS CONTAINED IN VERSIONED INSTANCES
+* meta.profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient)
+// * meta.versionId = "1" cannot be used here as this content is used in contained instances where the container is versioned
 
 * identifier[NHI] insert NHIIdentifier(SCF7826)
 
