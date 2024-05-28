@@ -44,9 +44,9 @@ parameters:
 #
 menu:
   Home: index.html
-  Business view: BusinessView.html
+  Business view: businessview.html
   Onboarding: onboarding.html
-  Use cases: UseCases.html
+  Use cases: usecases.html
   Artifacts: artifacts.html
   Developer Support:
     Artifacts (Json): definitions.json.zip
