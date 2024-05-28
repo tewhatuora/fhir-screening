@@ -1,7 +1,7 @@
-Instance: SearchByPatientProgrammeReturningTwoMatches
+Instance: SearchByPatientProgrammeReturningTwoMatchingSummaries
 InstanceOf: Bundle
 Usage: #example
-Description: "Example of a response to a search by patient identifier and screening programme type"
+Description: "Example of response to search by patient and programme type, with matches returned inline"
 
 * meta.versionId = "1"
 * meta.lastUpdated = "2024-05-28T01:00:00Z"
@@ -46,7 +46,7 @@ Description: "Example of a response to a search by patient identifier and screen
 * entry[=].resource.status = #current
 * entry[=].resource.type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
 * entry[=].resource.category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
-* entry[=].resource.content.attachment insert ExampleDoc1PDFContent
+* entry[=].resource.content.attachment insert ExampleDoc1HTMLContent
 * entry[=].resource.content.format = $MediaTypesCS#text/html
 * entry[=].resource.contained = screening-subject-1
 * entry[=].resource.subject insert NHIPatientRef(SCF7824,[[Madeleine Meringue]])
