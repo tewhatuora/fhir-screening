@@ -1,7 +1,6 @@
-### Use cases and API operations
+## Use cases and API operations
 
-
-| Clinical use case | Description | API operations <br>(^For NHI operations see the [NHI IG](https://nhi-ig.hip.digital.health.nz/index.html)) |
+| Clinical use case | Description | API operations <br>(^For NHI operations refer to the [NHI IG](https://nhi-ig.hip.digital.health.nz/index.html)) |
 |:--------------|:---------------------------------|:----------------|
 | `01` *Check register for new cervical screening patient* | A new patient presents for cervical screening e.g. A casual patient books an appointment with GP practice. This is a new patient not yet registered in the primary care providers system, and has no Cervical Screening History data in the local system. | [`NHI.Match Patient^`](https://nhi-ig.hip.digital.health.nz/matchPatient.html), `DocumentReference.Search/Read` |
 | `02` *Check history for patient presenting for colposcopy* | A patient is referred for colposcopy subsequent to a non-normal HPV or Cytology result. The Colposcopy practitioner requires access to the patient’s screening history to determine their healthcare needs. | `DocumentReference.Search/Read` |

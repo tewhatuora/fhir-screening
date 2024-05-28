@@ -44,15 +44,15 @@ parameters:
 #
 menu:
   Home: index.html
-  Business view: businessview.html
+  Business view: BusinessView.html
   Onboarding: onboarding.html
-  Use cases: usecases.html
+  Use cases: UseCases.html
   Artifacts: artifacts.html
   Developer Support:
     Artifacts (Json): definitions.json.zip
     Artifacts (Xml): definitions.xml.zip
     Changelog: changelog.html
-    Data Model and Mapping: data.html
+    API sequences and data model: data.html
     Download IG : full-ig.zip
     OpenAPI Specification: FHIRScreeningCapabilityStatement.openapi.json
 

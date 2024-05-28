@@ -1,10 +1,12 @@
 # Changelog
 
-## v0.6.0 (2024-05-27)
+## v0.6.0 (2024-05-28)
 
-- Added draft use cases and API operations that support these.
+- Added business view, draft use cases and API operations.
 
 - Added API sequence diagrams
+
+- Added example instance of a search result Bundle with two matches
 
 ---
 
