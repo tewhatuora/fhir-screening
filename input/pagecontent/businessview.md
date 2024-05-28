@@ -1,3 +1,5 @@
+## Business View
+
 ### About
 
 The National Screening Unit's Cervical Screening Register is a key component of the National Cervical Screening Programme (NCSP) as the national database for information relating to cervical screening events.  Currently there is lack of timely access to Cervical Screening Summaries for frontline screen takers and participants. This is a barrier to opportunistic and planned screening events.
