@@ -65,7 +65,6 @@ contact:
          use: work
 
 #
-#
 # The global property corresponds to the IG.global property, but it
 # uses the type as the YAML key and the profile as its value. Since
 # FHIR does not explicitly disallow more than one profile per type,
