@@ -47,13 +47,13 @@ APIC -> USER--: present NHI matches
 
 USER -> APIC++ #YellowGreen: request screening summaries for\n selected NHI and programme type 
 
-APIC -> APIG: ""GET"" /**DocumentReference**?\n\t**subject**={{NHI}}&*\n\t**type**={{SNOMED Summary clinical document}}&\n\t**category**={{SNOMED screening programme type}}
+APIC -> APIG: ""GET"" /**DocumentReference**?\n\t**subject:identifier={NHI}&**\n\t**category={screening service type SNOMED}**
 APIG -> APIG: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
 APIG -> FHIR++: ""GET /DocumentReference?..""
 FHIR -> FHIR: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
 alt #LightGreen normal report generation
 FHIR -> FHIR: generate screening summary
-FHIR -> APIC: ""200 OK"", FHIR ""DocumentReference Bundle"" (1 or more instances)
+FHIR -> APIC: ""200 OK"", FHIR ""DocumentReference Bundle"" (0 or more MATCH items)
 APIC -> APIC: record instance logical identifier(s)
 note right of APIC #LightYellow: The API consumer can use the instance's logical identifier to later directly retrieve it, instead of searching.
 
@@ -91,7 +91,7 @@ note right of APIC #LightYellow
   as returned by an earlier screening summary search interaction.
 end note
 
-APIC -> APIG: ""GET"" /**DocumentReference/{{logical identifier}}**
+APIC -> APIG: ""GET"" /**DocumentReference/{logical instance identifier}**
 APIG -> APIG: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
 APIG -> FHIR++: ""GET /DocumentReference/..""
 FHIR -> FHIR: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>

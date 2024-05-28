@@ -1,5 +1,3 @@
-# Data model and API design
-
 ### API consumption sequence diagrams
 
 <div width="70%">
