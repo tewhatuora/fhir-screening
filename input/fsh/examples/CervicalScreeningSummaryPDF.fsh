@@ -23,3 +23,4 @@ Description: "Example of an NZ cervical screening summary as a FHIR DocumentRefe
 
 * context.sourcePatientInfo.reference = "#screening-subject-1"
 
+
