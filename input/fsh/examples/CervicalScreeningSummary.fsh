@@ -1,4 +1,4 @@
-Instance: CervicalScreeningSummaryHTML
+Instance: CervicalScreeningSummary
 InstanceOf: ScreeningSummaryDocumentReference
 Usage: #example
 Description: "Example of an FHIR cervical screening summary as an HTMNL attachment (inline)"
@@ -15,10 +15,11 @@ Description: "Example of an FHIR cervical screening summary as an HTMNL attachme
 
 * category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
 
-* content.attachment insert ExampleDoc1HTMLContent
+* text insert ScreeningSummaryExampleHTML
+
+* content.attachment insert ScreeningSummaryExampleHTMLencoded
 * content.format = $MediaTypesCS#text/html
 
-* contained = screening-subject-1
-* subject insert NHIPatientRef(SCF7824,[[Madeleine Meringue]])
-
-* context.sourcePatientInfo.reference = "#screening-subject-1"
+// form dual subject references to both a local instance (literal ref) and an NHI (logical resource ref)
+* subject = Reference(MadeleineMeringue)
+* subject insert NHIPatientRef([[SCF7824]],[[Madeleine Meringue]])
