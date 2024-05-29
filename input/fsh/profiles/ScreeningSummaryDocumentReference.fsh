@@ -15,7 +15,7 @@ Id: nz-screening-summary
 * type ^short = "All screening summary DocRefs have this type code"
 * authenticator 0..0
 * subject only Reference(Patient)
-* subject ^short = "Identifies the patient by NHI identifier (a FHIR logical reference)"
+* subject ^short = "Identifies the patient by an NHI identifier (a FHIR logical reference), AND a local Patient instance (a literal reference)"
 * date ^short = "The 'as-at' date (UTC) of the screening summary report"
 * author only Reference(Organization)
 * custodian only Reference(Organization)
@@ -23,9 +23,9 @@ Id: nz-screening-summary
 * securityLabel 0..0
 * relatesTo 0..0
 
-* content ^short = "Attaches a PDF rendition of the screening summary report.  If no PDF is available thats a PROBLEM"
+* content ^short = "Attaches a rendition of the screening summary report in HTML and/or PDF formats"
 //* content.attachment.contentType 1..1
-* content.attachment.data ^short = "Screening summary document inlined as base64 content; maximum data size 16KB"
+* content.attachment.data ^short = "Screening summary document inlined as base64 content"
 * content.attachment.creation 0..1
 * content.attachment.creation ^short = "The dateTime (UTC) the screening summary content was generated if different from the report 'as-at' date"
 * content.format from NzScreeningDocumentMediaTypesVS|1.0.0 (required)
