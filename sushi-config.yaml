@@ -1,7 +1,7 @@
 # ╭─────────────────────────Commonly Used ImplementationGuide Properties───────────────────────────╮
 # │  The properties below are used to create the ImplementationGuide resource. The most commonly   │
 # │  used properties are included. For a list of all supported properties and their functions,     │
-# │  see: https://fshschool.org/docs/sushi/configuration/.                                         │
+# │  see:e.                                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: tewhatuora.fhir.screening
 canonical: https://build.fhir.org/ig/tewhatuora/fhir-screening.fhir.ig
@@ -9,7 +9,7 @@ name: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 title: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 description: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 status: draft
-version: 0.6.0
+version: 0.7.0
 fhirVersion: 4.0.1
 copyrightYear: 2024+
 releaseLabel: draft # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
@@ -29,6 +29,15 @@ dependencies:
     uri: http://fhir.org.nz/ig/base/ImplementationGuide/fhir.org.nz.ig.base
     version: 3.0.0
 #  hl7.fhir.uv.sdc: 3.0.0
+
+
+# The parameters property represents IG.definition.parameter. Rather
+# than a list of code/value pairs (as in the ImplementationGuide
+# resource), the code is the YAML key. If a parameter allows repeating
+# values, the value in the YAML should be a sequence/array. 
+# For definitions of available parameters see:
+#  https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html
+#  https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
 #
 parameters:
   show-inherited-invariants: false
@@ -40,6 +49,8 @@ parameters:
   display-warnings: true
   excludexml: true
   excludettl: true
+  no-narrative: DocumentReference/*     #  Because this IG profiles DocumentReference with a specific text narrative usage
+
 #   validation: [allow-any-extensions, no-broken-links]
 #
 menu:
