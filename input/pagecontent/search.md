@@ -1,18 +1,31 @@
 ### Overview of screening summary searching
 
-The FHIR API features a FHIR resource search to enable consuming applications to retrieve screening histories.
+The FHIR API features a FHIR resource search which lets consuming applications obtain screening summaries for subject patients.
 
-The search is done using a `GET` on the /DocumentReference REST resource.
+Clients search using a `GET` on the /DocumentReference REST resource, and using FHIR's `_include` operation so that a `Patient` instance containing the patient demographic data is included in the search result. 
 
-The API consumer specifies parameters to sufficiently constrain the search.  
+Search queries clients use to retrieve screening summaries are expected to take the following form:
 
-A typical search would specify query parameters:
+```HTTP
+  GET {API_URL}/DocumentReference?
+    subject:identifier=SCF7824
+    & category=http://snomed.info/sct|1230046007
+    & _include=DocumentReference:subject
+    & contenttype=application/pdf
+```
 
-1. The person who is the subject of the enquiry, identified by their NHI number,
-1. The type of national screening programme of interest, specified as a SNOMED 'serviceType' code,
-1. The format of screening summary (PDF or HTML).
+Explanation of how the above query parameters work:
+- *subject:identifier* filters the results by subject NHI number
+- *category* filters the screening summaries by the specified type of national screening programme (a SNOMED code)
+- *_include* includes the patient detail as a `Patient` instance in search results
+- *contenttype* specifies the content type of screening summary report the client desires (application/pdf or text/html)
+
+Note that if a matching screening summary is found, a basic HTML rendition will be returned by default in the `.text` (Narrative XHTML) of the matching `DocumentReference` resource instance.
+
 
 ### Search API response
+
+** THIS SECTION IS CURRENTLY BEING REVISED **
 
 As a FHIR API, this API will return a FHIR [Bundle](https://hl7.org/fhir/R4B/bundle.html) resource instance containing the results of the search.
 

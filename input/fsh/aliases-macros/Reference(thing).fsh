@@ -16,6 +16,7 @@ RuleSet: NHIPatientRef(nhi-id, patient-name)
 * identifier.value = "{nhi-id}"
 * display = "{patient-name}"
 
+
 ////////////////////////////////////////////////////
 // Reference(org | practitioner)
 

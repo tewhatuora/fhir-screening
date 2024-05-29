@@ -57,23 +57,34 @@ note right
   ""?"" **subject:identifier** = <NHI>
   ""&"" **category** = <screening service type SNOMED>
   ""&"" **contenttype** = ""application/pdf""
+  ""&"" **_include** = **DocumentReference:subject**
 end note
 APIG -> APIG: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
 APIG -> FHIR++: ""GET /DocumentReference?..""
 FHIR -> FHIR: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
 alt #LightGreen normal report generation
-FHIR -> FHIR: generate screening summary(s) / OperationOutcome
-FHIR -> APIC: ""200 OK"", FHIR ""Bundle""
-note left of FHIR #LightYellow
-  The search result Bundle comprises 0 or more instances of
-   ""DocumentReference"" and up to one* ""OperationOutcome""
-   (*if needed for an abnormal search outcome)
-end note
+FHIR -> FHIR: get data from backend APIs
+FHIR -> FHIR: generate screening summary content as HTML and PDF
+FHIR -> FHIR: include participant data as ""Patient"" instance
+FHIR -> APIC: ""200 OK"", FHIR searchset ""Bundle"" 
+  note left of FHIR #LightYellow
+    In normal searches, the response Bundle contains 1
+      ""DocumentReference"" and 1 ""Patient"" instance for each match
+  end note
 
-else #Orange patient NHI doesn't exist
-FHIR -> APIC: ""200 OK"", empty ""Bundle""
+else #Orange No screening summary is available 
+FHIR -> APIC: ""200 OK"", ""Bundle"" of ""OperationOutcome""s
+  note left of FHIR #Orange
+    When the API is unable to produce a screening summary due 
+    to an irregular or special participant status, the Bundle 
+    will contain only OperationOutcomes which describe the reasons.
+    end note
 else #Red technical error
-FHIR -> APIC--: HTTP ""4xx|5xx"" error code, FHIR ""OperationOutcome""
+  FHIR -> APIC--: HTTP ""4xx|5xx"" error code
+  note left of FHIR #IndianRed
+    In technical error scenarios, the response 
+    is just a FHIR ""OperationOutcome""
+  end note
 end
 
 APIC -> APIC: process results and determine what to display for user 
