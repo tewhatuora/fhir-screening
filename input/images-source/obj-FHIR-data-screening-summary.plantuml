@@ -1,0 +1,87 @@
+@startuml obj-FHIR-data-screening-summary
+
+!define COMMON .
+
+!include COMMON/component-skinparams.iuml
+
+top to bottom direction
+scale max 1000*1200
+scale 600 width
+
+skinparam linetype ortho
+skinparam dpi 200
+skinparam nodesep 15 ' component left-right spacing
+skinparam ranksep 5 ' component up-down spacing
+
+allow_mixing
+
+title FHIR screening summary API - search result data model
+
+!procedure $Coding($Alias,$System,$Code,$Display)
+object "<color:GhostWhite>$System" as $Alias #MediumPurple {
+  <color:GhostWhite><size:11>**$Code**-$Display
+}
+!endprocedure
+
+object "search result:**BUNDLE**" as THEBUNDLE {
+  *type: ""#searchset""
+}
+
+object "<size:14>**:DOCUMENTREFERENCE**" as DOCREF <<profiled>> #GhostWhite/LightCoral {
+  * masterIdentifier: identifier
+  * status: ""#current""
+  * author: Ref(Organization) <size:10>"National Screening Unit"</size>
+  * custodian: Ref(Organization) <size:10>"National Screening Unit"</size>
+  * date: {"as-at" report date}
+}
+
+object "DocumentReference.content.attachment\n:**ATTACHMENT**" as DOC #GhostWhite {
+    * data.base64Binary: base64-enc. PDF | HTML
+    * creation: 2024-05-12T10-00-00Z (UTC)
+    * size: nnn
+    * contentType: application/pdf | text/html
+}
+
+object "NzPatient:**PATIENT**" as PATIENT <<NZ base profile>> #GhostWhite {
+    * identifier: NHI reference
+    * name
+    * birthDate
+    * ethnicity(extension)
+    * address
+}
+
+object ":**OPERATIONOUTCOME**" as OPO <<FHIR R4B>> #GhostWhite {
+    * severity: ""#information""
+    * code: ""#informational""
+    * diagnostics: <message>
+}
+
+
+class "Patient (NHI)" as NHIPATIENT <<logical resource>> #SkyBlue {
+  * logical id: NHI
+}
+
+$Coding(DocumentType,"Clinical document type (SNOMED)","#422735006","Summary clinical document     ")
+
+$Coding(ProgrammeType,"Screening programme type (SNOMED screening services)","#1230046007","Cervical cancer screening service      ")
+$Coding(ProgrammeType,"Screening programme type (SNOMED screening services)","#1163003002","Colorectal cancer screening service    ")
+$Coding(ProgrammeType,"Screening programme type (SNOMED screening services)","#310126000", "Breast screening service               ")
+$Coding(ProgrammeType,"Screening programme type (SNOMED screening services)","#310009009", "Neonatal audiological screening service")
+
+' connectors
+THEBUNDLE "1" .. "0..1" DOCREF : ""mode:#match"" entry
+THEBUNDLE "1" .. "0..1" PATIENT : ""mode:#include"" entry
+THEBUNDLE "1" .. "0..1" OPO : \t""mode:#outcome"" entry
+
+DOCREF -d--* ".content.attachment" DOC
+
+DOCREF "<color:purple>.type" -[#MediumPurple,thickness=3,dashed]-> DocumentType
+DOCREF "<color:purple>.category" -[#MediumPurple,thickness=3,dashed]--> ProgrammeType
+DOCREF ".subject" .[#SkyBlue]. "1" NHIPATIENT
+PATIENT ".identifier" .[#SkyBlue]. "1" NHIPATIENT
+
+' legend
+'   **Notes**
+'endlegend
+
+@enduml
