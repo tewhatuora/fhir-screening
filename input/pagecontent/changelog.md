@@ -9,6 +9,7 @@
 - Revised API search response examples
 - Revised data model and sequence diagrams
 - Changed profile name to `ScreeningSummaryDocument`
+- Corrected total count to 0 in search response examples with no mode:match entries
 
 ---
 

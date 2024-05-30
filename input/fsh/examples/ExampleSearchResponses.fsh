@@ -3,7 +3,7 @@
 Instance: SearchResponse-HTMLMatchNoOutcome
 InstanceOf: Bundle
 Usage: #example
-Description: "Example of response to search comprising two screening summary matches"
+Description: "Example of response to search returning an HTML screening summary document"
 
 * meta.versionId = "1"
 * meta.lastUpdated = "2024-05-30T00:00:00Z"
@@ -63,7 +63,7 @@ Description: "Example of response to search comprising two screening summary mat
 Instance: SearchResponse-PDFMatchNoOutcome
 InstanceOf: Bundle
 Usage: #example
-Description: "Example of response to search comprising two screening summary matches"
+Description: "Example of response to search returning an PDF screening summary document"
 
 * meta.versionId = "1"
 * meta.lastUpdated = "2024-05-30T00:00:00Z"
@@ -123,14 +123,14 @@ Description: "Example of response to search comprising two screening summary mat
 Instance: SearchResponse-NoMatchOneOutcome
 InstanceOf: Bundle
 Usage: #example
-Description: "Example of search response where the outcome is NO SCREENING SUMMARY TO DISPLAY"
+Description: "Example of search response where there is no ScreeningSummaryDocument but there is an outcome message"
 
 * meta.versionId = "1"
 * meta.lastUpdated = "2024-05-30T00:00:00Z"
 
 * id = "SearchResponse-NoMatchOneOutcome"
 * type = #searchset
-* total = 1
+* total = 0       // no #match mode entries
 * link[0].relation = "self"
 * link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=SCF7824&_include=DocumentReference%3Asubject"
 
