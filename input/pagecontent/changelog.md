@@ -6,8 +6,9 @@
 
 - Updated DocumentReference profile to remove contained instance and links
 - Updated API search behaviour documentation
-- Updated example of API search response
+- Revised API search response examples
 - Revised data model and sequence diagrams
+- Changed profile name to `ScreeningSummaryDocument`
 
 ---
 
