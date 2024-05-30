@@ -1,9 +1,9 @@
 Instance: BowelScreeningSummary
-InstanceOf: ScreeningSummaryDocumentReference
+InstanceOf: ScreeningSummaryDocument
 Usage: #example
 Description: "Example of an NZ bowel screening summary as a FHIR DocumentReference with HTML narrative content only"
 
-* meta.profile = Canonical(ScreeningSummaryDocumentReference)
+* meta.profile = Canonical(ScreeningSummaryDocument)
 * meta.versionId = "2"
 * meta.lastUpdated = "2024-05-29T09:00:00Z"
 
@@ -14,8 +14,6 @@ Description: "Example of an NZ bowel screening summary as a FHIR DocumentReferen
 * type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
 
 * category[0] insert SNOMEDCodeableConcept(1163003002,[[Colorectal cancer screening service (qualifier value)]])
-
-* text insert ScreeningSummaryExampleHTML
 
 * content.attachment insert ScreeningSummaryExampleHTMLencoded
 * content.format = $MediaTypesCS#text/html

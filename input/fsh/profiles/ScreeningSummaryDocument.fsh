@@ -1,4 +1,4 @@
-Profile: ScreeningSummaryDocumentReference
+Profile: ScreeningSummaryDocument
 Parent: DocumentReference
 Description: "A FHIR DocumentReference representation of a screening summary report"
 Id: nz-screening-summary
@@ -7,7 +7,7 @@ Id: nz-screening-summary
 
 // elements modified from parent profile
 * text 0..1
-* text ^short = "By default, a screening summary always contains an plain HTML rendition of the screening summary report (assuming data is available)."
+* text ^short = "By default, an HTML rendition of the screening summary shall appear be in content.attachment so this Narrative element is not used"
 * docStatus 0..0
 * category from nz-screening-programmetype-code (required)
 * category ^short = "In screening summary DocRefs, denotes the type of screening programme only; cannot be used for other categorization purposes"
@@ -23,9 +23,9 @@ Id: nz-screening-summary
 * securityLabel 0..0
 * relatesTo 0..0
 
-* content ^short = "Attaches a rendition of the screening summary report in HTML and/or PDF formats"
+* content ^short = "Attaches a rendition of the screening summary report"
 //* content.attachment.contentType 1..1
-* content.attachment.data ^short = "Screening summary document inlined as base64 content"
+* content.attachment.data ^short = "Screening summary document inlined as base64 content. By default this is an HTML rendition."
 * content.attachment.creation 0..1
 * content.attachment.creation ^short = "The dateTime (UTC) the screening summary content was generated if different from the report 'as-at' date"
 * content.format from NzScreeningDocumentMediaTypesVS|1.0.0 (required)

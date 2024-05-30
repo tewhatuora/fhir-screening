@@ -27,7 +27,7 @@ Usage: #definition
 
 // 
 * rest.resource[+].type = #DocumentReference
-* rest.resource[=].profile = Canonical(ScreeningSummaryDocumentReference)
+* rest.resource[=].profile = Canonical(ScreeningSummaryDocument)
 * rest.resource[=] insert QuerySearchInteraction
 * rest.resource[=] insert ResourceDocumentation([[This server profiles FHIR DocumentReference to support NZ national screening programme summary reports]])
 

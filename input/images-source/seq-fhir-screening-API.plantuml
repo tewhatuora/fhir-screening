@@ -68,16 +68,18 @@ FHIR -> FHIR: generate screening summary content as HTML and PDF
 FHIR -> FHIR: include participant data as ""Patient"" instance
 FHIR -> APIC: ""200 OK"", FHIR searchset ""Bundle"" 
   note left of FHIR #LightYellow
-    In normal searches, the response Bundle contains 1
-      ""DocumentReference"" and 1 ""Patient"" instance for each match
+    In normal search response is a FHIR searchset Bundle.  Each
+      Bundle entry comprises a ""DocumentReference (mode:#match)"" containing 
+      the formatted screening summary, AND a ""Patient (mode:#include)"" 
+      instance for the patient demographic detail
   end note
 
 else #Orange No screening summary is available 
-FHIR -> APIC: ""200 OK"", ""Bundle"" of ""OperationOutcome""s
+FHIR -> APIC: ""200 OK"", ""Bundle"" of ""mode: #outcome""
   note left of FHIR #Orange
-    When the API is unable to produce a screening summary due 
-    to an irregular or special participant status, the Bundle 
-    will contain only OperationOutcomes which describe the reasons.
+    When no screening history is available for the specified 
+    subject for some reason, the Bundle contains one or more
+    OperationOutcome(s) (""mode: #outcome"") describing the reason(s).
     end note
 else #Red technical error
   FHIR -> APIC--: HTTP ""4xx|5xx"" error code
