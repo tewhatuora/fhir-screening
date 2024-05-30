@@ -1,10 +1,12 @@
 ### Overview of screening summary searching
 
-The FHIR API features a FHIR resource search which lets consuming applications obtain screening summaries for subject patients.
+API consumers obtain screening summaries using the standard FHIR search API.
 
-Clients search using a `GET` on the /DocumentReference REST resource, and using FHIR's `_include` operation so that a `Patient` instance containing the patient demographic data is included in the search result. 
+A search is done by a `GET` on the /DocumentReference REST resource, using FHIR's `_include` operation to incorporate the patient demographic data as a `Patient` FHIR instance.
 
-Search queries clients use to retrieve screening summaries are expected to take the following form:
+If the API is not able to supply a screening summary for a subject NHI on the register, for example when the specified subject has no screening history, an `OperationOutcome` will be returned (instead of the DocumentReference and Patient instances).
+
+### Example search query
 
 ```HTTP
   GET {API_URL}/DocumentReference?
@@ -14,50 +16,36 @@ Search queries clients use to retrieve screening summaries are expected to take 
     & contenttype=application/pdf
 ```
 
-Explanation of how the above query parameters work:
-- *subject:identifier* filters the results by subject NHI number
-- *category* filters the screening summaries by the specified type of national screening programme (a SNOMED code)
-- *_include* includes the patient detail as a `Patient` instance in search results
-- *contenttype* specifies the content type of screening summary report the client desires (application/pdf or text/html)
+API consumers should use the following parameters to constrain every search for screening summaries.
 
-Note that if a matching screening summary is found, a basic HTML rendition will be returned by default in the `.text` (Narrative XHTML) of the matching `DocumentReference` resource instance.
-
+| **request parameter** | **description** |
+|:---------------|:-----------------------------|
+| *subject:identifier* | Specifies the subject NHI number to search for. |
+| *category* | Filters screening summaries by the type of national screening programme.  Refer to [this ValueSet] (ValueSet-nz-screening-programmetype-code.html) for codes which are valid codes to use. |
+| *_include* | Includes the subject patient demographic as a `Patient` instance (NzProfile from NZ Base IG) in the response. |
+| *contenttype* (optional) | Specify the preferred content type of the rendered screening summary report.  **By default the API returns the screening summary rendered as HTML (text/html).  The API consumer may specify `application/pdf` to get a PDF rendition instead. |
 
 ### Search API response
 
-** THIS SECTION IS CURRENTLY BEING REVISED **
+The API returns a FHIR `type:#searchset` [Bundle](https://hl7.org/fhir/R4B/bundle.html) resource instance containing the results of the search.
 
-As a FHIR API, this API will return a FHIR [Bundle](https://hl7.org/fhir/R4B/bundle.html) resource instance containing the results of the search.
+For each entry  in the response Bundle, up to three search mode types may appear as described below.
 
-Results in the returned Bundle can be a mixture of DocumentReference and OperationOutcome resources, further elaborated below.
+| **entry `mode`**  | **Circumstances when returned**                           | **Examples** |
+|:------------------|:----------------------------------------------------------|:---------------|
+| *#match*     | In normal searches this entry provides the matching subject's screening summary document as a [*ScreeningSummaryDocument* (`DocumentReference`)](StructureDefinition-nz-screening-summary.html) resource instance | [Normal search with no special outcome](Bundle-SearchResponse-HTMLMatchNoOutcome.html) |
+| *#include*   | In normal searches with the `_include` operation this entry provides the matching subject's data as an included *NzPatient* (`Patient`) resource instance | [Normal search with no special outcome](Bundle-SearchResponse-HTMLMatchNoOutcome.html)|
+| *#outcome*   | When the API cannot supply a screening summary, this entry provides an informational reason as a diagnostic message in a FHIR `OperationOutcome` resource instance | [#1 Outcome message but NO screening summary](Bundle-SearchResponse-NoMatchOneOutcome.html) <br> [#2 Screening summary WITH an outcome message](Bundle-SearchResponse-HTMLMatchWithOutcome.html)
+ |
 
-#### Instances of the FHIR `DocumentReference` resource
+**Note: API consumers should be prepared for multiple mode entries to appear in combination in the response to a given search.**
 
-ALl of these instances will be profiled as per the [*ScreeningSummaryDocumentReference* structure](StructureDefinition-nz-screening-summary.html) defined in this IG.
+### No matching subject NHI
 
-Clients can expect these instances as the 'normal' response data to their search requests.
+If the API finds no screening records for a specified NHI subject identifier, the API returns 200 OK and an empty `Bundle` (`"total": 0` - no entries).  
 
-Each instance provides a subject screening history with screening subject demographics, programme participation status and screening history, all rendered into a single PDF or HTML report (document attachment).  
+**API consumers should not expect this API to validate NHI identifiers given as a search parameters.** Use the New Zealand [NHI FHIR API](https://nhi-ig.hip.digital.health.nz/) for NHI matching and validation.
 
-Note: The API can return multiple instances of these resources for a given NHI, if there are multiple entries in the backend register or where more than one report format is available.
+### Error scenarios
 
-#### *[FHIR OperationOutcome](https://hl7.org/fhir/R4B/bundle.html)* instances.
-
-The API uses one or more OperationOutcome instancess when there is a need to convey information about a search and a DocumentReference response cannot be provided.
-
-An `OperationOutcome` will be included as a result Bundle entry in cases such as when a person has withdrawn from a screening programme and all their data has been deleted from the Register.
-
-Note: a search response could contain BOTH an OperationOutcome AND a screening summary DocumentReference because it may be possible to supply a screening history and provide extra screening information about the subject person to the requesting party.
-
-### Examples of search responses
-
-Refer to these artifacts for examples of response payloads in different search scenarios supported by this API.
-
-| name | example screening scenario | example instance demonstrating response payload |
-|:--------------|:---------------------------------------------------|:-------------------------|
-| **'normal' screening history lookup** | A patient with a screening history presents for cervical screening. | [`1 match, no issue`](Bundle-ResponseBundleExample-OneMatchNoIssue.html) |
-| **new subject, non-existent NHI** | A new patient, without NHI and not on the register, presents for cervical screening - there is no screening history to display for this subject | [`No match, 1 issue`](Bundle-ResponseBundleExample-NoMatchOneIssue.html) |
-| **no summary, multiple issues** | A screening summary cannot be obtained for the subject and there are multiple pieces of information to convey. |  [`No match, multiple issues`](Bundle-ResponseBundleExample-NoMatchMultipleIssue.html) |
-| **subject has screening history but there is an issue** | A screening summary can be produced for the subject but there is also additional information to convey. |  [`One match, one issue`](Bundle-ResponseBundleExample-OneMatchOneIssue.html) |
-| **multiple screening summary match** | A patient with a screening history presents for cervical screening. |  [`Two match, no issue`](Bundle-ResponseBundleExample-TwoMatchNoIssue.html) |
-| **technical error response** | The API cannot produce a screening summary nor an OperationOutcome message - this is only expected in technical error scenarios such as a security authorization issue | HTTP status code and `OperationOutcome` as per [FHIR spec](https://hl7.org/fhir/R4B/http.html#Status-Codes). |
+In the event of a authorization or technical error, the API simply returns an HTTP status code and `OperationOutcome` as per [FHIR spec](https://hl7.org/fhir/R4B/http.html#Status-Codes).
