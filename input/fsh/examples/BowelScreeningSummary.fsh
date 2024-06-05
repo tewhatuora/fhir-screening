@@ -18,10 +18,10 @@ Description: "Example of an NZ bowel screening summary as a FHIR DocumentReferen
 * content.attachment insert ScreeningSummaryExampleHTMLencoded
 * content.format = $MediaTypesCS#text/html
 
-// form a Patient reference to both a logical (NHI) resource and and a local literal resource
-* subject = Reference(MickMahoe)
+// form a Patient reference to both a logical (NHI) resource and a local literal resource
+* subject = Reference(MikiMahoe)
 * subject.type = "Patient"
 * subject.identifier.use = #official
 * subject.identifier.system = "https://standards.digital.health.nz/ns/nhi-id"
 * subject.identifier.value = "SCF7826"
-* subject.display = "Mick Mahoe"
+* subject.display = "Miki Mahoe"

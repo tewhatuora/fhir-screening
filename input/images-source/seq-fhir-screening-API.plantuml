@@ -42,6 +42,12 @@ title "PMS search for screening summary(s) using FHIR screening API"
 
 APIC -> ROSIE++: OAUTH2.0 Client Credentials Flow\n<size:10>(client credentials and requested scope)</size>
 return OAUTH token
+note right
+  ""scopes:"" 
+    **system/DocumentReference.rs?category=http://snomed.info/sct|1230046007**
+    **system/Patient.r**
+  ""aud:"" **https://api.{env}.nss.digital.health.nz**
+end note
 
 == operations ==
 
@@ -61,7 +67,7 @@ note right
 end note
 APIG -> APIG: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
 APIG -> FHIR++: ""GET /DocumentReference?..""
-FHIR -> FHIR: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
+' FHIR -> FHIR: validate OAUTH token\n<size:10>(issuer,token,scopes,sig)</size>
 alt #LightGreen normal report generation
 FHIR -> FHIR: get data from backend APIs
 FHIR -> FHIR: generate screening summary content as HTML and PDF

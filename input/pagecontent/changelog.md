@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.8.0 (2024-06-05)
+
+- Added two patient attributes to the API response data
+  - gender
+  - sex-at-birth
+- Revised one of the example screening subject FHIR `Patient` instances to be gender-diverse
+
+---
+
 ## v0.7.0 (2024-05-29)
 
 ### API now returns patient data using FHIR's **_include operation** instead of as a contained instance
