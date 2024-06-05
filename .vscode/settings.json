@@ -1,7 +1,7 @@
 {
   "plantuml.render": "server",
   "plantuml.server": "http://localhost:8000/plantuml",
-  "plantuml.exportFormat": "svg",
+  "plantuml.exportFormat": "png",
   "plantuml.commandArgs": [
       "-DPLANTUML_LIMIT_SIZE=8192",
   ],

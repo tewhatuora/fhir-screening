@@ -8,10 +8,11 @@
   - sex-at-birth
 - Revised one of the example screening subject FHIR `Patient` instances to be gender-diverse
 - Removed `meta.versionId` and `meta.lastUpdated` from example instance metadata
-- Various reductions to the API capability statement:
+- Various alterations to the API capability statement:
   - **read**, **vread** and **_revinclude** operations have been removed
-  - *_profile*, *identifier* and *date* query parameters have been removed
-- **_include** operation now spec'd in capability statement 
+  - removed unnecessary query parameters *_profile*, *identifier*, *date* and *patient*
+  - **_include** operation now spec'd in capability statement
+- FHIR search response data model diagram moved to the [search behaviour](search.html) page.
 
 ---
 
