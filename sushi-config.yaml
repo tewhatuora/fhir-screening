@@ -64,6 +64,7 @@ menu:
     Artifacts (Xml): definitions.xml.zip
     Changelog: changelog.html
     API sequences & data model: data.html
+    Gender NSS-FHIR translation: gender.html
     Search behaviour: search.html
     Download IG : full-ig.zip
     OpenAPI Specification: FHIRScreeningCapabilityStatement.openapi.json

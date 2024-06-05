@@ -5,9 +5,6 @@ InstanceOf: Bundle
 Usage: #example
 Description: "Example of response to search returning an HTML screening summary document"
 
-* meta.versionId = "1"
-* meta.lastUpdated = "2024-05-30T00:00:00Z"
-
 * id = "SearchResponse-HTMLMatchNoOutcome"
 * type = #searchset
 * total = 1
@@ -20,8 +17,6 @@ Description: "Example of response to search returning an HTML screening summary 
 * entry[=].resource.resourceType = "DocumentReference"
 * entry[=].resource.id = "9f966515-f908-4892-a5f7-340e15507232"
 * entry[=].resource.meta.profile = Canonical(ScreeningSummaryDocument)
-* entry[=].resource.meta.versionId = "1"
-* entry[=].resource.meta.lastUpdated = "2024-05-13T22:00:00Z"
 * entry[=].resource.masterIdentifier insert DocIdentifier(1,[[National Screening Unit]])
 * entry[=].resource.identifier insert DocIdentifier(1,[[National Screening Unit]])
 * entry[=].resource.custodian insert OrganisationRefByName([[National Screening Unit]])
@@ -40,8 +35,6 @@ Description: "Example of response to search returning an HTML screening summary 
 * entry[=].resource.resourceType = "Patient"
 * entry[=].resource.id = "14a27af4-d621-4068-b678-e878246c48b9"
 * entry[=].resource.meta.profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient)
-* entry[=].resource.meta.versionId = "1"
-* entry[=].resource.meta.lastUpdated = "2024-05-13T22:00:00Z"
 * entry[=].resource.identifier insert NHIIdentifier(SCF7824)
 * entry[=].resource.name.use = #usual
 * entry[=].resource.name.family = "Meringue"
@@ -65,9 +58,6 @@ InstanceOf: Bundle
 Usage: #example
 Description: "Example of response to search returning an PDF screening summary document"
 
-* meta.versionId = "1"
-* meta.lastUpdated = "2024-05-30T00:00:00Z"
-
 * id = "SearchResponse-PDFMatchNoOutcome"
 * type = #searchset
 * total = 1
@@ -80,8 +70,6 @@ Description: "Example of response to search returning an PDF screening summary d
 * entry[=].resource.resourceType = "DocumentReference"
 * entry[=].resource.id = "9f966515-f908-4892-a5f7-340e15507232"
 * entry[=].resource.meta.profile = Canonical(ScreeningSummaryDocument)
-* entry[=].resource.meta.versionId = "1"
-* entry[=].resource.meta.lastUpdated = "2024-05-13T22:00:00Z"
 * entry[=].resource.masterIdentifier insert DocIdentifier(1,[[National Screening Unit]])
 * entry[=].resource.identifier insert DocIdentifier(1,[[National Screening Unit]])
 * entry[=].resource.custodian insert OrganisationRefByName([[National Screening Unit]])
@@ -100,8 +88,6 @@ Description: "Example of response to search returning an PDF screening summary d
 * entry[=].resource.resourceType = "Patient"
 * entry[=].resource.id = "14a27af4-d621-4068-b678-e878246c48b9"
 * entry[=].resource.meta.profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient)
-* entry[=].resource.meta.versionId = "1"
-* entry[=].resource.meta.lastUpdated = "2024-05-13T22:00:00Z"
 * entry[=].resource.identifier insert NHIIdentifier(SCF7824)
 * entry[=].resource.name.use = #usual
 * entry[=].resource.name.family = "Meringue"
@@ -125,9 +111,6 @@ InstanceOf: Bundle
 Usage: #example
 Description: "Example of search response where there is no ScreeningSummaryDocument but there is an outcome message"
 
-* meta.versionId = "1"
-* meta.lastUpdated = "2024-05-30T00:00:00Z"
-
 * id = "SearchResponse-NoMatchOneOutcome"
 * type = #searchset
 * total = 0       // no #match mode entries
@@ -148,9 +131,6 @@ InstanceOf: Bundle
 Usage: #example
 Description: "Example of search response where there is screening history but an outcome status also needs to be conveyed"
 
-* meta.versionId = "1"
-* meta.lastUpdated = "2024-05-30T00:00:00Z"
-
 * id = "SearchResponse-HTMLMatchWithOutcome"
 * type = #searchset
 * total = 1
@@ -163,8 +143,6 @@ Description: "Example of search response where there is screening history but an
 * entry[=].resource.resourceType = "DocumentReference"
 * entry[=].resource.id = "9f966515-f908-4892-a5f7-340e15507232"
 * entry[=].resource.meta.profile = Canonical(ScreeningSummaryDocument)
-* entry[=].resource.meta.versionId = "1"
-* entry[=].resource.meta.lastUpdated = "2024-05-13T22:00:00Z"
 * entry[=].resource.masterIdentifier insert DocIdentifier(1,[[National Screening Unit]])
 * entry[=].resource.identifier insert DocIdentifier(1,[[National Screening Unit]])
 * entry[=].resource.custodian insert OrganisationRefByName([[National Screening Unit]])
@@ -183,8 +161,6 @@ Description: "Example of search response where there is screening history but an
 * entry[=].resource.resourceType = "Patient"
 * entry[=].resource.id = "14a27af4-d621-4068-b678-e878246c48b9"
 * entry[=].resource.meta.profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient)
-* entry[=].resource.meta.versionId = "1"
-* entry[=].resource.meta.lastUpdated = "2024-05-13T22:00:00Z"
 * entry[=].resource.identifier insert NHIIdentifier(SCF7824)
 * entry[=].resource.name.use = #usual
 * entry[=].resource.name.family = "Meringue"
