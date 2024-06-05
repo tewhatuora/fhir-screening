@@ -2,10 +2,16 @@
 
 ## v0.8.0 (2024-06-05)
 
+- Added [NSS to FHIR gender translation](gender.html) information for subject gender and sex-assigned-at-birth.
 - Added two patient attributes to the API response data
   - gender
   - sex-at-birth
 - Revised one of the example screening subject FHIR `Patient` instances to be gender-diverse
+- Removed `meta.versionId` and `meta.lastUpdated` from example instance metadata
+- Removed various items from API capability statement:
+  - **read**, **vread** and **_revinclude** operations
+  - *_profile* and *identifier* query parameters
+- **_include** operation now spec'd in capability statement 
 
 ---
 

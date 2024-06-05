@@ -4,8 +4,8 @@ Usage: #example
 Description: "Example of an FHIR cervical screening summary as an HTML attachment"
 
 * meta.profile = Canonical(ScreeningSummaryDocument)
-* meta.versionId = "1"
-* meta.lastUpdated = "2024-05-01T22:00:00Z"
+// * meta.versionId = "1"
+// * meta.lastUpdated = "2024-05-01T22:00:00Z"
 
 * masterIdentifier insert DocIdentifier(1,[[National Screening Unit]])
 * identifier insert DocIdentifier(1,[[National Screening Unit]])

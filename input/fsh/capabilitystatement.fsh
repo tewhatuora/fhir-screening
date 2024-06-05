@@ -25,21 +25,24 @@ Usage: #definition
 
 * rest.interaction.code = #transaction
 
-// 
+// DocumentReference searching 
 * rest.resource[+].type = #DocumentReference
 * rest.resource[=].profile = Canonical(ScreeningSummaryDocument)
-* rest.resource[=] insert QuerySearchInteraction
+* rest.resource[=] insert SearchOnlyInteraction
 * rest.resource[=] insert ResourceDocumentation([[This server profiles FHIR DocumentReference to support NZ national screening programme summary reports]])
 
-* rest.resource[=].searchParam[0].name = "identifier"
-* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-masterIdentifier"
-* rest.resource[=].searchParam[=].type = #token
-* rest.resource[=].searchParam[=].documentation = "The identifier of the versioned master document"
+* rest.resource[=].searchInclude = "DocumentReference:subject"
+* rest.resource[=].searchRevInclude = ""
 
-* rest.resource[=].searchParam[0].name = "_profile"
-* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#Resource-profile"
-* rest.resource[=].searchParam[=].type = #reference
-* rest.resource[=].searchParam[=].documentation = "Filter document instances tagged with the **NZ screening document** profile eg. ?_profile=https://build.fhir.org/ig/tewhatuora/fhir-screening.fhir.ig/StructureDefinition/nz-screening-summary"
+// * rest.resource[=].searchParam[0].name = "identifier"
+// * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-masterIdentifier"
+// * rest.resource[=].searchParam[=].type = #token
+// * rest.resource[=].searchParam[=].documentation = "The identifier of the versioned master document"
+
+// * rest.resource[=].searchParam[0].name = "_profile"
+// * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#Resource-profile"
+// * rest.resource[=].searchParam[=].type = #reference
+// * rest.resource[=].searchParam[=].documentation = "Filter document instances tagged with the **NZ screening document** profile eg. ?_profile=https://build.fhir.org/ig/tewhatuora/fhir-screening.fhir.ig/StructureDefinition/nz-screening-summary"
 
 * rest.resource[=].searchParam[+].name = "category"
 * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-category"
@@ -70,3 +73,11 @@ Usage: #definition
 // * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#clinical-type"
 // * rest.resource[=].searchParam[=].type = #token
 // * rest.resource[=].searchParam[=].documentation = "Filters the kind of document" 
+
+// virtual Patient instances for conveying patient demographic 
+* rest.resource[+].type = #Patient
+* rest.resource[=].profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient)
+* rest.resource[=] insert SearchOnlyInteraction
+* rest.resource[=] insert ResourceDocumentation([[This server supplies instances of Patient resources as part of DocumentReference search results only.  API consumers cannot create or get Patient instances directly]])
+* rest.resource[=].searchInclude = ""
+* rest.resource[=].searchRevInclude = ""
