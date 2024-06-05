@@ -46,8 +46,12 @@ object "NzPatient:**PATIENT**" as PATIENT <<NZ base profile>> #GhostWhite {
     * identifier: NHI reference
     * name
     * birthDate
-    * ethnicity(extension)
+    * gender: ""male | female | unknown""
     * address
+    -- extensions --
+    * ethnicity
+    * genderOriginalText: "Gender Diverse"
+    * sex-at-birth: : ""male | female | other""
 }
 
 object ":**OPERATIONOUTCOME**" as OPO <<FHIR R4B>> #GhostWhite {
@@ -69,7 +73,7 @@ $Coding(ProgrammeType,"Screening programme type (SNOMED screening services)","#3
 $Coding(ProgrammeType,"Screening programme type (SNOMED screening services)","#310009009", "Neonatal audiological screening service")
 
 ' connectors
-THEBUNDLE "1" .. "0..1" DOCREF : ""mode:#match"" entry
+THEBUNDLE "1" ... "0..1" DOCREF : ""mode:#match"" entry
 THEBUNDLE "1" .. "0..1" PATIENT : ""mode:#include"" entry
 THEBUNDLE "1" .. "0..1" OPO : \t""mode:#outcome"" entry
 
