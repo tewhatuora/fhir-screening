@@ -4,8 +4,8 @@ Usage: #example
 Description: "Example of an NZ cervical screening summary as a PDF attachment"
 
 * meta.profile = Canonical(ScreeningSummaryDocument)
-* meta.versionId = "1"
-* meta.lastUpdated = "2024-05-13T22:00:00Z"
+// * meta.versionId = "1"
+// * meta.lastUpdated = "2024-05-13T22:00:00Z"
 
 * masterIdentifier insert DocIdentifier(1,[[National Screening Unit]])
 * identifier insert DocIdentifier(1,[[National Screening Unit]])

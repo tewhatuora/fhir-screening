@@ -14,10 +14,8 @@ RuleSet: GenericCRUDInteractions
 * conditionalUpdate = false
 * conditionalDelete = #not-supported
 
-// REST resource query/read-only operations
-RuleSet: QuerySearchInteraction
-* interaction[0].code = #read
-* interaction[+].code = #vread
+// REST resource search only interfaces (no CRUD)
+RuleSet: SearchOnlyInteraction
 * interaction[+].code = #search-type
 * versioning = #versioned
 * readHistory = false
@@ -27,7 +25,6 @@ RuleSet: QuerySearchInteraction
 * conditionalUpdate = false
 * conditionalDelete = #not-supported
 
-RuleSet: ResourceDocumentation(markdown)
 // adds markdown doc to a CapabilityStatement element
-
+RuleSet: ResourceDocumentation(markdown)
 * documentation = "{markdown}"
