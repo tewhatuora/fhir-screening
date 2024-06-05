@@ -4,7 +4,25 @@ API consumers obtain screening summaries using the standard FHIR search API.
 
 A search is done by a `GET` on the /DocumentReference REST resource, using FHIR's `_include` operation to incorporate the patient demographic data as a `Patient` FHIR instance.
 
-If the API is not able to supply a screening summary for a subject NHI on the register, for example when the specified subject has no screening history, an `OperationOutcome` will be returned (instead of the DocumentReference and Patient instances).
+For a description of the parameters API consumers can specify in a screening summary search see the API [capability statement](CapabilityStatement-FHIRScreeningCapabilityStatement.html)
+
+In successful search scenario, the API returns a FHIR `Bundle` with two entries:
+- a `mode:#match` entry containing a profiled DocumentReference instance, and
+- a `mode:#include` entry comprising a profiled Patient instance.
+
+If the API is not able to produce a screening summary for a given subject NHI from the national register (for example, when the specified subject has no screening history) it will return an `OperationOutcome` as a `mode:#outcome` entry in a FHIR `Bundle`.
+
+The following diagram shows these FHIR instances the API returns for a DocumentReference search.
+
+The object diagram below illustrates the structure of FHIR DocumentReference instances returned by enquiries to this FHIR API.
+
+<div width="100%">
+<!-- Generated from `input/images-source/obj-FHIR-data-screening-summary.plantuml` -->
+{% include obj-FHIR-data-screening-summary.svg %}
+</div>
+<br clear="all">
+
+---
 
 ### Example search query
 
