@@ -1,14 +1,36 @@
-## Use cases and API operations
+## Use cases
 
-| Clinical use case | Description | API operations <br>(^For NHI operations refer to the [NHI IG](https://nhi-ig.hip.digital.health.nz/index.html)) |
-|:--------------|:---------------------------------|:----------------|
-| `01` *Check register for new cervical screening patient* | A new patient presents for cervical screening e.g. A casual patient books an appointment with GP practice. This is a new patient not yet registered in the primary care providers system, and has no Cervical Screening History data in the local system. | [`NHI.Match Patient^`](https://nhi-ig.hip.digital.health.nz/matchPatient.html), `DocumentReference.Search/Read` |
-| `02` *Check history for patient presenting for colposcopy* | A patient is referred for colposcopy subsequent to a non-normal HPV or Cytology result. The Colposcopy practitioner requires access to the patient’s screening history to determine their healthcare needs. | `DocumentReference.Search/Read` |
-| `03` *Check register and history for patient returning for cervical screening* | An existing patient known to the primary care provider or GP practice presents for cervical screening e.g. Enrolled patient books or attends an appointment. The patient details are already in the local system and a record of cervical screening might exist in local system. (the patient might have received other healthcare in the past) | `DocumentReference.Search/Read` |
-| `04` *Check for patient history and eligibility as part of opportunistic screening* | An existing patient known to the primary care provider or GP practice presents for healthcare and is identified for opportunistic cervical screening e.g. Enrolled patient books or attends an appointment and is due for screening, or the patient is newly identified as eligible for cervical screening. The patient details are already in the local system and a record of cervical screening might exist in local system | `DocumentReference.Search/Read` |
-| `05` *Determine if a patient is enrolled in the screening program | A user at the primary care or GP practice is reviewing the patients enrolled at the practice for screening, e.g. to identify unscreened and under-screened patients. | `DocumentReference.Search/Read` |
-| `06` *Lookup patient contact details*  | A user at the primary care or GP practice is going through patients enrolled at the practice to book eligible patients for routine screening (recall). | `DocumentReference.Search/Read`, possibly also `NHI.Get Patient` |
-| `07` *Confirm eligibility for recall* (pathway status, next event, next event due etc.) | .. | - |
-| `08` *Confirm patient’s correspondence preferences* | .. | - |
-| `09` *Update practitioner's system with latest patient screening summary information* | .. | - | 
-| `10` *Review screening results as notified by another primary care provider* | An existing patient known to the primary care or GP practice presents for healthcare at another primary provider (e.g Family planning, a community event, etc.) and was opportunistically-screened. The GP practice is advised of the screening. The GP Practice requests screening history to review results and/ or update the local system and workflow. | `DocumentReference.Search/Read` |
+This page documents the various screening summary request scenarios and the expected FHIR API response for each scenario.
+
+### Requests for screening information where there is screening history in the Register
+
+|Id|Scenario | *Participant Information* returned in screening summary?| *Screening History* returned in screening summary? | Additional search outcome message(s) returned by `DocumentReference.Search` |
+|:-|:--------------------------------------------------------------------------------------|:------|:--------|:----------------|
+|H1| A participant is Sex Assigned at Birth female on the programme with Screening History. | Yes | Yes | - |
+|H2| Deceased participant with screening history | Yes | Yes | - |
+|H3| A participant is Sex Assigned at Birth Female below Eligibility age with screening history | Yes | Yes | - |
+|H4| A participant is Sex Assigned at Birth Female above Eligibility age with screening history | Yes | Yes | - |
+|H5| A Participant has cervical cancer and doesn't require ongoing screening. | Yes | Yes | - |
+|H6| A participant with cancer has specifically been identified as requiring future screening | Yes | Yes | - |
+|H7| A participant has had Total hysterectomy | Yes | Yes | - |
+|H8| A participant has had sub-total hysterectomy | Yes | Yes | - |
+
+---
+
+### Requests for screening information where there is NO screening history in the Register
+
+|Id|Scenario | *Participant Information* returned in screening summary?| *Screening History* returned in screening summary? | Additional search outcome message(s) returned by `DocumentReference.Search` |
+|:-|:--------------------------------------------------------------------------------------|:------|:--------|:----------------|
+|N1| A person is Sex Assigned at Birth female, participating in the programme but with no Screening History. | Yes | No | This NHI hNas | no Screening history to display. |
+|N2| Deceased person with No screening history | Yes | No | This NHI has no Screening history to display. |
+|N3| Sex Assigned at Birth Female below Eligibility age without screening history | Yes | No | This NHI has no Screening history to | dNisplay. |
+|N4| Person is Sex Assigned at Birth Female above Eligibility age without screening history | Yes | No | This NHI has no Screening | hNistory to display. |
+|N5| Person is cis gendered male | Yes | No | This NHI has no Screening history to display. |
+|N6| Person has withdrawn from the program | Yes | No | This NHI has no Screening history to display. The participant has Withdrawn | fNrom the National Cervical Screening Programme |
+
+### Special cases
+|Id|Scenario | *Participant Information* returned in screening summary?| *Screening History* returned in screening summary? | Additional search outcome message(s) returned by `DocumentReference.Search` |
+|:-|:--------------------------------------------------------------------------------------|:------|:--------|:----------------|
+|X| Participant has multiple NHI and a Dormant NHI is supplied as a search parameter. | Yes | Yes (if available) | 1. The requested NHI is dormant and linked to a live identifier, so the live NHI has been returned.<br>2. (if applicable) This NHI has no Screening history to display. |
+
+---
