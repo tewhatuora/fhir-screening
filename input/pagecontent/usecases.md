@@ -21,12 +21,12 @@ This page documents the various screening summary request scenarios and the expe
 
 |Id|Scenario | *Participant Information* returned in screening summary?| *Screening History* returned in screening summary? | Additional search outcome message(s) returned by `DocumentReference.Search` |
 |:-|:--------------------------------------------------------------------------------------|:------|:--------|:----------------|
-|N1| A person is Sex Assigned at Birth female, participating in the programme but with no Screening History. | Yes | No | This NHI hNas | no Screening history to display. |
+|N1| A person is Sex Assigned at Birth female, participating in the programme but with no Screening History. | Yes | No | This NHI has no Screening history to display. |
 |N2| Deceased person with No screening history | Yes | No | This NHI has no Screening history to display. |
-|N3| Sex Assigned at Birth Female below Eligibility age without screening history | Yes | No | This NHI has no Screening history to | dNisplay. |
-|N4| Person is Sex Assigned at Birth Female above Eligibility age without screening history | Yes | No | This NHI has no Screening | hNistory to display. |
+|N3| Sex Assigned at Birth Female below Eligibility age without screening history | Yes | No | This NHI has no Screening history to display. |
+|N4| Person is Sex Assigned at Birth Female above Eligibility age without screening history | Yes | No | This NHI has no Screening history to display. |
 |N5| Person is cis gendered male | Yes | No | This NHI has no Screening history to display. |
-|N6| Person has withdrawn from the program | Yes | No | This NHI has no Screening history to display. The participant has Withdrawn | fNrom the National Cervical Screening Programme |
+|N6| Person has withdrawn from the program | Yes | No | This NHI has no Screening history to display. This subject has withdrawn from the National Cervical Screening Programme. |
 
 ### Special cases
 |Id|Scenario | *Participant Information* returned in screening summary?| *Screening History* returned in screening summary? | Additional search outcome message(s) returned by `DocumentReference.Search` |
