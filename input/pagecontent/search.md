@@ -16,7 +16,7 @@ The following diagram shows these FHIR instances the API returns for a DocumentR
 
 The object diagram below illustrates the structure of FHIR DocumentReference instances returned by enquiries to this FHIR API.
 
-<div width="100%">
+<div width="70%">
 <!-- Generated from `input/images-source/obj-FHIR-data-screening-summary.plantuml` -->
 {% include obj-FHIR-data-screening-summary.svg %}
 </div>

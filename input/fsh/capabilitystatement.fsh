@@ -28,8 +28,17 @@ Usage: #definition
 // DocumentReference searching 
 * rest.resource[+].type = #DocumentReference
 * rest.resource[=].profile = Canonical(ScreeningSummaryDocument)
-* rest.resource[=] insert SearchOnlyInteraction
-* rest.resource[=] insert ResourceDocumentation([[This server profiles FHIR DocumentReference to support NZ national screening programme summary reports]])
+* rest.resource[=].interaction[+].code = #search-type
+//* rest.resource[=].interaction[=].documentation = "- "
+* rest.resource[=].versioning = #versioned
+* rest.resource[=].readHistory = false
+* rest.resource[=].updateCreate = false
+* rest.resource[=].conditionalCreate = false
+* rest.resource[=].conditionalRead = #not-supported
+* rest.resource[=].conditionalUpdate = false
+* rest.resource[=].conditionalDelete = #not-supported
+
+* rest.resource[=] insert ResourceDocumentation([[FHIR DocumentReference is used to encapsulate the document rendition of the screening information]])
 
 * rest.resource[=].searchInclude = "DocumentReference:subject"
 * rest.resource[=].searchRevInclude = ""
@@ -44,6 +53,13 @@ Usage: #definition
 // * rest.resource[=].searchParam[=].type = #reference
 // * rest.resource[=].searchParam[=].documentation = "Filter document instances tagged with the **NZ screening document** profile eg. ?_profile=https://build.fhir.org/ig/tewhatuora/fhir-screening.fhir.ig/StructureDefinition/nz-screening-summary"
 
+* rest.resource[=].searchParam[+].name = "subject"
+* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-subject"
+* rest.resource[=].searchParam[=].type = #reference
+* rest.resource[=].searchParam[=].documentation = """NHI of the person who is the subject of the screening summary document.
+- If no screening information exists in the Register for a given subject NHI, the API returns `200 OK` and an empty FHIR Bundle.
+"""
+
 * rest.resource[=].searchParam[+].name = "category"
 * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-category"
 * rest.resource[=].searchParam[=].type = #token
@@ -54,16 +70,6 @@ Usage: #definition
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].documentation = "Optional parameter that allows a PDF rendition (#application/pdf) of the screening summary content to be requested instead of the default HTML." 
 
-* rest.resource[=].searchParam[+].name = "patient"
-* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#clinical-patient"
-* rest.resource[=].searchParam[=].type = #reference
-* rest.resource[=].searchParam[=].documentation = "NHI of the patient who is the subject of the screening summary document"
-
-* rest.resource[=].searchParam[+].name = "subject"
-* rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-subject"
-* rest.resource[=].searchParam[=].type = #reference
-* rest.resource[=].searchParam[=].documentation = "NHI of the patient who is the subject of the screening summary document"
-
 // * rest.resource[=].searchParam[+].name = "type"
 // * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#clinical-type"
 // * rest.resource[=].searchParam[=].type = #token
@@ -72,7 +78,13 @@ Usage: #definition
 // virtual Patient instances for conveying patient demographic 
 * rest.resource[+].type = #Patient
 * rest.resource[=].profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient)
-* rest.resource[=] insert SearchOnlyInteraction
-* rest.resource[=] insert ResourceDocumentation([[This server supplies instances of Patient resources as part of DocumentReference search results only.  API consumers cannot create or get Patient instances directly]])
+* rest.resource[=]
+* rest.resource[=].readHistory = false
+* rest.resource[=].updateCreate = false
+* rest.resource[=].conditionalCreate = false
+* rest.resource[=].conditionalRead = #not-supported
+* rest.resource[=].conditionalUpdate = false
+* rest.resource[=].conditionalDelete = #not-supported
+* rest.resource[=] insert ResourceDocumentation([[This API serves Patient instances ONLY by inclusion in a DocumentReference search result.  API consumers have no direct access to the FHIR Patient resource type.]])
 * rest.resource[=].searchInclude = ""
 * rest.resource[=].searchRevInclude = ""
