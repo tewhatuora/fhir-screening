@@ -23,42 +23,42 @@ The initial API is not intended for any other purpose, eg.
 
 - Validating a patient's NHI identifier (NHI FHIR API should be used for such purposes), or
 - Assessing *eligibility* for free HPV screening
+- Get Lab results for Cervical Screening related tests (messages from the Laboratory Information System, the system of record for Lab results, should be used for this purpose).
 
 ### What information does a Screening Summary contain
 
-For the initial API which supports cervical screening, a Screening Summary is a document (PDF/HTML) containing the following information (grouped by sections):
+In general a *Screening Summary* returned by this API provides screening information for a specific subject person who is a participant in a screening programme.  
 
-**Participant Details:**
+The Screening Summary comprises two main parts, outlined as follows.
 
-- Date of Birth
-- Ethnicity
-- Full Name
-- NHI Number
-- Address
+#### Part A: Participant Information
 
-**Participant Summary** (Clinical summary for cervical screening)
+- **Subject details**
+  - Full Name
+  - Date of Birth
+  - Gender
+  - Sex Assigned at Birth
+  - Ethnicity
+  - NHI Number
+  - Address
+- **Participant summary**
+  - Pathway status
+  - Next Expected Event
+  - Next Event due Date
+  - Unenrolled Reason
+  - Correspondence
+  - Immune Deficient
+  - Total Hysterectomy
+  - Cervical Cancer
 
-- Pathway status
-- Next Expected Event
-- Next Event due Date
-- Programme Status
-- Unenrolled Reason
-- Correspondence
-- Immune Deficient
-- Total Hysterectomy
-- Cervical Cancer
-
-### Screening History
+#### Part B: Screening History
 
 - Individual medical history of all recorded diagnostic results and events related to cervical screening for the participant in reverse chronological order. The individual medical history may contain any of the following:
-
   - Events - Referral, Colposcopy Visit, Did Not Attend Visit
   - Medical Condition, Medical Procedure
   - Synopsis Test Result - Cytology, Histology, HPV
   - Test results - Cytology, Histology, HPV
-
 - An explanatory reason if no screening history exists, e.g.
-
   - Newly enrolled participant
   - Participant has withdrawn from the National Cervical Screening Programme
   - Participant isn’t eligible for Cervical screening.
