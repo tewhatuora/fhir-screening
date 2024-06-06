@@ -13,7 +13,7 @@
   - removed unnecessary query parameters *_profile*, *identifier*, *date* and *patient*
   - **_include** operation now spec'd in capability statement
 - FHIR search response data model diagram moved to the [search behaviour](search.html) page.
-
+- Revised use cases definition
 ---
 
 ## v0.7.0 (2024-05-29)
