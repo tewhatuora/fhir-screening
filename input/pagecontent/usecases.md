@@ -31,6 +31,7 @@ This page documents the various screening summary request scenarios and the expe
 ### Special cases
 |Id|Scenario | *Participant Information* returned in screening summary?| *Screening History* returned in screening summary? | Additional search outcome message(s) returned by `DocumentReference.Search` |
 |:-|:--------------------------------------------------------------------------------------|:------|:--------|:----------------|
-|X| Participant has multiple NHI and a Dormant NHI is supplied as a search parameter. | Yes | Yes (if available) | 1. The requested NHI is dormant and linked to a live identifier, so the live NHI has been returned.<br>2. (if applicable) This NHI has no Screening history to display. |
+|x1| Participant has multiple NHI and a dormant NHI is searched for. | Yes | Yes (if available) | The requested NHI is dormant and linked to a live identifier, so the live NHI has been returned. |
+|x2| Participant has multiple NHI and a dormant NHI is searched for (no history). | Yes | No | 1. The requested NHI is dormant and linked to a live identifier, so the live NHI has been returned.  2. This NHI has no Screening history to display. |
 
 ---
