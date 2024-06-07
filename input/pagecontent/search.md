@@ -28,10 +28,10 @@ The object diagram below illustrates the structure of FHIR DocumentReference ins
 
 ```HTTP
   GET {API_URL}/DocumentReference?
-    subject:identifier=SCF7824
+    subject:identifier={NHI number}
     & category=http://snomed.info/sct|1230046007
     & _include=DocumentReference:subject
-    & contenttype=application/pdf
+    [& contenttype=application/pdf]
 ```
 
 API consumers should use the following parameters to constrain every search for screening summaries.
@@ -49,20 +49,19 @@ The API returns a FHIR `type:#searchset` [Bundle](https://hl7.org/fhir/R4B/bundl
 
 For each entry  in the response Bundle, up to three search mode types may appear as described below.
 
-| **entry `mode`**  | **Circumstances when returned**                           | **Examples** |
-|:------------------|:----------------------------------------------------------|:---------------|
-| *#match*     | In normal searches this entry provides the matching subject's screening summary document as a [*ScreeningSummaryDocument* (`DocumentReference`)](StructureDefinition-nz-screening-summary.html) resource instance | [Normal search with no special outcome](Bundle-SearchResponse-HTMLMatchNoOutcome.html) |
-| *#include*   | In normal searches with the `_include` operation this entry provides the matching subject's data as an included *NzPatient* (`Patient`) resource instance | [Normal search with no special outcome](Bundle-SearchResponse-HTMLMatchNoOutcome.html)|
-| *#outcome*   | When the API cannot supply a screening summary, this entry provides an informational reason as a diagnostic message in a FHIR `OperationOutcome` resource instance | [#1 Outcome message but NO screening summary](Bundle-SearchResponse-NoMatchOneOutcome.html) <br> [#2 Screening summary WITH an outcome message](Bundle-SearchResponse-HTMLMatchWithOutcome.html)
- |
+| **entry mode**  | **Circumstances when returned**                           | **notes** |
+|:------------------|:----------------------------------------------------------|:-----------|
+| `match`     | In normal searches this entry provides the matching subject's screening summary document as a [*ScreeningSummaryDocument* (`DocumentReference`)](StructureDefinition-nz-screening-summary.html) resource instance | `Bundle.total` counts `match` mode entries only. |
+| `include`   | In normal searches with the `_include` operation this entry provides the matching subject's data as an included *NzPatient* (`Patient`) resource instance | An `include` entry will only ever appear in association with a match entry, and not on its own |
+| `outcome`   | When the API needs to return extra information message(s) in a FHIR `OperationOutcome` resource instance | An `outcome` entry can be pressent whether or not there are any `match` entries.
 
-**Note: API consumers should be prepared for multiple mode entries to appear in combination in the response to a given search.**
+**Note: API consumers MUST check all entries in each result Bundles for searches they request.**
 
 ### No matching subject NHI
 
-If the API finds no screening records for a specified NHI subject identifier, the API returns 200 OK and an empty `Bundle` (`"total": 0` - no entries).  
+If the API finds no screening records for a specified NHI subject identifier, the API returns `200 OK` HTTP code and a `Bundle` with no `#match` entries (`"total":0`).
 
-**API consumers should not expect this API to validate NHI identifiers given as a search parameters.** Use the New Zealand [NHI FHIR API](https://nhi-ig.hip.digital.health.nz/) for NHI matching and validation.
+**This API SHALL NOT be expected to validate NHI identifiers given as a search parameters.** Use the New Zealand [NHI FHIR API](https://nhi-ig.hip.digital.health.nz/) for NHI matching and validation purposes.
 
 ### Error scenarios
 
