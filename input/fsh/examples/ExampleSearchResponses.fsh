@@ -47,7 +47,7 @@ Description: "Example of response to search for dormant NHI where there is parti
 * type = #searchset
 * total = 1       // no. of #match mode entries
 * link[0].relation = "self"
-* link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=D123456dormantNHI&_include=DocumentReference%3Asubject"
+* link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=SCF7826&_include=DocumentReference%3Asubject"
 
 // results entry 1 - the matching screening summary (participant info only)
 * entry[+].search.mode = #match
@@ -61,15 +61,15 @@ Description: "Example of response to search for dormant NHI where there is parti
 * entry[=].resource.status = #current
 * entry[=].resource.type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
 * entry[=].resource.category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
-* entry[=].resource.subject = Reference(MadeleineMeringue)
-* entry[=].resource.subject insert NHIPatientRef(SCF7824,[[Madeleine Meringue]])
+* entry[=].resource.subject = Reference(MikiMahoe)
+* entry[=].resource.subject insert NHIPatientRef(SCF7826,[[Miki Mahoe]])
 * entry[=].resource.content.attachment insert ParticipantOnlyExampleHTMLContent
 * entry[=].resource.content.format = $MediaTypesCS#text/html
 
 // results entry 2 patient demographic
 * entry[+].search.mode = #include
 * entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/Patient/14a27af4-d621-4068-b678-e878246c48b9"
-* entry[=].resource insert MakePatient([[SCF7824]],[[Madeleine]],[[Meringue]],[[2008-11-24]],[[14a27af4-d621-4068-b678-e878246c48b9]])
+* entry[=].resource insert MakePatient([[SCF7826]],[[Miki]],[[Mahoe]],[[1968-11-24]],[[14a27af4-d621-4068-b678-e878246c48b9]])
 
 // results entry 3 - OperationOutcome informational message
 * entry[+].search.mode = #outcome
@@ -127,7 +127,7 @@ Description: "Example of search response Bundle with no mode: #match entries bec
 * type = #searchset
 * total = 0       // no #match mode entries
 * link[0].relation = "self"
-* link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=SCF7826&_include=DocumentReference%3Asubject"
+* link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=SCF7828&_include=DocumentReference%3Asubject"
 
 // results entry 1 - the OperationOutcome
 * entry[+].search.mode = #outcome
