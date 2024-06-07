@@ -1,7 +1,7 @@
 Instance: CervicalScreeningSummary
 InstanceOf: ScreeningSummaryDocument
 Usage: #example
-Description: "Example of an FHIR cervical screening summary as an HTML attachment"
+Description: "Cervical screening summary as HTML doc with participant information including screening history"
 
 * meta.profile = Canonical(ScreeningSummaryDocument)
 // * meta.versionId = "1"
@@ -18,6 +18,6 @@ Description: "Example of an FHIR cervical screening summary as an HTML attachmen
 * subject = Reference(MadeleineMeringue)
 * subject insert NHIPatientRef([[SCF7824]],[[Madeleine Meringue]])
 
-* content.attachment insert ScreeningSummaryExampleHTMLencoded
+* content.attachment insert FullReportExampleHTMLContent
 * content.format = $MediaTypesCS#text/html
 
