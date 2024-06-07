@@ -34,5 +34,6 @@ This page documents the various screening summary request scenarios and the expe
 |:-|:--------------------------------------------------------------------------------------|:------|:--------|:----------------|
 |x1| Participant has multiple NHI and a dormant NHI is searched for. | Yes | Yes (if available) | The requested NHI is dormant and linked to a live identifier, so the live NHI has been returned. |
 |x2| Participant has multiple NHI and a dormant NHI is searched for (no history). | Yes | No | 1. The requested NHI is dormant and linked to a live identifier, so the live NHI has been returned.  2. This NHI has no Screening history to display. |
+|x3| No screening information available for the specified NHI | **No** | No | This NHI has no screening information to display. |
 
 ---
