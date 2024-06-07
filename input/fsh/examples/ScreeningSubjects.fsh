@@ -14,8 +14,11 @@ Usage: #example
 
 * birthDate = "2008-11-24"
 
-* extension[0].url = "http://hl7.org.nz/fhir/StructureDefinition/nz-ethnicity"
+* extension[+].url = "http://hl7.org.nz/fhir/StructureDefinition/nz-ethnicity"
 * extension[=].valueCodeableConcept = https://standards.digital.health.nz/ns/ethnic-group-level-4-code#11111 "New Zealand European"
+
+* extension[+].url = "http://hl7.org.nz/fhir/StructureDefinition/sex-at-birth"
+* extension[=].valueCodeableConcept = http://hl7.org/fhir/administrative-gender#female "female"
 
 * address[0].use = #home
 * address[=].text = "373 Jackson Street, Petone, Lower Hutt 5012, New Zealand"
@@ -25,10 +28,8 @@ Usage: #example
 * address[=].postalCode = "5012"
 * address[=].country = "NZL"
 
-* gender = http://hl7.org/fhir/administrative-gender#female
+* gender = http://hl7.org/fhir/administrative-gender#female "female"
 
-* extension[sex-at-birth].url = "http://hl7.org.nz/fhir/StructureDefinition/sex-at-birth"
-* extension[sex-at-birth].valueCodeableConcept = http://hl7.org/fhir/administrative-gender#female "female"
 
 // * extension[interpreterRequired].url = "http://hl7.org/fhir/StructureDefinition/patient-interpreterRequired"
 // * extension[interpreterRequired].valueBoolean = false
@@ -68,17 +69,16 @@ Usage: #example
 
 * birthDate = "1968-11-24"
 
-* extension[ethnicity].url = "http://hl7.org.nz/fhir/StructureDefinition/nz-ethnicity"
+* extension[+].url = "http://hl7.org.nz/fhir/StructureDefinition/nz-ethnicity"
 * extension[ethnicity].valueCodeableConcept = https://standards.digital.health.nz/ns/ethnic-group-level-4-code#21111 "Māori"
 
-* gender = http://hl7.org/fhir/administrative-gender#other
+* extension[+].url = "http://hl7.org.nz/fhir/StructureDefinition/sex-at-birth"
+* extension[=].valueCodeableConcept = http://hl7.org/fhir/administrative-gender#male "male"
+
+* gender = http://hl7.org/fhir/administrative-gender#other "other"
 
 * gender.extension[+].url = "http://hl7.org.nz/fhir/StructureDefinition/gender-original-text"
 * gender.extension[=].valueString = "Gender Diverse"
-
-* extension[sex-at-birth].url = "http://hl7.org.nz/fhir/StructureDefinition/sex-at-birth"
-* extension[sex-at-birth].valueCodeableConcept = http://hl7.org/fhir/administrative-gender#male "male"
-
 
 * address[0].use = #home
 * address[=].text = "375 Jackson Street, Petone, Lower Hutt 5012, New Zealand"

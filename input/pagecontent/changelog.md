@@ -1,12 +1,17 @@
 # Changelog
 
-
 ## v0.9.0 (2024-06-07)
 
 ### Example screening summaries
 
+- Added new example DocumentReference for subject SCF7826 (Miki Mahoe) with a partial screening summary document (no screening history)
+- Updated example DocumentReference for subject SCF7824 (Madeleine Meringue) to a full screening summary document with screening history
 - Added screening summary examples (document images) and HTML previews to website
 - Updated FHIR instance examples with more realistic HTML content
+- Deleted bowel screening summary example
+
+### Miscellaneous
+
 - Removed empty onboarding page
 
 ## v0.8.0 (2024-06-05)
