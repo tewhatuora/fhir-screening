@@ -59,8 +59,7 @@ menu:
 #  Onboarding: onboarding.html
   Use cases: usecases.html
   Example screening summaries: 
-    Summary with participant information only: participantonly.html
-    Summary with full screening history: exampledocument-fullreport.html
+    Renderings of example screening summary reports: renderedexamples.html
     HTML sample (participant info): exampledocument-participantonly.html
     HTML sample (full report): exampledocument-fullreport.html
   Artifacts: artifacts.html
