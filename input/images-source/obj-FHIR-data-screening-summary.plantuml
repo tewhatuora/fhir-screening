@@ -46,12 +46,12 @@ object "NzPatient:**PATIENT**" as PATIENT <<NZ base profile>> #GhostWhite {
     * identifier: NHI reference
     * name
     * birthDate
-    * gender: ""male | female | unknown""
+    * gender: ""male|female|unknown""
     * address
     -- extensions --
-    * ethnicity
-    * genderOriginalText: "Gender Diverse"
-    * sex-at-birth: : ""male | female | other""
+    * **ethnicity**
+    * **genderOriginalText**
+    * **sex-at-birth**: ""male|female|other""
 }
 
 object ":**OPERATIONOUTCOME**" as OPO <<FHIR R4B>> #GhostWhite {

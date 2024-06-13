@@ -24,12 +24,14 @@ Usage: #definition
 * rest.security.extension.extension[=].valueUri = "https://auth.integration.covid19.health.nz/oauth2/authorize"
 
 * rest.interaction.code = #transaction
+* rest.interaction insert StandardErrorsDocumentation
 
 // DocumentReference searching 
 * rest.resource[+].type = #DocumentReference
+* rest.resource[=] insert ResourceDocumentation([[Provides a document rendition of screening summary information]])
 * rest.resource[=].profile = Canonical(ScreeningSummaryDocument)
 * rest.resource[=].interaction[+].code = #search-type
-//* rest.resource[=].interaction[=].documentation = "- "
+
 * rest.resource[=].versioning = #versioned
 * rest.resource[=].readHistory = false
 * rest.resource[=].updateCreate = false
@@ -37,9 +39,6 @@ Usage: #definition
 * rest.resource[=].conditionalRead = #not-supported
 * rest.resource[=].conditionalUpdate = false
 * rest.resource[=].conditionalDelete = #not-supported
-
-* rest.resource[=] insert ResourceDocumentation([[FHIR DocumentReference is used to encapsulate the document rendition of the screening information]])
-
 * rest.resource[=].searchInclude = "DocumentReference:subject"
 * rest.resource[=].searchRevInclude = ""
 
