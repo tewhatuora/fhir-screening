@@ -9,7 +9,7 @@ name: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 title: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 description: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 status: draft
-version: 0.9.0
+version: 0.9.1
 fhirVersion: 4.0.1
 copyrightYear: 2024+
 releaseLabel: draft # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
@@ -49,7 +49,9 @@ parameters:
   display-warnings: true
   excludexml: true
   excludettl: true
-  no-narrative: DocumentReference/*     #  Because this IG profiles DocumentReference with a specific text narrative usage
+  no-narrative: 
+  - DocumentReference/*     #  Because this IG profiles DocumentReference with a specific text narrative usage
+  - Bundle/*
 
 #   validation: [allow-any-extensions, no-broken-links]
 #

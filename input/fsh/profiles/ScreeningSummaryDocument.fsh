@@ -6,8 +6,7 @@ Id: nz-screening-summary
 * ^version = "1.0.0"
 
 // elements modified from parent profile
-* text 0..1
-* text ^short = "By default, an HTML rendition of the screening summary shall appear be in content.attachment so this Narrative element is not used"
+* text 0..0   // As an HTML rendition of the screening summary shall appear be in content.attachment by default, this text Narrative is not to be used
 * docStatus 0..0
 * category from nz-screening-programmetype-code (required)
 * category ^short = "In screening summary DocRefs, denotes the type of screening programme only; cannot be used for other categorization purposes"

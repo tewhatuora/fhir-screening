@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.9.1 (2024-06-13)
+
+- The `.text` element is now excluded in the screening summary profile `DocumentReference`.
+- Updated sample HTML content for 'participant-only' screening summary.
+- Added error handling details to [capability statement](CapabilityStatement-FHIRScreeningCapabilityStatement.html) and [search behaviour](search.html) page.
+
 ## v0.9.0 (2024-06-07)
 
 ### Example screening summaries
@@ -27,7 +33,8 @@
   - removed unnecessary query parameters *_profile*, *identifier*, *date* and *patient*
   - **_include** operation now spec'd in capability statement
 - FHIR search response data model diagram moved to the [search behaviour](search.html) page.
-- Revised use cases definition
+- Revised definitions of use cases
+
 ---
 
 ## v0.7.0 (2024-05-29)
