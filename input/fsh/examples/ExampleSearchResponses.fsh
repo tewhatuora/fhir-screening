@@ -29,12 +29,10 @@ Description: "Example of response to search returning an HTML screening summary 
 * entry[=].resource.content.attachment insert FullReportExampleHTMLContent
 * entry[=].resource.content.format = $MediaTypesCS#text/html
 
-
 // results entry 2 of 2 - the included PATIENT resource
 * entry[+].search.mode = #include
 * entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/Patient/14a27af4-d621-4068-b678-e878246c48b9"
-* entry[=].resource insert MakePatient([[SCF7824]],[[Madeleine]],[[Meringue]],[[2008-11-24]],[[14a27af4-d621-4068-b678-e878246c48b9]])
-
+* entry[=].resource insert makeMadeleineMeringue([[14a27af4-d621-4068-b678-e878246c48b9]])
 
 //////// //////// //////// //////// //////// //////// //////// //////// ////////
 // EXAMPLE 2
@@ -47,7 +45,7 @@ Description: "Example of response to search for dormant NHI where there is parti
 * type = #searchset
 * total = 1       // no. of #match mode entries
 * link[0].relation = "self"
-* link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=SCF7826&_include=DocumentReference%3Asubject"
+* link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=SCF7800&_include=DocumentReference%3Asubject"
 
 // results entry 1 - the matching screening summary (participant info only)
 * entry[+].search.mode = #match
@@ -61,63 +59,25 @@ Description: "Example of response to search for dormant NHI where there is parti
 * entry[=].resource.status = #current
 * entry[=].resource.type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
 * entry[=].resource.category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
-* entry[=].resource.subject = Reference(MikiMahoe)
-* entry[=].resource.subject insert NHIPatientRef(SCF7826,[[Miki Mahoe]])
+* entry[=].resource.subject = Reference(MadeleineMeringue)
+* entry[=].resource.subject insert NHIPatientRef(SCF7824,[[Madeleine Meringue]])
 * entry[=].resource.content.attachment insert ParticipantOnlyExampleHTMLContent
 * entry[=].resource.content.format = $MediaTypesCS#text/html
 
-// results entry 2 patient demographic
+// results entry 2 included patient resource
 * entry[+].search.mode = #include
 * entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/Patient/14a27af4-d621-4068-b678-e878246c48b9"
-* entry[=].resource insert MakePatient([[SCF7826]],[[Miki]],[[Mahoe]],[[1968-11-24]],[[14a27af4-d621-4068-b678-e878246c48b9]])
+* entry[=].resource insert makeMadeleineMeringue([[14a27af4-d621-4068-b678-e878246c48b9]])
 
 // results entry 3 - OperationOutcome informational message
 * entry[+].search.mode = #outcome
 * entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/OperationOutcome/OperationOutcomeInstance-1"
-* entry[=].resource insert SearchInformationalOperationOutcome([[OperationOutcomeInstance-1]],[[The NHI requested is dormant and linked to a live identifier; participant information has been returned using the live NHI]])
-
-
-
-// // //////// //////// //////// //////// //////// //////// //////// //////// ////////
-// //
-// Instance: SearchResponse-PDFMatchNoOutcome
-// InstanceOf: Bundle
-// Usage: #example
-// Description: "Example of response to search returning an PDF screening summary document"
-
-// * id = "SearchResponse-PDFMatchNoOutcome"
-// * type = #searchset
-// * total = 1
-// * link[0].relation = "self"
-// * link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&contenttype=application/pdf&subject%3Aidentifier=SCF7824&_include=DocumentReference%3Asubject"
-
-// // results entry 1 of 2 - the matching Screening Summary DOCUMENTREFERENCE with PDF
-// * entry[+].search.mode = #match
-// * entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/DocumentReference/9f966515-f908-4892-a5f7-340e15507232"
-// * entry[=].resource.resourceType = "DocumentReference"
-// * entry[=].resource.id = "9f966515-f908-4892-a5f7-340e15507232"
-// * entry[=].resource.meta.profile = Canonical(ScreeningSummaryDocument)
-// * entry[=].resource.masterIdentifier insert DocIdentifier(1,[[National Screening Unit]])
-// * entry[=].resource.identifier insert DocIdentifier(1,[[National Screening Unit]])
-// * entry[=].resource.custodian insert OrganisationRefByName([[National Screening Unit]])
-// * entry[=].resource.status = #current
-// * entry[=].resource.type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
-// * entry[=].resource.category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
-// * entry[=].resource.subject = Reference(MadeleineMeringue)
-// * entry[=].resource.subject insert NHIPatientRef(SCF7824,[[Madeleine Meringue]])
-// * entry[=].resource.content.attachment insert ExampleDoc1PDFContent
-// * entry[=].resource.content.format = $MediaTypesCS#application/pdf
-
-
-// // results entry 2 of 2 - the included PATIENT resource
-// * entry[+].search.mode = #include
-// * entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/Patient/14a27af4-d621-4068-b678-e878246c48b9"
-// * entry[=].resource insert MakePatient([[SCF7824]],[[Madeleine]],[[Meringue]],[[2008-11-24]],[[14a27af4-d621-4068-b678-e878246c48b9]])
+* entry[=].resource insert SearchInformationalOperationOutcome([[OperationOutcomeInstance-1]],[[The NHI requested is dormant and linked to a live identifier so the live NHI has been returned]])
 
 
 
 // //////// //////// //////// //////// //////// //////// //////// //////// ////////
-//
+// EXAMPLE 3
 Instance: SearchResponse-NoMatchOutcome
 InstanceOf: Bundle
 Usage: #example
@@ -134,3 +94,39 @@ Description: "Example of search response Bundle with no mode: #match entries bec
 * entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/OperationOutcome/OperationOutcomeInstance-1"
 * entry[=].resource insert SearchInformationalOperationOutcome([[OperationOutcomeInstance-1]],[[No screening history information to display]])
 
+
+
+// //////// //////// //////// //////// //////// //////// //////// //////// ////////
+// EXAMPLE 4
+Instance: SearchResponse-DeceasedFullReportNoOutcome
+InstanceOf: Bundle
+Usage: #example
+Description: "Example of search response returning HTML screening summary document for a deceased person"
+
+* id = "SearchResponse-DeceasedFullReportNoOutcome"
+* type = #searchset
+* total = 1
+* link[0].relation = "self"
+* link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=SCF7826&_include=DocumentReference%3Asubject"
+
+// results entry 1 of 2 - the matching Screening Summary DOCUMENTREFERENCE
+* entry[+].search.mode = #match
+* entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/DocumentReference/9f966515-f908-4892-a5f7-340e15507233"
+* entry[=].resource.resourceType = "DocumentReference"
+* entry[=].resource.id = "9f966515-f908-4892-a5f7-340e15507233"
+* entry[=].resource.meta.profile = Canonical(ScreeningSummaryDocument)
+* entry[=].resource.masterIdentifier insert DocIdentifier(1,[[National Screening Unit]])
+* entry[=].resource.identifier insert DocIdentifier(1,[[National Screening Unit]])
+* entry[=].resource.custodian insert OrganisationRefByName([[National Screening Unit]])
+* entry[=].resource.status = #current
+* entry[=].resource.type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
+* entry[=].resource.category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
+* entry[=].resource.subject = Reference(MikiMahoe)
+* entry[=].resource.subject insert NHIPatientRef(SCF7826,[[Miki Mahoe]])
+* entry[=].resource.content.attachment insert MockDeceasedHTMLSummaryContent
+* entry[=].resource.content.format = $MediaTypesCS#text/html
+
+// results entry 2 of 2 - the included PATIENT resource
+* entry[+].search.mode = #include
+* entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/Patient/14a27af4-d621-4068-b678-e878246cbaba"
+* entry[=].resource insert makeMikiMahoe([[14a27af4-d621-4068-b678-e878246cbaba]])
