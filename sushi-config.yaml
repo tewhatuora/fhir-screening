@@ -9,7 +9,7 @@ name: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 title: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 description: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 status: draft
-version: 0.9.1
+version: 0.9.2
 fhirVersion: 4.0.1
 copyrightYear: 2024+
 releaseLabel: draft # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
@@ -50,8 +50,9 @@ parameters:
   excludexml: true
   excludettl: true
   no-narrative: 
-  - DocumentReference/*     #  Because this IG profiles DocumentReference with a specific text narrative usage
+  - DocumentReference/*     #  Because this IG attaches HTML, by default, in the .content section, not in .text narrative
   - Bundle/*
+  - Patient/*
 
 #   validation: [allow-any-extensions, no-broken-links]
 #
@@ -63,8 +64,8 @@ menu:
   Example screening summaries: 
     screening summary full history report: renderedexample-fullreport.html
     screening summary report (participant info only): renderedexample-participantonly.html
-    HTML sample (full report): exampledocument-fullreport.html
-    HTML sample (participant info): exampledocument-participantonly.html
+    HTML sample (full report): mock-full-report.html
+    HTML sample (deceased with screening history): mock-deceased-report.html
   Artifacts: artifacts.html
   Developer Support:
     Artifacts (Json): definitions.json.zip
