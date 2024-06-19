@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.9.2 (2024-06-19)
+
+- The example FHIR `Patient` *Miki Mahoe* (SCF7826) now demonstrates how data will be returned if the subject is deceased.
+- Updated sample HTML content.
+
 ## v0.9.1 (2024-06-13)
 
 - The `.text` element is now excluded in the screening summary profile `DocumentReference`.

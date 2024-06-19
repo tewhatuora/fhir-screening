@@ -21,7 +21,7 @@
 | **Pathway Status**       | 5 Year Recall                 | **Immune Deficient**           | No  |
 | **Next Expected Event**  | Eligibility Notification      | **Total Hysterectomy**         | No  |
 | **Next Event Due Date**  | 24-11-2033                    | **Cervical Cancer**            | No  |
-| **Programme Status**     | Registered                    | **Send programme**<br>**correspondence** | Yes |
+| **Send programme**<br>**correspondence** | Yes | | |
 | **Unenrolled reason**    | Patient overseas for 2 years  | | |
 
 ---
