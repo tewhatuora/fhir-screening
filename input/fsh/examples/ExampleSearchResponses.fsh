@@ -78,10 +78,10 @@ Description: "Example of response to search for dormant NHI where there is parti
 
 // //////// //////// //////// //////// //////// //////// //////// //////// ////////
 // EXAMPLE 3
-Instance: SearchResponse-NoMatchOutcome
+Instance: SearchResponse-NoMatchOneOutcome
 InstanceOf: Bundle
 Usage: #example
-Description: "Example of search response Bundle with no mode: #match entries because there is no screening information available"
+Description: "Example of search response Bundle with no mode #match entries because there is no screening information available"
 
 * id = "SearchResponse-NoMatchOneOutcome"
 * type = #searchset
@@ -92,7 +92,7 @@ Description: "Example of search response Bundle with no mode: #match entries bec
 // results entry 1 - the OperationOutcome
 * entry[+].search.mode = #outcome
 * entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/OperationOutcome/OperationOutcomeInstance-1"
-* entry[=].resource insert SearchInformationalOperationOutcome([[OperationOutcomeInstance-1]],[[No screening history information to display]])
+* entry[=].resource insert SearchInformationalOperationOutcome([[OperationOutcomeInstance-1]],[[This NHI has no screening information to display. The participant has withdrawn from the National Cervical Screening Programme.]])
 
 
 
