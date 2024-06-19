@@ -81,7 +81,7 @@ Description: "Example of response to search for dormant NHI where there is parti
 Instance: SearchResponse-NoMatchOneOutcome
 InstanceOf: Bundle
 Usage: #example
-Description: "Example of search response Bundle with no mode #match entries because there is no screening information available"
+Description: "Example of search response Bundle with #match entries but an outcome that imagines a patient withdrawn from the programme"
 
 * id = "SearchResponse-NoMatchOneOutcome"
 * type = #searchset
