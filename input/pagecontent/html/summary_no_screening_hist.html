@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>National Cervical Screening Programme Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	
+    <style>
+	
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding-bottom: 0;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        @page {
+            margin: 0;
+            padding-bottom: 0;
+            margin-bottom: 50px;
+            @bottom-right {
+                content: url('classpath:footer.png');
+            }
+            @bottom-left {
+                content: "Madeleine Meringue SCF7824";
+                font-size: 13px;
+                font-family: 'Poppins', sans-serif;
+                padding: 10px;
+            }
+            @bottom-center {
+                content: "Page " counter(page) " of " counter(pages);
+                font-size: 12px;
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            padding: 0;
+        }
+        th, td {
+            padding: 3px;
+            margin: 0;
+            text-align: left;
+            font-size: 11px;
+            line-height: 1.1;
+        }
+        .header {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            padding: 0;
+        }
+        .header-text {
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 40px;
+        }
+        .header-image {
+            text-align: right;
+            vertical-align: top;
+            margin: 0;
+            padding: 0;
+        }
+        .header-image img {
+            height: auto;
+            width: auto;
+            max-width: 400px;
+            max-height: 150px;
+            margin: 0;
+            padding: 0;
+        }
+        strong, b, th {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .content-container {
+            padding-top: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+        .participant-details, .participant-summary {
+            margin-top: 0;
+            border-radius: 8px;
+            padding: 3px;
+            margin-bottom: 10px;
+            border: 2.0px solid #D3D3D3;
+        }
+        .section-title {
+            padding: 3px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .section-content {
+            padding: 3px;
+            font-size: 13px;
+            line-height: 1.1;
+        }
+        .section-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .section-table th, .section-table td {
+            padding: 3px;
+            font-size: 13px;
+            line-height: 1.1;
+            width: 25%;
+            text-align: left;
+        }
+        .screening-history {
+            margin-bottom: 15px;
+        }
+        .screening-history-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .screening-history-header {
+            background-color: #f0f0f0;
+            padding: 5px;
+            font-weight: 600;
+        }
+        .screening-history-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .screening-history-table th, .screening-history-table td {
+            width: 50%;
+            text-align: left;
+            padding: 3px;
+            font-size: 13px;
+            line-height: 1.1;
+        }
+    </style>
+</head>
+<body>
+<table class="header">
+    <tr>
+        <td class="header-text">
+            <strong>National Cervical Screening Programme<br>Screening History Report</strong><br>
+            As at 6-3-2024
+        </td>
+        <td class="header-image">
+            <img src="header.png" alt="Header Image">			
+        </td>
+    </tr>
+</table>
+<div class="content-container">
+	   	    <div class="participant-details">
+        <div class="section-title">Participant Details</div>
+        <div class="section-content">
+            <table class="section-table">
+                <tr>
+                    <td><strong>Full Name:</strong></td>
+                    <td>Madeleine Meringue</td>
+                    <td><strong>Gender:</strong></td>
+                    <td>Female</td>
+                </tr>
+                <tr>
+                    <td><strong>Date of Birth:</strong></td>
+                    <td>24-11-2008</td>
+                    <td><strong>Sex assigned at birth:</strong></td>
+                    <td>No information available</td>
+                </tr>
+                <tr>
+                    <td><strong>Ethnicity:</strong></td>
+                    <td>New Zealand European</td>
+                    <td><strong>Address:</strong></td>
+                    <td>65  Racecourse  Road, Sockburn, Christchurch, 8042</td>
+                </tr>
+                <tr>
+                    <td><strong>NHI Number:</strong></td>
+                    <td>SCF7824</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="participant-summary">
+        <div class="section-title">Participant Summary</div>
+        <div class="section-content">
+            <table class="section-table">
+                <tr>
+                    <td><strong>Pathway Status:</strong></td>
+                    <td>Unenrolled</td>
+                    <td><strong>Immune Deficient:</strong></td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td><strong>Next Expected Event:</strong></td>
+                    <td>Not applicable for this pathway status</td>
+                    <td><strong>Total Hysterectomy:</strong></td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td><strong>Next Event Due Date:</strong></td>
+                    <td>Not applicable for this pathway status</td>
+                    <td><strong>Cervical Cancer:</strong></td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td><strong>Unenrolled reason:</strong></td>
+                    <td>Patient overseas for 2 years</td>
+                </tr>
+                <tr>
+                    <td><strong>Send programme correspondence:</strong></td>
+                    <td>Yes</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="screening-history">
+        <div class="screening-history-title">Screening History</div>
+		<div>
+  <div class="section-content">
+    <div class="screening-history-header">
+      <p>
+        <strong>No screening history to display</strong>
+
+      </p>
+    </div>
+</div>
+  <!-- -->
+    </div>
+</div>
+</body>
+</html>
