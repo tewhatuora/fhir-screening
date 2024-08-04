@@ -69,6 +69,7 @@ menu:
     HTML sample (deceased with screening history): mock-deceased-report.html
   Artifacts: artifacts.html
   Developer Support:
+    View OpenAPI: new-tab https://fhir-ig.digital.health.nz/openapi/index.html?urls.primaryName=FHIR+Screening+API
     Artifacts (Json): definitions.json.zip
     Artifacts (Xml): definitions.xml.zip
     Changelog: changelog.html
@@ -76,7 +77,7 @@ menu:
     Gender NSS-FHIR translation: gender.html
     Search behaviour: search.html
     Download IG : full-ig.zip
-    OpenAPI Specification: FHIRScreeningCapabilityStatement.openapi.json
+    Download OpenAPI Spec: https://fhir-ig.digital.health.nz/fhir-screening/openapi.yaml
 
 contact:
    - name: David Grainger
