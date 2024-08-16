@@ -18,7 +18,7 @@ jurisdiction: urn:iso:std:iso:3166#NZ "New Zealand"
 publisher:
   name: Health New Zealand | Te Whatu Ora
   url: https://www.tewhatuora.govt.nz/
-  email: test@example.org
+  email: integration@tewhatuora.govt.nz
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
@@ -80,10 +80,10 @@ menu:
     Download OpenAPI Spec: https://fhir-ig.digital.health.nz/fhir-screening/openapi.yaml
 
 contact:
-   - name: David Grainger
+   - name: HNZ Integration Team
      telecom:
        - system: email 
-         value: david.grainger@middleware.co.nz
+         value: integration@tewhatuora.govt.nz
          use: work
 
 #
