@@ -9,8 +9,8 @@
 
 | | | | |
 |:---------------------------|:-------------------------|------------:|:------------|
-| **Full Name**              | Miki Mahoe               | Date of Birth  | 24-11-1968 |
-| **Ethnicity**              | Māori                    | NHI Number      | SCF7826 |
+| **Full Name**              | Kassandra Temahoe               | Date of Birth  | 24-11-1968 |
+| **Ethnicity**              | Māori                    | NHI Number      | ZCQ3240 |
 | **Gender**                 | Male (Gender diverse)    | Sex assigned<br>at birth   | Female |
 | **Address**                | 373 Jackson Street, <br>Petone,<br>Lower Hutt 5012,<br>New Zealand  | | |
 

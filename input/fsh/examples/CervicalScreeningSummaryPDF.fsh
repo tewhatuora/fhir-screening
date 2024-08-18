@@ -16,8 +16,8 @@ Description: "Cervical screening summary with PDF-encoded document sample conten
 
 // form dual subject references to both a local instance (literal ref) and an NHI (logical resource ref)
 * subject = Reference(MadeleineMeringue)
-* subject insert NHIPatientRef([[SCF7824]],[[Madeleine Meringue]])
+* subject insert NHIPatientRef([[ZCU7824]],[[Madeleine Meringue]])
 
 * content.attachment insert ExampleDoc1PDFContent
-* content.format = $MediaTypesCS#application/pdf
+// * content.format = $MediaTypesCS#application/pdf
 
