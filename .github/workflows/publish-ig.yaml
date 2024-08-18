@@ -27,7 +27,7 @@ jobs:
             curl -X POST "https://fhir-ig-builder.api.digital.health.nz/v1/build" \
               -H "Content-Type: application/json" \
               -H "x-api-key: ${{ secrets.API_KEY }}" \
-              -d '{"gitBranch": "main", "igSourceGitUrl": "https://github.com/tewhatuora/fhir-screening.git"}'
+              -d '{"gitBranch": "master", "igSourceGitUrl": "https://github.com/tewhatuora/fhir-screening.git"}'
           elif [[ "${{ env.BRANCH_NAME }}" == "uat" ]]; then
             curl -X POST "https://fhir-ig-builder.api-uat.digital.health.nz/v1/build" \
               -H "Content-Type: application/json" \
