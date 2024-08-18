@@ -27,7 +27,7 @@ Id: nz-screening-summary
 * content.attachment.data ^short = "Screening summary document inlined as base64 content. By default this is an HTML rendition."
 * content.attachment.creation 0..1
 * content.attachment.creation ^short = "The dateTime (UTC) the screening summary content was generated if different from the report 'as-at' date"
-* content.format from NzScreeningDocumentMediaTypesVS|1.0.0 (required)
+// x* content.format from NzScreeningDocumentMediaTypesVS|1.0.0 (required)
 
 * implicitRules 0..0
 * contained 0..0

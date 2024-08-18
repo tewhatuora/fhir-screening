@@ -10,7 +10,7 @@ Description: "Example of response to search returning an HTML screening summary 
 * type = #searchset
 * total = 1
 * link[0].relation = "self"
-* link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=SCF7824&_include=DocumentReference%3Asubject"
+* link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=ZCU7824&_include=DocumentReference%3Asubject"
 
 // results entry 1 of 2 - the matching Screening Summary DOCUMENTREFERENCE
 * entry[+].search.mode = #match
@@ -25,9 +25,9 @@ Description: "Example of response to search returning an HTML screening summary 
 * entry[=].resource.type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
 * entry[=].resource.category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
 * entry[=].resource.subject = Reference(MadeleineMeringue)
-* entry[=].resource.subject insert NHIPatientRef(SCF7824,[[Madeleine Meringue]])
+* entry[=].resource.subject insert NHIPatientRef(ZCU7824,[[Madeleine Meringue]])
 * entry[=].resource.content.attachment insert FullReportExampleHTMLContent
-* entry[=].resource.content.format = $MediaTypesCS#text/html
+// * entry[=].resource.content.format = $MediaTypesCS#text/html
 
 // results entry 2 of 2 - the included PATIENT resource
 * entry[+].search.mode = #include
@@ -60,9 +60,9 @@ Description: "Example of response to search for dormant NHI where there is parti
 * entry[=].resource.type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
 * entry[=].resource.category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
 * entry[=].resource.subject = Reference(MadeleineMeringue)
-* entry[=].resource.subject insert NHIPatientRef(SCF7824,[[Madeleine Meringue]])
+* entry[=].resource.subject insert NHIPatientRef(ZCU7824,[[Madeleine Meringue]])
 * entry[=].resource.content.attachment insert ParticipantOnlyExampleHTMLContent
-* entry[=].resource.content.format = $MediaTypesCS#text/html
+// * entry[=].resource.content.format = $MediaTypesCS#text/html
 
 // results entry 2 included patient resource
 * entry[+].search.mode = #include
@@ -107,7 +107,7 @@ Description: "Example of search response returning HTML screening summary docume
 * type = #searchset
 * total = 1
 * link[0].relation = "self"
-* link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=SCF7826&_include=DocumentReference%3Asubject"
+* link[=].url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?category=http%3A%2F%2Fsnomed.info%2Fsct%7C1230046007&subject%3Aidentifier=ZCQ3240&_include=DocumentReference%3Asubject"
 
 // results entry 1 of 2 - the matching Screening Summary DOCUMENTREFERENCE
 * entry[+].search.mode = #match
@@ -121,12 +121,12 @@ Description: "Example of search response returning HTML screening summary docume
 * entry[=].resource.status = #current
 * entry[=].resource.type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
 * entry[=].resource.category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
-* entry[=].resource.subject = Reference(MikiMahoe)
-* entry[=].resource.subject insert NHIPatientRef(SCF7826,[[Miki Mahoe]])
+* entry[=].resource.subject = Reference(KassandraTemahoe)
+* entry[=].resource.subject insert NHIPatientRef(ZCQ3240,[[Kassandra Temahoe]])
 * entry[=].resource.content.attachment insert MockDeceasedHTMLSummaryContent
-* entry[=].resource.content.format = $MediaTypesCS#text/html
+// * entry[=].resource.content.format = $MediaTypesCS#text/html
 
 // results entry 2 of 2 - the included PATIENT resource
 * entry[+].search.mode = #include
 * entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/Patient/14a27af4-d621-4068-b678-e878246cbaba"
-* entry[=].resource insert makeMikiMahoe([[14a27af4-d621-4068-b678-e878246cbaba]])
+* entry[=].resource insert makeKassandraTemahoe([[14a27af4-d621-4068-b678-e878246cbaba]])

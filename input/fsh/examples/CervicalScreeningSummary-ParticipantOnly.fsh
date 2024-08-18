@@ -15,9 +15,9 @@ Description: "Cervical screening summary as HTML doc with participant informatio
 * category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
 
 // form dual subject references to both a local instance (literal ref) and an NHI (logical resource ref)
-* subject = Reference(MikiMahoe)
-* subject insert NHIPatientRef([[SCF7826]],[[Miki Mahoe]])
+* subject = Reference(KassandraTemahoe)
+* subject insert NHIPatientRef([[ZCQ3240]],[[Kassandra Temahoe]])
 
 * content.attachment insert ParticipantOnlyExampleHTMLContent
-* content.format = $MediaTypesCS#text/html
+// * content.format = $MediaTypesCS#text/html
 

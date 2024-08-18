@@ -2,7 +2,7 @@
 
 ## v0.9.2 (2024-06-19)
 
-- The example FHIR `Patient` *Miki Mahoe* (SCF7826) now demonstrates how data will be returned if the subject is deceased.
+- The example FHIR `Patient` *Kassandra Temahoe* (ZCQ3240) now demonstrates how data will be returned if the subject is deceased.
 - Updated sample HTML content.
 
 ## v0.9.1 (2024-06-13)
@@ -15,8 +15,8 @@
 
 ### Example screening summaries
 
-- Added new example DocumentReference for subject SCF7826 (Miki Mahoe) with a partial screening summary document (no screening history)
-- Updated example DocumentReference for subject SCF7824 (Madeleine Meringue) to a full screening summary document with screening history
+- Added new example DocumentReference for subject ZCQ3240 (Kassandra Temahoe) with a partial screening summary document (no screening history)
+- Updated example DocumentReference for subject ZCU7824 (Madeleine Meringue) to a full screening summary document with screening history
 - Added screening summary examples (document images) and HTML previews to website
 - Updated FHIR instance examples with more realistic HTML content
 - Deleted bowel screening summary example
