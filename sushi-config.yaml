@@ -4,7 +4,7 @@
 # │  see:e.                                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: tewhatuora.fhir.screening
-canonical: https://build.fhir.org/ig/tewhatuora/fhir-screening.fhir.ig
+canonical: https://fhir-ig-uat.digital.health.nz/fhir-screening
 name: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 title: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 description: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide

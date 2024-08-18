@@ -6,7 +6,7 @@ Usage: #example
 * meta.profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient)
 // * meta.versionId = "1" cannot be used here as this content is used in contained instances where the container is versioned
 
-* identifier insert NHIIdentifier(SCF7824)
+* identifier insert NHIIdentifier(ZCU7824)
 
 * name.use = #usual
 * name.family = "Meringue"
@@ -39,7 +39,7 @@ RuleSet: makeMadeleineMeringue(instanceid)
 * meta.profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient)
 // * meta.versionId = "1" cannot be used here as this content is used in contained instances where the container is versioned
 
-* identifier insert NHIIdentifier(SCF7824)
+* identifier insert NHIIdentifier(ZCU7824)
 
 * name.use = #usual
 * name.family = "Meringue"

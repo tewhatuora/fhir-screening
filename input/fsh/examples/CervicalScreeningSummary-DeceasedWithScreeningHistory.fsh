@@ -15,9 +15,9 @@ Description: "Sample cervical screening summary for deceased person with screeni
 * category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
 
 // form dual subject references to both a local instance (literal ref) and an NHI (logical resource ref)
-* subject = Reference(MikiMahoe)
-* subject insert NHIPatientRef([[SCF7826]],[[Miki Mahoe]])
+* subject = Reference(KassandraTemahoe)
+* subject insert NHIPatientRef([[ZCQ3240]],[[Kassandra Temahoe]])
 
 * content.attachment insert MockDeceasedHTMLSummaryContent
-* content.format = $MediaTypesCS#text/html
+// * content.format = $MediaTypesCS#text/html
 

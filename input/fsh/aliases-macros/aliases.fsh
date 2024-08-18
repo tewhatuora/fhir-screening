@@ -1,4 +1,5 @@
 Alias: $sct = http://snomed.info/sct
+Alias: $ethnic-group-level-4-code = https://standards.digital.health.nz/ns/ethnic-group-level-4-code
 Alias: $MediaTypesCS = http://terminology.hl7.org/CodeSystem/v3-mediaType
 Alias: $NarrativeStatus = https://hl7.org/fhir/R4B/codesystem-narrative-status.html
 Alias: $UoM = http://unitsofmeasure.org
@@ -21,7 +22,7 @@ Alias: $action-type = http://terminology.hl7.org/CodeSystem/action-type
 Alias: $definition-topic = http://terminology.hl7.org/CodeSystem/definition-topic
 Alias: $usage-context-type = http://terminology.hl7.org/CodeSystem/usage-context-type
 Alias: $observation-category = http://terminology.hl7.org/CodeSystem/observation-category
-Alias: $pathway-status-codes = https://build.fhir.org/ig/tewhatuora/cinc-fhir-ig/CodeSystem/longterm-pathway-state-cs
+Alias: $pathway-status-codes = https://fhir-ig-uat.digital.health.nz/cinc-fhir-ig/CodeSystem/longterm-pathway-state-cs
 
 Alias: $AVE-whenstarted =  https://nzhts.digital.health.nz/fhir/ValueSet/antiviral-eligibility-symptoms-started   // 0.3.9b
 Alias: $AVE-criteria =  https://nzhts.digital.health.nz/fhir/ValueSet/COVID-19-antiviral-eligibility-criteria     // 0.3.9b
