@@ -4,7 +4,7 @@
 # │  see:e.                                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: tewhatuora.fhir.screening
-canonical: https://fhir-ig.digital.health.nz/fhir-screening
+canonical: https://fhir-ig.digital.health.nz/screening
 name: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 title: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 description: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
@@ -62,7 +62,7 @@ menu:
   Business view: businessview.html
 #  Onboarding: onboarding.html
   Use cases: usecases.html
-  Example screening summaries: 
+  Example screening summaries:
     screening summary full history report: renderedexample-fullreport.html
     screening summary report (participant info only): renderedexample-participantonly.html
     HTML sample (full report): mock-full-report.html
@@ -77,7 +77,7 @@ menu:
     Gender NSS-FHIR translation: gender.html
     Search behaviour: search.html
     Download IG : full-ig.zip
-    Download OpenAPI Spec: https://fhir-ig.digital.health.nz/fhir-screening/openapi.yaml
+    Download OpenAPI Spec: https://fhir-ig.digital.health.nz/screening/openapi.yaml
 
 contact:
    - name: HNZ Integration Team
