@@ -7,7 +7,7 @@ Usage: #example
 * total = 1
 * link.relation = "self"
 * link.url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference/DocumentReference?subject%253Aidentifier=ZNN6015&category=http%253A%252F%252Fsnomed.info%252Fsct%257C1230046007&_include=DocumentReference%253Asubject"
-* entry[0].fullUrl = "https://fhir.api-test.digital.health.nz/R4/DocumentReference/DocumentReference/0019n00000O6eEfAAJ"
+* entry[0].fullUrl = "https://fhir.api-test.digital.health.nz/R4/DocumentReference/DocumentReference/HTMLDocumentReferenceWithSubject"
 * entry[=].resource = HTMLDocumentReferenceWithSubject
 * entry[=].search.mode = #match
 * entry[+].search.mode = #include
