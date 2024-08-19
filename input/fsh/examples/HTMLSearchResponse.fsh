@@ -6,8 +6,8 @@ Usage: #example
 * type = #searchset
 * total = 1
 * link.relation = "self"
-* link.url = "https://localhost:8081/hnz-nss-fhir-facade-api/api/v1/fhir-facade/DocumentReference?subject%253Aidentifier=ZNN6015&category=http%253A%252F%252Fsnomed.info%252Fsct%257C1230046007"
-* entry.fullUrl = "https://localhost:8081/hnz-nss-fhir-facade-api/api/v1/fhir-facade/DocumentReference/0019n00000O6eEfAAJ"
+* link.url = "https://fhir.api-test.digital.health.nz/R4/DocumentReference?subject%253Aidentifier=ZNN6015&category=http%253A%252F%252Fsnomed.info%252Fsct%257C1230046007"
+* entry.fullUrl = "https://fhir.api-test.digital.health.nz/R4/DocumentReference/HTMLDocumentReference"
 * entry.resource = HTMLDocumentReference
 * entry.search.mode = #match
 

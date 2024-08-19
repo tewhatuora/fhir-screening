@@ -22,7 +22,7 @@ Alias: $action-type = http://terminology.hl7.org/CodeSystem/action-type
 Alias: $definition-topic = http://terminology.hl7.org/CodeSystem/definition-topic
 Alias: $usage-context-type = http://terminology.hl7.org/CodeSystem/usage-context-type
 Alias: $observation-category = http://terminology.hl7.org/CodeSystem/observation-category
-Alias: $pathway-status-codes = https://fhir-ig-uat.digital.health.nz/cinc-fhir-ig/CodeSystem/longterm-pathway-state-cs
+Alias: $pathway-status-codes = https://fhir-ig.digital.health.nz/cinc-fhir-ig/CodeSystem/longterm-pathway-state-cs
 
 Alias: $AVE-whenstarted =  https://nzhts.digital.health.nz/fhir/ValueSet/antiviral-eligibility-symptoms-started   // 0.3.9b
 Alias: $AVE-criteria =  https://nzhts.digital.health.nz/fhir/ValueSet/COVID-19-antiviral-eligibility-criteria     // 0.3.9b
