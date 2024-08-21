@@ -9,7 +9,7 @@
 
 | | | | |
 |:---------------------------|:-----------------------|----:|:----|
-| **Full Name**              | Madeleine Meringue   | Date of Birth   | 24-11-2008 |
+| **Full Name**              | Kassandra Temahoe   | Date of Birth   | 24-11-2008 |
 | **Ethnicity**              | New Zealand European | NHI Number      | ZCU7824 |
 | **Gender**                 | Female               | Sex assigned<br>at birth   | Female |
 | **Address**                | 373 Jackson Street, Petone,<br>Lower Hutt 5012, New Zealand  | | |
