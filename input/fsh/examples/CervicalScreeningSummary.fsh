@@ -16,7 +16,7 @@ Description: "Cervical screening summary as HTML doc with participant informatio
 
 // form dual subject references to both a local instance (literal ref) and an NHI (logical resource ref)
 * subject = Reference(MadeleineMeringue)
-* subject insert NHIPatientRef([[ZCU7824]],[[Madeleine Meringue]])
+* subject insert NHIPatientRef([[ZCU7824]],[[Kassandra Temahoe]])
 
 * content.attachment insert FullReportExampleHTMLContent
 // * content.format = $MediaTypesCS#text/html
