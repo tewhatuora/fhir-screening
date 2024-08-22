@@ -25,7 +25,7 @@ Description: "Example of response to search returning an HTML screening summary 
 * entry[=].resource.type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
 * entry[=].resource.category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
 * entry[=].resource.subject = Reference(MadeleineMeringue)
-* entry[=].resource.subject insert NHIPatientRef(ZCU7824,[[Madeleine Meringue]])
+* entry[=].resource.subject insert NHIPatientRef(ZCU7824,[[Kassandra Temahoe]])
 * entry[=].resource.content.attachment insert FullReportExampleHTMLContent
 // * entry[=].resource.content.format = $MediaTypesCS#text/html
 
@@ -60,7 +60,7 @@ Description: "Example of response to search for dormant NHI where there is parti
 * entry[=].resource.type insert SNOMEDCodeableConcept(422735006,[[Summary clinical document (record artifact)]])
 * entry[=].resource.category[0] insert SNOMEDCodeableConcept(1230046007,[[Cervical cancer screening service (qualifier value)]])
 * entry[=].resource.subject = Reference(MadeleineMeringue)
-* entry[=].resource.subject insert NHIPatientRef(ZCU7824,[[Madeleine Meringue]])
+* entry[=].resource.subject insert NHIPatientRef(ZCU7824,[[Kassandra Temahoe]])
 * entry[=].resource.content.attachment insert ParticipantOnlyExampleHTMLContent
 // * entry[=].resource.content.format = $MediaTypesCS#text/html
 

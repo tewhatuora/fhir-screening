@@ -1,7 +1,7 @@
 # ╭─────────────────────────Commonly Used ImplementationGuide Properties───────────────────────────╮
 # │  The properties below are used to create the ImplementationGuide resource. The most commonly   │
 # │  used properties are included. For a list of all supported properties and their functions,     │
-# │  see:e.                                         │
+# │  see: https://fshschool.org/docs/sushi/configuration/.                                         |
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: tewhatuora.fhir.screening
 canonical: https://fhir-ig.digital.health.nz/screening
@@ -9,7 +9,7 @@ name: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 title: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 description: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 status: draft
-version: 0.9.2
+version: 0.9.3
 fhirVersion: 4.0.1
 copyrightYear: 2024+
 releaseLabel: draft # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
@@ -18,7 +18,7 @@ jurisdiction: urn:iso:std:iso:3166#NZ "New Zealand"
 publisher:
   name: Health New Zealand | Te Whatu Ora
   url: https://www.tewhatuora.govt.nz/
-  email: integration@tewhatuora.govt.nz
+  email: integration@tewhatuora.govt.nz     # this seems to be violating the slicing rules / DigitalHnzToolingCapabilityStatement requirements
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
@@ -27,9 +27,9 @@ publisher:
 dependencies:
   fhir.org.nz.ig.base: 
     uri: http://fhir.org.nz/ig/base/ImplementationGuide/fhir.org.nz.ig.base
-    version: 3.0.0
+    version: current
 #  hl7.fhir.uv.sdc: 3.0.0
-  tewhatuora.digitaltooling: 0.0.9
+  tewhatuora.digitaltooling: 0.0.10
 
 
 # The parameters property represents IG.definition.parameter. Rather
@@ -63,10 +63,8 @@ menu:
 #  Onboarding: onboarding.html
   Use cases: usecases.html
   Example screening summaries:
-    screening summary full history report: renderedexample-fullreport.html
-    screening summary report (participant info only): renderedexample-participantonly.html
-    HTML sample (full report): mock-full-report.html
-    HTML sample (deceased with screening history): mock-deceased-report.html
+    HTML participant summary: sample-participant-report.html
+    HTML screening history report: sample-history-report.html
   Artifacts: artifacts.html
   Developer Support:
     View OpenAPI: new-tab https://fhir-ig.digital.health.nz/openapi/index.html?urls.primaryName=FHIR+Screening+API
@@ -77,8 +75,8 @@ menu:
     Gender NSS-FHIR translation: gender.html
     Search behaviour: search.html
     Download IG : full-ig.zip
-    Download OpenAPI Spec: https://fhir-ig.digital.health.nz/screening/openapi.yaml
-
+#    Download OpenAPI Spec: https://fhir-ig.digital.health.nz/screening/openapi.yaml   
+#  causes 110 build errors "The link 'https://fhir-ig.digital.health.nz/screening/openapi.yaml' for "Download OpenAPI Spec" cannot be resolved"
 contact:
    - name: HNZ Integration Team
      telecom:

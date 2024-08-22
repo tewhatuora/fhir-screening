@@ -17,7 +17,7 @@ Usage: #definition
 * implementation.url = "https://fhir.api.digital.health.nz/R4"
 * fhirVersion = #4.0.1
 * format = #json
-* version = "0.9.2"
+* version = "0.9.3"
 * rest.mode = #server
 * rest.security.cors = true
 * rest.security.service = #SMART-on-FHIR

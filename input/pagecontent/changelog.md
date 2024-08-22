@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.9.3 (2024-08-22)
+
+- Sample reports now include banner graphic and 'time to screen' logo
+- Example patient renamed and NHI set to a valid test NHI number.
+- Canonical Urls now use the official IG published canonical Url instead of build.fhir.org
+- IG Dependency on NZBase altered to take latest (current) version
+- Capability statement now includes OAUTH security details
+
 ## v0.9.2 (2024-06-19)
 
 - The example FHIR `Patient` *Kassandra Temahoe* (ZCQ3240) now demonstrates how data will be returned if the subject is deceased.
@@ -16,7 +24,7 @@
 ### Example screening summaries
 
 - Added new example DocumentReference for subject ZCQ3240 (Kassandra Temahoe) with a partial screening summary document (no screening history)
-- Updated example DocumentReference for subject ZCU7824 (Madeleine Meringue) to a full screening summary document with screening history
+- Updated example DocumentReference for subject ZCU7824 (Kassandra Temahoe) to a full screening summary document with screening history
 - Added screening summary examples (document images) and HTML previews to website
 - Updated FHIR instance examples with more realistic HTML content
 - Deleted bowel screening summary example
