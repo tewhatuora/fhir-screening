@@ -18,7 +18,7 @@ jurisdiction: urn:iso:std:iso:3166#NZ "New Zealand"
 publisher:
   name: Health New Zealand | Te Whatu Ora
   url: https://www.tewhatuora.govt.nz/
-  email: integration@tewhatuora.govt.nz
+  email: integration@tewhatuora.govt.nz     # this seems to be violating the slicing rules / DigitalHnzToolingCapabilityStatement requirements
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
@@ -75,8 +75,8 @@ menu:
     Gender NSS-FHIR translation: gender.html
     Search behaviour: search.html
     Download IG : full-ig.zip
-    Download OpenAPI Spec: https://fhir-ig.digital.health.nz/screening/openapi.yaml
-
+#    Download OpenAPI Spec: https://fhir-ig.digital.health.nz/screening/openapi.yaml   
+#  causes 110 build errors "The link 'https://fhir-ig.digital.health.nz/screening/openapi.yaml' for "Download OpenAPI Spec" cannot be resolved"
 contact:
    - name: HNZ Integration Team
      telecom:
