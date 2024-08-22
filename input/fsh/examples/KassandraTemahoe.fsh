@@ -1,6 +1,6 @@
 Instance: KassandraTemahoe
 InstanceOf: NzPatient
-Description: "Example of deceased screening subject who was a gender-diverse (male at birth), Maori ethnicity person."
+Description: "Example screening subject who is gender-diverse (female at birth), Māori ethnicity"
 Usage: #example
 
 * meta.profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient)

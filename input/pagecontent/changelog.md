@@ -2,6 +2,7 @@
 
 ## v0.9.3 (2024-08-22)
 
+- Sample reports now include banner graphic and 'time to screen' logo
 - Example patient renamed and NHI set to a valid test NHI number.
 - Canonical Urls now use the official IG published canonical Url instead of build.fhir.org
 - IG Dependency on NZBase altered to take latest (current) version
