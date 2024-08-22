@@ -9,9 +9,9 @@ Usage: #definition
 * jurisdiction = urn:iso:std:iso:3166#NZ "New Zealand"
 * publisher = "Health New Zealand / Te Whatu Ora"
 * description = "National Screening FHIR API"
-* contact[+].name = "Health New Zealand Te Whatu Ora"
-* contact[=].telecom.value = "https://www.tewhatuora.govt.nz"
-* contact[=].telecom.system = #url
+* contact[urlContact][+].name = "Health New Zealand Te Whatu Ora"
+* contact[urlContact][=].telecom.value = "https://www.tewhatuora.govt.nz"
+* contact[urlContact][=].telecom.system = #url
 * kind = #instance
 * implementation.description = "National Screening FHIR API"
 * implementation.url = "https://fhir.api.digital.health.nz/R4"
