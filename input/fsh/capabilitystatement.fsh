@@ -20,13 +20,18 @@ Usage: #definition
 * version = "0.9.3"
 * rest.mode = #server
 * rest.security.cors = true
-* rest.security.service = http://hl7.org/fhir/restful-security-service#OAuth
-
-* rest.security.extension[0].url = "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris"
-* rest.security.extension[=].extension[0].url = "token"
-* rest.security.extension[=].extension[=].valueUri = "https://ppd.auth.services.health.nz/realms/hnz-integration/protocol/openid-connect/token"
+* rest.security.service = #SMART-on-FHIR
+* rest.security.extension.url = "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris"
+* rest.security.extension.extension[0].url = "token"
+* rest.security.extension.extension[=].valueUri = "https://ppd.auth.services.health.nz/realms/hnz-integration/protocol/openid-connect/token"
 * rest.security.extension[+].url = "http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities"
 * rest.security.extension[=].valueCode = #client-confidential-symmetric
+// * rest.security.service = http://hl7.org/fhir/restful-security-service#OAuth
+// * rest.security.extension[0].url = "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris"
+// * rest.security.extension[=].extension[0].url = "token"
+// * rest.security.extension[=].extension[=].valueUri = "https://ppd.auth.services.health.nz/realms/hnz-integration/protocol/openid-connect/token"
+// * rest.security.extension[+].url = "http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities"
+// * rest.security.extension[=].valueCode = #client-confidential-symmetric
 
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[+].url = Canonical(HnzCustomHeadersExtension)
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[key].valueString = "Correlation-Id"
