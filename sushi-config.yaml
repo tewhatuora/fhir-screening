@@ -8,11 +8,11 @@ canonical: https://fhir-ig.digital.health.nz/screening
 name: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 title: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 description: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
-status: draft
-version: 0.9.3
+status: active
+version: 1.0.0
 fhirVersion: 4.0.1
 copyrightYear: 2024+
-releaseLabel: draft # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+releaseLabel: normative+trial-use # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: urn:iso:std:iso:3166#NZ "New Zealand"
 publisher:
@@ -66,8 +66,10 @@ menu:
     HTML participant summary: sample-participant-report.html
     HTML screening history report: sample-history-report.html
   Artifacts: artifacts.html
-  Developer Support:
+  App Developer Support:
     View OpenAPI: new-tab https://fhir-ig.digital.health.nz/openapi/index.html?urls.primaryName=FHIR+Screening+API
+  Support:
+    Download OpenAPI: https://fhir-ig.digital.health.nz/screening/openapi.yaml
     Artifacts (Json): definitions.json.zip
     Artifacts (Xml): definitions.xml.zip
     Changelog: changelog.html
@@ -75,8 +77,6 @@ menu:
     Gender NSS-FHIR translation: gender.html
     Search behaviour: search.html
     Download IG : full-ig.zip
-#    Download OpenAPI Spec: https://fhir-ig.digital.health.nz/screening/openapi.yaml   
-#  causes 110 build errors "The link 'https://fhir-ig.digital.health.nz/screening/openapi.yaml' for "Download OpenAPI Spec" cannot be resolved"
 contact:
    - name: HNZ Integration Team
      telecom:
