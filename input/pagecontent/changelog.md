@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.0 (2024-08-26)
+
+- OpenAPI specification revisions
+- Added sequence diagrams clarifying practitioner terms acceptance subflow
+
 ## v0.9.3 (2024-08-22)
 
 - Sample reports now include banner graphic and 'time to screen' logo

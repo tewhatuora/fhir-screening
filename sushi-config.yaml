@@ -29,7 +29,7 @@ dependencies:
     uri: http://fhir.org.nz/ig/base/ImplementationGuide/fhir.org.nz.ig.base
     version: current
 #  hl7.fhir.uv.sdc: 3.0.0
-  tewhatuora.digitaltooling: 0.0.10
+  tewhatuora.digitaltooling: 0.0.11
 
 
 # The parameters property represents IG.definition.parameter. Rather
@@ -73,7 +73,7 @@ menu:
     Artifacts (Json): definitions.json.zip
     Artifacts (Xml): definitions.xml.zip
     Changelog: changelog.html
-    API sequence diagram: sequence.html
+    API sequence diagrams: sequences.html
     Gender NSS-FHIR translation: gender.html
     Search behaviour: search.html
     Download IG : full-ig.zip

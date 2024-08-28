@@ -6,3 +6,6 @@
 
 The link 'https://fhir-ig.digital.health.nz/screening/openapi.yaml' for "Download OpenAPI" cannot be resolved
 The link 'Patient/ZNN6015-b74822eb-4b97-44ed-9204-a53097a70098' for "Fifteen Yhiss" cannot be resolved
+
+# yeah nah this suppression is not working
+WARNING: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
