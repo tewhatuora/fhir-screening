@@ -1,4 +1,4 @@
-@startuml seq-fhir-screening-API
+@startuml seq-fhir-screening-API-operatingflow
 
 autonumber "<b> 00"
 
@@ -40,13 +40,13 @@ title "PMS search for screening summary(s) using FHIR screening API"
 
 == initialisation ==
 
-APIC -> ROSIE++: OAUTH2.0 Client Credentials Flow\n<size:10>(client credentials and requested scope)</size>
+APIC -> ROSIE++: OAUTH2.0 Client Credentials Flow\n<size:10>(client creds, requested scopes+audience)</size>
 return OAUTH token
 note right
-  ""scopes:"" 
-    **system/DocumentReference.rs?category=http://snomed.info/sct|1230046007**
-    **system/Patient.r**
-  ""aud:"" **https://api.{env}.nss.digital.health.nz**
+  """scope": ["" 
+    """system/DocumentReference.rs",""
+    """system/Patient.r" ]""
+  """aud": "https://fhir-ig.digital.health.nz/screening/StructureDefinition/nz-screening-summary"""
 end note
 
 == operations ==
