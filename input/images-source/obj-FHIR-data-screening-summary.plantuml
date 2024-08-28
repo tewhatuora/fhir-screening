@@ -1,7 +1,6 @@
 @startuml obj-FHIR-data-screening-summary
 
 !define COMMON .
-
 !include COMMON/component-skinparams.iuml
 
 top to bottom direction
