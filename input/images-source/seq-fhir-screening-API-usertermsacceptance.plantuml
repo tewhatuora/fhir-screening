@@ -15,8 +15,8 @@ participant "practitioner's APP/PMS" as APIC #Orange
 ' end box
 
 box "HNZ FHIR APIs" #WhiteSmoke
-  entity "**screening summary API**" as SCRAPI #LightSalmon
-  entity "NHI/HPI API" as NHPIG #LightSalmon
+  entity "**screening summary API**" as SCRAPI #SkyBlue
+  ' entity "NHI/HPI API" as NHPIG #LightSalmon
   entity "**HNZ FHIR API**\n(AWS FHIRWorks)" as FHIR #LightSalmon
   entity "FHIR forms services" as MAGICFORM #Orchid
 end box
@@ -31,7 +31,7 @@ end note
 
 == first time API use by new practitioner/user ==
 
-USER -> APIC++ #YellowGreen: request screening summary for a patient
+USER -> APIC++ #Orange: request screening summary for a patient
 
 note right of APIC
   PMS/APP must set up ""Request-Context"":
@@ -40,7 +40,7 @@ note right of APIC
     """secondaryIdentifier""" - the user's health organisation as an HPI organisation identifier.
 end note
 
-APIC -> SCRAPI++: ""GET"" /**DocumentReference**?<params>
+APIC -> SCRAPI++ #SkyBlue: ""GET"" /**DocumentReference**?<params>
 
 SCRAPI -> FHIR++: check for existing terms acceptance\n ""GET /QuestionnaireResponse""
 return no matches
