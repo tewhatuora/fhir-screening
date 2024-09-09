@@ -17,7 +17,8 @@ participant "practitioner's APP/PMS" as APIC #Orange
 box "HNZ FHIR APIs" #WhiteSmoke
   entity "**screening summary API**" as SCRAPI #LightSalmon
   entity "NHI/HPI API" as NHPIG #LightSalmon
-  entity "FHIR forms services" as MAGICFORM
+  entity "**HNZ FHIR API**\n(AWS FHIRWorks)" as FHIR #LightSalmon
+  entity "FHIR forms services" as MAGICFORM #Orchid
 end box
 
 title "Cervical screening API data access - special terms practitioner acceptance flow"
@@ -43,50 +44,52 @@ APIC -> SCRAPI++: ""GET"" /**DocumentReference**?<params>
 
 SCRAPI -> SCRAPI: check for existing terms acceptance
 
-group#Orange No current terms-acceptance for this practitioner/user
+alt#Red No current terms-acceptance for this practitioner/user
     
-  SCRAPI -> MAGICFORM++: Prepare Terms Acceptance Form 
+  SCRAPI -> MAGICFORM++ #Orchid: Request Terms Acceptance Form\n<size:12>""POST /v1/auth/{form name}/generate-questionnaire-link""
   
-  note right of SCRAPI
-    Form is prepared as a FHIR Questionnaire for the 
-    current Practitioner and Org (from ""Request-Context"")
+  MAGICFORM -> MAGICFORM: Prepare Form
+  note left of MAGICFORM
+    A magic link Url is formed which provides access to the requested FHIR ""Questionnaire"" (form name).
+    The prepared magic link includes encrypted claims which identify the practitioner and organisation as
+    passed in by the PMS (in the ""Request-Context"" header).  The requesting application uses the magic
+    link to cause a personalised form to be displayed to the user in a browser popup/iframe.
+    When the user submits the form, the forms services API extracts its response data and encoded identifiers
+    into FHIR resource instances specifically representing that user's submission.
   end note
 
-  return Form Url ("magic link")
+  return Form pre-signed Url (aka 'magic link')
 
-  SCRAPI -> SCRAPI : Prepare ""OperationOutcome"" 403 response
+  SCRAPI -> SCRAPI : Prepare ""OperationOutcome"" 403 response containing presigned Url 'magic link' 
   
-  break#LightBlue Practitioner terms acceptance sub flow
-    SCRAPI -> APIC--: HTTP ""403 Forbidden"" error with **magic link**
+  SCRAPI -> APIC--: HTTP ""403 Forbidden"" error + 'magic link'
 
   note right of APIC
-    On receipt of a 403 response, the PMS/APP must check for a link in the FHIR ""OperationOutcome.diagnostics"" property.
-    The PMS/APP shall redirect the user's browser to that link to dispay the prepared Terms Acceptance form.
+    On receipt of a 403 response, the PMS/APP must check for a 
+    link in the FHIR ""OperationOutcome.diagnostics"" property.
   end note
 
-  APIC -> USER++-- #LightBlue : Display form via browser redirect
+  APIC -> USER++-- #LightBlue : Display form in browser using magic link
    
-    USER -> USER: Read form and accept special terms
+  USER -> MAGICFORM++ #Orchid: Read form special terms; submit to accept
 
-    USER -> MAGICFORM++ : ""POST /QuestionnaireResponse"" (with Request-Context header)
+  MAGICFORM -> FHIR : ""POST /QuestionnaireResponse""
 
-    note left of MAGICFORM
-      ""Request-Context"" custom header must set
-        """userIdentifier""" - user Id as known/authenticated by the PMS/APP
-        """userRole""" - the role of the user as defined by the PMS/APP
-        """secondaryIdentifier""" - the user's health organisation as an HPI organisation identifier.
-    end note
+  MAGICFORM -> FHIR : Extract data recording acceptance of terms
+  note left of FHIR
+    FHIR resource instances created in this step:
+    - Specify the FHIR ""Questionnaire"" which defines the HNZ terms of practitioner API access to HPV data.
+    - Identify the practitioner and their health org (as passed by the PMS).
+    - Record details of their acceptance of the terms in ""items"" specified by the FHIR ""Questionnaire"".
+  end note
 
-    MAGICFORM -> MAGICFORM : Extract and record\nacceptance submission
-    MAGICFORM -> USER--: Practitioner terms acceptance complete 
-    
-    deactivate USER
-
-    ... <size:16>The practitioner/user can now resume the request for screening summaries in the PMS. ...
-
-  end
+  MAGICFORM -x USER--: Practitioner terms acceptance complete 
+  
+  deactivate USER
+  
 end
 
 == API request processing can now proceed - see Typical Operation diagram ==
+... <size:16>Now that terms acceptance has been recored, the practitioner/user can retry their request for screening summaries in the PMS. ...
 
 @enduml
