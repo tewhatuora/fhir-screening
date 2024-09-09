@@ -42,7 +42,8 @@ end note
 
 APIC -> SCRAPI++: ""GET"" /**DocumentReference**?<params>
 
-SCRAPI -> SCRAPI: check for existing terms acceptance
+SCRAPI -> FHIR++: check for existing terms acceptance\n ""GET /QuestionnaireResponse""
+return no matches
 
 alt#Red No current terms-acceptance for this practitioner/user
     
@@ -73,7 +74,7 @@ alt#Red No current terms-acceptance for this practitioner/user
    
   USER -> MAGICFORM++ #Orchid: Read form special terms; submit to accept
 
-  MAGICFORM -> FHIR : ""POST /QuestionnaireResponse""
+  MAGICFORM -> FHIR++ : ""POST /QuestionnaireResponse""
 
   'MAGICFORM -> FHIR : Extract data recording acceptance of terms
   note left of FHIR
@@ -82,6 +83,7 @@ alt#Red No current terms-acceptance for this practitioner/user
     - Identifies the practitioner and their health org (as passed by the PMS).
     - Records details of their acceptance of the terms in ""items"" specified by the FHIR ""Questionnaire"".
   end note
+  return
 
   MAGICFORM -x USER--: Practitioner terms acceptance complete 
   
