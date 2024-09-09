@@ -75,12 +75,12 @@ alt#Red No current terms-acceptance for this practitioner/user
 
   MAGICFORM -> FHIR : ""POST /QuestionnaireResponse""
 
-  MAGICFORM -> FHIR : Extract data recording acceptance of terms
+  'MAGICFORM -> FHIR : Extract data recording acceptance of terms
   note left of FHIR
-    FHIR resource instances created in this step:
-    - Specify the FHIR ""Questionnaire"" which defines the HNZ terms of practitioner API access to HPV data.
-    - Identify the practitioner and their health org (as passed by the PMS).
-    - Record details of their acceptance of the terms in ""items"" specified by the FHIR ""Questionnaire"".
+    FHIR QuestionnaireResponse instance created in this step:
+    - Specifies the FHIR ""Questionnaire"" which defines the HNZ terms of practitioner API access to HPV data.
+    - Identifies the practitioner and their health org (as passed by the PMS).
+    - Records details of their acceptance of the terms in ""items"" specified by the FHIR ""Questionnaire"".
   end note
 
   MAGICFORM -x USER--: Practitioner terms acceptance complete 
