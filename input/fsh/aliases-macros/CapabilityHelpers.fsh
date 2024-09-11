@@ -30,9 +30,28 @@ RuleSet: ResourceDocumentation(markdown)
 * documentation = "{markdown}"
 
 // documents errors per HNZ standard (https://apistandards.digital.health.nz/api-development/Synchronous%20APIs/Error%20Handling)
-RuleSet: StandardErrorsDocumentation
+RuleSet: APIStandardsDocumentation
 * documentation = """
-  ### Read (GET) Operation Statuses
+  ### Request-Context custom header
+
+  All screening FHIR API requests must include a request context *custom header* supplying identifiers for the health user 
+  and organisation behind the API request.
+
+  API consumers must set a `Request-Context` custom header to a base64-encoded JSON object containing the following properties: 
+  
+  |**Required context property**|**Attribute value**|
+  |:------------------|:---------|
+  | `userIdentifier`  | The userid of the user as authenticated by the PMS/health application. |
+  | `hpiPractitioner` | HPI pracitioner identifiers -- Common Person Number and Registration Authority number |
+  | `hpiFacility`     | Identifies the health facility (by HPI Facility Id) where the practitioner is working |
+  | `purposeOfUse`    | Set to SCREENING        |
+  | `userFullName`    | The full name of the practitioner using the application |
+  
+  The schema for the request context JSON object [is defined here](https://raw.githubusercontent.com/tewhatuora/schemas/main/json-schema/Request-Context-v2.json)
+
+  ### Error status codes
+
+  #### Read (GET) Operation Statuses
 
   |**Code**|**Meaning**|**Description**|
   |:--:|:-----------------|:--|
@@ -47,7 +66,7 @@ RuleSet: StandardErrorsDocumentation
   |500|SERVER ERROR       |An internal server error prevented return of the representation response|
   |503|SERVICE UNAVAILABLE|We are temporarily unable to return the representation. Please wait and try again later|
 
-  ### Search (GET) Operation Statuses
+  #### Search (GET) Operation Statuses
 
   |**Code**|**Meaning**   |**OperationOutcome** in response?|**Description**|
   |:--:|:-----------------|:----------------------------------|:----------------------------------|
@@ -60,7 +79,7 @@ RuleSet: StandardErrorsDocumentation
   |500|SERVER ERROR       |No |An internal server error prevented return of the representation response|
   |503|SERVICE UNAVAILABLE|No |The server is temporarily unable to return the representation. Please wait and try again later|
 
-  ### Create (POST or PUT) Operation Statuses
+  #### Create (POST or PUT) Operation Statuses
 
   |**Code**|**Meaning**|**Description**|
   |:--:|:-----------------|:--|
@@ -77,7 +96,7 @@ RuleSet: StandardErrorsDocumentation
   |429|TOO MANY REQUESTS  |Your application is sending too many simultaneous requests|
   |500|SERVER ERROR       |We couldn't create or update the resource. Please try again later|
 
-  ### Delete (DELETE) Operation Statuses
+  #### Delete (DELETE) Operation Statuses
 
   |**Code**|**Meaning**|**Description**|
   |:--:|:-----------------|:--|

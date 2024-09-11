@@ -34,10 +34,13 @@ end note
 USER -> APIC++ #Orange: request screening summary for a patient
 
 note right of APIC
-  PMS/APP must set up ""Request-Context"":
-    """userIdentifier""" - user Id as known/authenticated by the PMS/APP
+  PMS/APP must set a valid ""Request-Context"" for each FHIR API request containing:
+    """userIdentifier""" - the practitioner Id as an **HPI Practitioner** Id.
     """userRole""" - the role of the user as defined by the PMS/APP
-    """secondaryIdentifier""" - the user's health organisation as an HPI organisation identifier.
+    """secondaryIdentifier""" - the user's health organisation as an **HPI Organisation** Id.
+    """purposeOfUse""" - set to XXX
+    """HPIFacilityIdentifier""" - the HPI Facility ID of the facility the practitioner is currently working in
+    
 end note
 
 APIC -> SCRAPI++ #SkyBlue: ""GET"" /**DocumentReference**?<params>
@@ -47,18 +50,19 @@ return no matches
 
 alt#Red No current terms-acceptance for this practitioner/user
     
-  SCRAPI -> MAGICFORM++ #Orchid: Request Terms Acceptance Form\n<size:12>""POST /v1/auth/{form name}/generate-questionnaire-link""
+  SCRAPI -> MAGICFORM++ #Orchid: Generate Terms Acceptance Form 1-time link\n<size:11>""POST /v1/auth/{formName}/generate-questionnaire-link""
   
-  MAGICFORM -> MAGICFORM: Prepare Form
   note left of MAGICFORM
-    A magic link Url is formed which provides access to the requested FHIR ""Questionnaire"" (form name).
-    The prepared magic link includes encrypted claims which identify the practitioner and organisation as
-    passed in by the PMS (in the ""Request-Context"" header).  The requesting application uses the magic
-    link to cause a personalised form to be displayed to the user in a browser popup/iframe.
-    When the user submits the form, the forms services API extracts its response data and encoded identifiers
-    into FHIR resource instances specifically representing that user's submission.
+    The screening summary API must set two **magic link claims** in the link generation
+     request based on identifiers supplied by the PMS:
+    1. **"source"**: an HPI Practitioner reference
+    2. **"author"**: an HPI Organisation reference
+
+    A FHIR ""Questionnaire"" is configured to prepopulate these values in the QuestionnaireResponse 
+     submitted from the magic link.
   end note
 
+  MAGICFORM -> MAGICFORM: Prepare Form
   return Form pre-signed Url (aka 'magic link')
 
   SCRAPI -> SCRAPI : Prepare ""OperationOutcome"" 403 response containing presigned Url 'magic link' 

@@ -44,31 +44,21 @@ Usage: #definition
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[value].valueUri = "https://raw.githubusercontent.com/tewhatuora/schemas/main/openapi-definitions/Request-Context.json"
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[required].valueBoolean = true
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[documentation].valueString = """A base64-encoded JSON object that defines the context of the current request.
-See https://github.com/tewhatuora/schemas/blob/main/json-schema/Request-Context.json for the schema
+See https://github.com/tewhatuora/schemas/blob/main/json-schema/Screening-Request-Context.json for the schema
 """
 * extension[HnzApiSpecBuilderExtension].extension[licenseURL].valueUri = "https://www.tewhatuora.govt.nz/assets/Our-health-system/Digital-health/Digital-Service-Hub/API-Access-and-Use-Agreement.docx"
 * extension[HnzApiSpecBuilderExtension].extension[licenseName].valueString = "Health New Zealand Digital Services Hub API Access and Use Agreement"
 * extension[HnzApiSpecBuilderExtension].extension[externalDocs].valueUri = "https://fhir-ig.digital.health.nz/screening"
 
 * rest.interaction.code = #search-system
-* rest.interaction insert StandardErrorsDocumentation
+* rest.interaction insert APIStandardsDocumentation     // see CapabilityHelpers.fsh
 
 // DocumentReference searching 
 * rest.resource[+].type = #DocumentReference
 * rest.resource[=] insert ResourceDocumentation([[Provides a document rendition of screening summary information]])
 * rest.resource[=].profile = Canonical(ScreeningSummaryDocument)
 * rest.resource[=].interaction[+].code = #search-type
-* rest.resource[=].interaction[=].documentation = """A base64-encoded JSON object that defines the context of the current request.
-
-Applications using this screening FHIR API **MUST** populate the following attributes in `RequestContext`
-
-- *userIdentifier* - the identity of the user as known by the application which consumes this FHIR API
-- *userRole* - the role of the user as known by the application which consumes this FHIR API
-- *secondaryIdentifier* - identify the user's health organisation (as they affiliate with for the purpose of this API usage) as an HPI organisation identifier.
-
-See [Te Whatu Ora github](https://github.com/tewhatuora/schemas/blob/main/json-schema/Request-Context.json) for the schema that defines this JSON data structure.
-"""
-
+//* rest.resource[=].interaction[=].documentation = """"""
 * rest.resource[=].versioning = #versioned
 * rest.resource[=].readHistory = false
 * rest.resource[=].updateCreate = false
