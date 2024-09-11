@@ -9,7 +9,7 @@ name: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 title: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 description: Health NZ | Te Whatu Ora FHIR Screening Implementation Guide
 status: active
-version: 1.0.0
+version: 1.0.1
 fhirVersion: 4.0.1
 copyrightYear: 2024+
 releaseLabel: normative+trial-use # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
