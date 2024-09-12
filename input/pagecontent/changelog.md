@@ -1,9 +1,14 @@
 # Changelog
 
+## v1.0.1 (2024-09-13)
+
+- OpenAPI specification generation and linking
+- Added sequence diagram showing public view of practitioner terms acceptance sub-flow
+- Updated `Request-Context` metadata requirements in CapabilityStatement and OpenAPI spec.
+
 ## v1.0.0 (2024-08-26)
 
-- OpenAPI specification revisions
-- Added sequence diagrams clarifying practitioner terms acceptance subflow
+- Version 1.0 for publishing at [official location](https://fhir-ig.digital.health.nz/screening/index.html)
 
 ## v0.9.3 (2024-08-22)
 

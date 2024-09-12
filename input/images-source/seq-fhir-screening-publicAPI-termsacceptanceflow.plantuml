@@ -1,0 +1,87 @@
+@startuml seq-fhir-screening-publicAPI-termsacceptanceflow
+
+!define COMMON .
+!include COMMON/sequence-skinparams.iuml
+
+'scale 300 width
+scale 300*500
+
+actor "health practitioner (screening)" as USER
+participant "NZ health app/PMS" as APIC #Orange
+
+' box "HNZ digital services hub" #WhiteSmoke
+'   entity "API auth. server" as ROSIE #IndianRed
+'   entity "API gateway" as APIG #IndianRed
+' end box
+
+box "HNZ FHIR APIs" #WhiteSmoke
+  entity "**Screening FHIR API**" as SCRAPI #SkyBlue
+  database "Health Provider Index" as HPI #LightSalmon
+  entity "HNZ FHIR API" as FHIR #LightSalmon
+  entity "HNZ Application Form API" as MAGICFORM #Orchid
+end box
+
+title "Cervical screening API data access - Practitioner terms acceptance form flow"
+
+== API first time use by new practitioner/user ==
+
+USER -> APIC++ #Orange: request screening summary for a patient
+
+APIC -> SCRAPI++ #SkyBlue: Get screening summaries by NHI\n  <size:12>""GET /**DocumentReference**?<params>""
+
+SCRAPI -> FHIR++: search Terms Acceptance **by facility**\n  <size:12>""GET /QuestionnaireResponse?subject=<hpiFacility>""
+return MATCH
+
+SCRAPI -> FHIR++: search Terms Acceptance **by practitioner**\n  <size:12>""GET /QuestionnaireResponse?subject=<hpiPractitioner>""
+return NO MATCH
+
+alt#Orange The practitioner user has not previously accepted the Terms of Access
+
+  SCRAPI -> HPI++: Searches for Practitioner and Facility
+  return HPI details
+
+  break#Red HPI identifier validation failures 
+    alt#Red Practitioner Id not valid
+      SCRAPI -x APIC: HTTP ""400"" Bad Request
+    end
+
+    alt#Red HPI Facility Id not valid
+      SCRAPI -x APIC: HTTP ""400"" Bad Request
+    end
+  end
+
+  SCRAPI -> MAGICFORM++ #Orchid: Generate Terms Acceptance Form\n  <size:12>""POST /v1/auth/{formName}/generate-questionnaire-link""
+  
+  note left of MAGICFORM
+    A Terms Acceptance form is prepopulated with practitioner, 
+    facility and organisation details as sent by the PMS. 
+  end note
+
+  MAGICFORM -> MAGICFORM: Prepare Form
+  return Prepopulated Form Url (aka 'magic link')
+
+  SCRAPI -> SCRAPI : Prepare ""OperationOutcome"" 403 response containing 'magic link' 
+  
+  SCRAPI -> APIC--: HTTP ""403 Forbidden"" error + 'magic link'
+
+  note right of APIC
+    On receipt of a 403 response, the App/PMS must check for magic link 
+    in the FHIR ""OperationOutcome.diagnostics"" property.
+  end note
+
+  APIC -> USER++-- #LightBlue : Display form in browser using magic link
+   
+  USER -> MAGICFORM++ #Orchid: Read special terms of access; complete form; submit to accept
+
+  MAGICFORM -> FHIR : Record practitioner's acceptance of terms
+
+  MAGICFORM -x USER--: Practitioner terms acceptance complete
+
+  deactivate USER
+  
+end
+
+== API request processing can now proceed - see Typical Operation diagram ==
+... <size:16>Now that terms acceptance has been recored, the practitioner/user can retry their request for screening summaries in the PMS. ...
+
+@enduml

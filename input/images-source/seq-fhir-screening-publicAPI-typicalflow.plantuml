@@ -1,0 +1,105 @@
+@startuml seq-fhir-screening-publicAPI-typicalflow
+
+!define COMMON .
+!include COMMON/sequence-skinparams.iuml
+
+scale max 400 width
+scale 300*500
+
+actor "health practitioner (screening)" as USER
+participant "NZ health app/PMS" as APIC #Orange
+
+box "HNZ digital services hub /\n connector plane" #LightGrey
+  entity "API authn. server" as ROSIE #IndianRed
+  entity "API gateway" as APIG #IndianRed
+end box
+
+box "HNZ FHIR APIs" #WhiteSmoke
+  entity "**Screening FHIR API**" as SCRAPI #SkyBlue
+  entity "HNZ FHIR API" as FHIR #LightSalmon
+  database "National Health Index /\n Health Provider Index" as NHIHPI #LightSalmon
+end box
+
+title "Cervical screening summary API - typical sequence"
+
+== API consumer OAUTH authentication at PMS initialisation ==
+
+APIC -> ROSIE++: OAUTH2.0 Client Credentials Flow\n<size:12>(client creds, scopes, audiences)</size>
+return OAUTH token
+note right
+  """scope": ["" 
+    """system/DocumentReference.rs",""
+    """system/Patient.r" ]""
+  """aud": "https://fhir-ig.digital.health.nz/screening/StructureDefinition/nz-screening-summary"""
+end note
+
+== normal API usage ==
+
+USER -> APIC++ #YellowGreen: enter patient name, NHI
+APIC -> NHIHPI: NHI search
+APIC -> USER--: present NHI matches
+
+USER -> APIC++ #YellowGreen: request screening summaries for\n selected NHI and programme type 
+
+note right of APIC
+  App/PMS supplies metadata in ""Request-Context"":
+    """userIdentifier""" - userId as known to PMS/app
+    """purposeOfUse":"SCREENING"""
+    """useFullName""" - user's name
+    """hpiFacility""" - facility identifier for the user's location from Health Provider Index
+    """registrationAuthorityNumber""" - The practitioner number and Registration Authority that issued it
+    """hpiPractitioner""" (if available) - practitioner's Common Person Number (CPN) from Health Provider Index
+end note
+
+APIC -> APIG: ""GET /DocumentReference?{search-params}""
+
+APIG -> APIG: validate OAUTH token\n<size:10>(issuer,sig)</size>
+
+APIG -> SCRAPI++ #SkyBlue: ""GET"" /**DocumentReference**?<params>
+
+break#Red 
+  alt Bad/missing access OAUTH token (issuer, scope, audience, expiry)
+    SCRAPI -[dashed]x APIC: HTTP ""401"" error: Unauthorized
+  end
+  alt Bad/missing ""Request-Context"" custom header
+    SCRAPI -[dashed]x APIC: HTTP ""400"" error: Bad Request
+  end
+end
+
+SCRAPI -> FHIR++: Search for Terms Acceptance Forms by Facility + Practitioner\n
+note right: ""GET /QuestionnaireResponse?subject=X&source=Y""
+return MATCHES
+
+SCRAPI -> SCRAPI: Confirm Practitioner and Facility Terms Acceptance
+
+alt #LightGreen normal report generation
+SCRAPI -> SCRAPI: get data from backend APIs
+SCRAPI -> SCRAPI: generate screening summary content as HTML and PDF
+SCRAPI -> SCRAPI: include participant data as ""Patient"" instance
+SCRAPI -> APIC: ""200 OK"", FHIR searchset ""Bundle"" 
+  note left of SCRAPI #LightYellow
+    In normal search response is a FHIR searchset Bundle.  Each
+      Bundle entry comprises a ""DocumentReference (mode:#match)"" containing 
+      the formatted screening summary, AND a ""Patient (mode:#include)"" 
+      instance for the patient demographic detail
+  end note
+
+else #Orange No screening summary is available 
+SCRAPI -> APIC: ""200 OK"", ""Bundle"" of ""mode: #outcome""
+  note left of SCRAPI #Orange
+    When screening history not available for specified subject, the Bundle contains one
+    or more //OperationOutcome//s (""mode: #outcome"") describing the reason(s).
+    end note
+else #Red technical error
+  SCRAPI -[dashed]x APIC--: HTTP ""4xx|5xx"" error code
+  note left of SCRAPI #IndianRed
+    In technical error scenarios, the response 
+    is just a FHIR ""OperationOutcome""
+  end note
+end
+
+APIC -> APIC: process results and display to user 
+
+APIC -> USER--: present screening summary / search result
+
+@enduml
