@@ -2,6 +2,8 @@
 
 #### FHIR screening summary API typical operation
 
+<!-- markdownlint-disable MD033 -->
+
 <div width="70%">
 {% include seq-fhir-screening-publicAPI-typicalflow.svg %}
 </div>

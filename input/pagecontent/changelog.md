@@ -2,9 +2,9 @@
 
 ## v1.0.1 (2024-09-13)
 
-- OpenAPI specification revisions
-- Added sequence diagrams clarifying practitioner terms acceptance sub-flow
-- Updated Request-Context metadata requirements in CapabilityStatement and OpenAPI spec.
+- OpenAPI specification generation and linking
+- Added sequence diagram showing public view of practitioner terms acceptance sub-flow
+- Updated `Request-Context` metadata requirements in CapabilityStatement and OpenAPI spec.
 
 ## v1.0.0 (2024-08-26)
 

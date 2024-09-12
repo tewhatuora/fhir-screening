@@ -60,7 +60,6 @@ parameters:
 menu:
   Home: index.html
   Business view: businessview.html
-#  Onboarding: onboarding.html
   Use cases: usecases.html
   Example screening summaries:
     HTML participant summary: sample-participant-report.html
