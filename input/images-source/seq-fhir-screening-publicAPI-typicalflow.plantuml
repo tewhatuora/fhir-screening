@@ -42,12 +42,12 @@ APIC -> USER--: present NHI matches
 USER -> APIC++ #YellowGreen: request screening summaries for\n selected NHI and programme type 
 
 note right of APIC
-    App/PMS supplies the following user metadata in ""Request-Context""
+    App/PMS supplies the following metadata in ""Request-Context""
     """userIdentifier""" - userId as known to PMS/app
     """purposeOfUse":"SCREENING"""
     """useFullName""" - user's name
-    """hpiFacility | hpiOrganisation""" - HPI facility OR organisation identifier from Health Provider Index
     """hpiPractitioner""" - practitioner's Common Person Number (CPN) from Health Provider Index
+    """hpiFacility | hpiOrganisation""" - HPI facility OR organisation identifier from Health Provider Index
     """registrationAuthorityNumber""" (optional) - The practitioner number and Registration Authority that issued it
 end note
 
