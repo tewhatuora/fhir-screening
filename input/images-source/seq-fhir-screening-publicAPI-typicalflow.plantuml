@@ -42,13 +42,13 @@ APIC -> USER--: present NHI matches
 USER -> APIC++ #YellowGreen: request screening summaries for\n selected NHI and programme type 
 
 note right of APIC
-  App/PMS supplies metadata in ""Request-Context"":
+    App/PMS supplies the following user metadata in ""Request-Context""
     """userIdentifier""" - userId as known to PMS/app
     """purposeOfUse":"SCREENING"""
     """useFullName""" - user's name
-    """hpiFacility""" - facility identifier for the user's location from Health Provider Index
-    """registrationAuthorityNumber""" - The practitioner number and Registration Authority that issued it
-    """hpiPractitioner""" (if available) - practitioner's Common Person Number (CPN) from Health Provider Index
+    """hpiFacility | hpiOrganisation""" - HPI facility OR organisation identifier from Health Provider Index
+    """hpiPractitioner""" - practitioner's Common Person Number (CPN) from Health Provider Index
+    """registrationAuthorityNumber""" (optional) - The practitioner number and Registration Authority that issued it
 end note
 
 APIC -> APIG: ""GET /DocumentReference?{search-params}""
@@ -66,8 +66,24 @@ break#Red
   end
 end
 
-SCRAPI -> FHIR++: Search for Terms Acceptance Forms by Facility + Practitioner\n
-note right: ""GET /QuestionnaireResponse?subject=X&source=Y""
+SCRAPI -> FHIR++: Search for Prior Terms Acceptance Form\n
+note left of SCRAPI
+<size:18>**FHIR search based on available params**
+
+By practitioner and facility:
+  <size:16>""GET /v1/**QuestionnaireResponse**""
+      ""?**questionnaire**=**https://fhir-ig.digital.health.nz/screening/Questionnaire/InformationAccessTermsOfUseAcceptance**""
+      ""&**author**=https://standards.digital.health.nz/ns/hpi-person-id|**91ZABY**""
+      ""&**subject**=https://standards.digital.health.nz/ns/hpi-facility-id|**FZZ958-K**""
+
+By practitioner and org:
+      ""**author**=https://standards.digital.health.nz/ns/hpi-person-id|**91ZABY**""
+      ""&**subject**=https://standards.digital.health.nz/ns/hpi-organisation-id|**GZZ956-B**""
+
+By practitioner assigned RA number:
+      ""**source**=https://standards.digital.health.nz/ns/medical-council-id|**123456**""
+end note
+
 return MATCHES
 
 SCRAPI -> SCRAPI: Confirm Practitioner and Facility Terms Acceptance

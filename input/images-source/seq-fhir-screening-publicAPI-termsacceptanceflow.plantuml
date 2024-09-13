@@ -29,19 +29,30 @@ USER -> APIC++ #Orange: request screening summary for a patient
 
 APIC -> SCRAPI++ #SkyBlue: Get screening summaries by NHI\n  <size:12>""GET /**DocumentReference**?<params>""
 
-SCRAPI -> FHIR++: search Terms Acceptance **by facility**\n  <size:12>""GET /QuestionnaireResponse?subject=<hpiFacility>""
-return MATCH
+SCRAPI -> FHIR++: Search for completed Terms Acceptance \nForm by Practitioner at current Org | Facility\n
+note left of FHIR
+  <size:16>""GET /v1/**QuestionnaireResponse**""
+      ""?**questionnaire**=**https://fhir-ig.digital.health.nz/screening/Questionnaire/InformationAccessTermsOfUseAcceptance**""
+      ""&**author**=https://standards.digital.health.nz/ns/hpi-person-id|**91ZABY**""
+      ""&**subject**=https://standards.digital.health.nz/ns/hpi-organisation-id|**GZZ956-B**""
 
-SCRAPI -> FHIR++: search Terms Acceptance **by practitioner**\n  <size:12>""GET /QuestionnaireResponse?subject=<hpiPractitioner>""
-return NO MATCH
+Or where facility identified instead of org
+      ""&**subject**=https://standards.digital.health.nz/ns/hpi-facility-id|**FZZ958-K**""
+end note
+
+return Empty ""Bundle""
 
 alt#Orange The practitioner user has not previously accepted the Terms of Access
 
-  SCRAPI -> HPI++: Searches for Practitioner and Facility
-  return HPI details
+  SCRAPI -> HPI++: Validate Practitioner, Org and/or Facility identifiers
+  return HPI match ""Bundle""
 
-  break#Red HPI identifier validation failures 
+  break#Red HPI identifier validation failures
     alt#Red Practitioner Id not valid
+      SCRAPI -x APIC: HTTP ""400"" Bad Request
+    end
+
+    alt#Red HPI Organisation Id not valid
       SCRAPI -x APIC: HTTP ""400"" Bad Request
     end
 
@@ -54,7 +65,7 @@ alt#Orange The practitioner user has not previously accepted the Terms of Access
   
   note left of MAGICFORM
     A Terms Acceptance form is prepopulated with practitioner, 
-    facility and organisation details as sent by the PMS. 
+    organisation and/or facility details as sent by the PMS. 
   end note
 
   MAGICFORM -> MAGICFORM: Prepare Form
