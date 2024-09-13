@@ -58,8 +58,10 @@ alt#Orange The practitioner user has not previously accepted the Terms of Access
     SCRAPI -> MAGICFORM++ #Orchid: Generate Terms Acceptance Form\n  <size:12>""POST /v1/auth/{formName}/generate-questionnaire-link""
     
     note left of MAGICFORM
-      A Terms Acceptance form is prepopulated with practitioner, 
-      organisation and/or facility details as sent by the PMS. 
+      A Terms Acceptance form is prepopulated by sending three claims:
+          """**hpiPractitioner**": {Reference(Practitioner)}"" = Practitioner's HPI identifier
+          """**subject**": Reference(Organisation | Location)"" = HPI org OR facility identifier
+          """**userFullName**": {string}"" = Practitioners name 
     end note
 
     MAGICFORM -> MAGICFORM: Prepare Form
@@ -75,7 +77,7 @@ alt#Orange The practitioner user has not previously accepted the Terms of Access
     end note
 
   end
-  
+
   APIC -> USER++-- #LightBlue : Display form in browser using magic link
    
   USER -> MAGICFORM++ #Orchid: Read special terms of access; complete form; submit to accept
