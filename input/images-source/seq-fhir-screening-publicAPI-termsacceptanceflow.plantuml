@@ -44,42 +44,38 @@ return Empty ""Bundle""
 
 alt#Orange The practitioner user has not previously accepted the Terms of Access
 
-  SCRAPI -> HPI++: Validate Practitioner, Org and/or Facility identifiers
-  return HPI match ""Bundle""
+  group Validate HPI identifiers
+    SCRAPI -> HPI++: Validate Practitioner, Org and/or Facility identifiers
+    return HPI match ""Bundle""
 
-  break#Red HPI identifier validation failures
-    alt#Red Practitioner Id not valid
-      SCRAPI -x APIC: HTTP ""400"" Bad Request
-    end
-
-    alt#Red HPI Organisation Id not valid
-      SCRAPI -x APIC: HTTP ""400"" Bad Request
-    end
-
-    alt#Red HPI Facility Id not valid
+    break#Red Practitioner | Organisation | Facility Id not valid
       SCRAPI -x APIC: HTTP ""400"" Bad Request
     end
   end
 
-  SCRAPI -> MAGICFORM++ #Orchid: Generate Terms Acceptance Form\n  <size:12>""POST /v1/auth/{formName}/generate-questionnaire-link""
+  group Prepare Terms Acceptance Form
+
+    SCRAPI -> MAGICFORM++ #Orchid: Generate Terms Acceptance Form\n  <size:12>""POST /v1/auth/{formName}/generate-questionnaire-link""
+    
+    note left of MAGICFORM
+      A Terms Acceptance form is prepopulated with practitioner, 
+      organisation and/or facility details as sent by the PMS. 
+    end note
+
+    MAGICFORM -> MAGICFORM: Prepare Form
+    return Prepopulated Form Url (aka 'magic link')
+
+    SCRAPI -> SCRAPI : Prepare ""OperationOutcome"" 403 response containing 'magic link' 
+    
+    SCRAPI -> APIC--: HTTP ""403 Forbidden"" error + 'magic link'
+
+    note right of APIC
+      On receipt of a 403 response, the App/PMS must check for magic link 
+      in the FHIR ""OperationOutcome.diagnostics"" property.
+    end note
+
+  end
   
-  note left of MAGICFORM
-    A Terms Acceptance form is prepopulated with practitioner, 
-    organisation and/or facility details as sent by the PMS. 
-  end note
-
-  MAGICFORM -> MAGICFORM: Prepare Form
-  return Prepopulated Form Url (aka 'magic link')
-
-  SCRAPI -> SCRAPI : Prepare ""OperationOutcome"" 403 response containing 'magic link' 
-  
-  SCRAPI -> APIC--: HTTP ""403 Forbidden"" error + 'magic link'
-
-  note right of APIC
-    On receipt of a 403 response, the App/PMS must check for magic link 
-    in the FHIR ""OperationOutcome.diagnostics"" property.
-  end note
-
   APIC -> USER++-- #LightBlue : Display form in browser using magic link
    
   USER -> MAGICFORM++ #Orchid: Read special terms of access; complete form; submit to accept
