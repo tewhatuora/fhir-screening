@@ -50,10 +50,23 @@ Description: "Captures acceptance of Terms Of Use by NZ health practitioners acc
 * item[=].item[+].linkId = "cpn"
 * item[=].item[=].type = #string
 * item[=].item[=].readOnly = true
-* item[=].item[=].required = true
 * item[=].item[=].text = "Common Person Number (aka HPI Practitioner Id)"
 * item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-claims-extract"
 * item[=].item[=].extension.valueString = "hpiPractitioner.identifier.value"
+
+* item[=].item[+].linkId = "name"
+* item[=].item[=].type = #string
+* item[=].item[=].readOnly = true
+* item[=].item[=].text = "Name"
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-claims-extract"
+* item[=].item[=].extension.valueString = "hpiPractitioner.display"
+
+* item[=].item[+].linkId = "raNumber"
+* item[=].item[=].type = #string
+* item[=].item[=].readOnly = true
+* item[=].item[=].text = "Registration Authority Number (eg. Medical Council number)"
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-claims-extract"
+* item[=].item[=].extension.valueString = "registrationAuthorityNumber.value"
 
 * item[=].item[+].linkId = "facOrgId"
 * item[=].item[=].type = #string
