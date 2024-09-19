@@ -14,7 +14,7 @@ Usage: #definition
 * contact[=].telecom.system = #url
 * kind = #instance
 * implementation.description = "National Screening FHIR API"
-* implementation.url = "https://fhir.api.digital.health.nz/R4"
+* implementation.url = "https://api.nss.digital.health.nz/fhir/R4"
 * fhirVersion = #4.0.1
 * format = #json
 * version = "1.0.2"
