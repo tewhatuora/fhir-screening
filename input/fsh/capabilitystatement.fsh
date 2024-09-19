@@ -67,7 +67,7 @@ See https://github.com/tewhatuora/schemas/blob/main/json-schema/Request-Context-
 * rest.resource[=].conditionalUpdate = false
 * rest.resource[=].conditionalDelete = #not-supported
 * rest.resource[=].searchInclude = "DocumentReference:subject"
-* rest.resource[=].searchRevInclude = ""
+* rest.resource[=].searchRevInclude = #not-supported
 
 // * rest.resource[=].searchParam[0].name = "identifier"
 // * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-masterIdentifier"
@@ -95,6 +95,12 @@ See https://github.com/tewhatuora/schemas/blob/main/json-schema/Request-Context-
 * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-contenttype"
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].documentation = "Optional parameter that allows a PDF rendition (#application/pdf) of the screening summary content to be requested instead of the default HTML." 
+
+* rest.resource[=].searchParam[+].name = "_include"
+* rest.resource[=].searchParam[=].definition = "https://www.hl7.org/implement/standards/FHIR/search.html#_include"
+* rest.resource[=].searchParam[=].type = #token
+* rest.resource[=].searchParam[=].documentation = "The optional parameter _include is used to follow links 'forward'. For example, to include relevant Patient resources for requested Encounter matches, based on the Encounter.subject element, using either the subject or patient search parameters.." 
+
 
 // * rest.resource[=].searchParam[+].name = "type"
 // * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#clinical-type"
