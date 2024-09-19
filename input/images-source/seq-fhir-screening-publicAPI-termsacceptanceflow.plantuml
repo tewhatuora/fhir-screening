@@ -27,16 +27,22 @@ title "Cervical screening API data access - Practitioner terms acceptance form f
 
 USER -> APIC++ #Orange: request screening summary for a patient
 
+note right of APIC
+  App/PMS sets the following user metadata in ""Request-Context""
+    """**hpiPractitioner**""" - practitioner's Common Person Number (CPN) from Health Provider Index
+    """**hpiFacility | hpiOrganisation**""" - HPI facility OR organisation identifier from Health Provider Index
+end note
+
 APIC -> SCRAPI++ #SkyBlue: Get screening summaries by NHI\n  <size:12>""GET /**DocumentReference**?<params>""
 
 SCRAPI -> FHIR++: Search for completed Terms Acceptance \nForm by Practitioner at current Org | Facility\n
 note left of FHIR
   <size:16>""GET /v1/**QuestionnaireResponse**""
-      ""?**questionnaire**=**https://fhir-ig.digital.health.nz/screening/Questionnaire/InformationAccessTermsOfUseAcceptance**""
+      ""?**questionnaire**=**https://fhir-ig.digital.health.nz/screening/Questionnaire/TermsOfUsePractitioner**""
       ""&**author**=https://standards.digital.health.nz/ns/hpi-person-id|**91ZABY**""
       ""&**subject**=https://standards.digital.health.nz/ns/hpi-organisation-id|**GZZ956-B**""
 
-Or where facility identified instead of org
+Or where facility identified rather than org
       ""&**subject**=https://standards.digital.health.nz/ns/hpi-facility-id|**FZZ958-K**""
 end note
 
@@ -45,7 +51,7 @@ return Empty ""Bundle""
 alt#Orange The practitioner user has not previously accepted the Terms of Access
 
   group Validate HPI identifiers
-    SCRAPI -> HPI++: Validate Practitioner, Org and/or Facility identifiers
+    SCRAPI -> HPI++: Validate Practitioner, Org / Facility identifiers
     return HPI match ""Bundle""
 
     break#Red Practitioner | Organisation | Facility Id not valid

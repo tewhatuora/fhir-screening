@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.2 (2024-09-18)
+
+- Added canonical Questionnaires for Terms of Use
+- Revised sequence diagram showing public view of practitioner terms acceptance sub-flow
+- Updated `Request-Context` metadata requirements in CapabilityStatement and OpenAPI spec.
+
 ## v1.0.1 (2024-09-13)
 
 - OpenAPI specification generation and linking

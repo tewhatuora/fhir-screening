@@ -42,20 +42,16 @@ APIC -> USER--: present NHI matches
 USER -> APIC++ #YellowGreen: request screening summaries for\n selected NHI and programme type 
 
 note right of APIC
-    App/PMS supplies the following metadata in ""Request-Context""
-    """userIdentifier""" - userId as known to PMS/app
-    """purposeOfUse":"SCREENING"""
-    """useFullName""" - user's name
-    """hpiPractitioner""" - practitioner's Common Person Number (CPN) from Health Provider Index
-    """hpiFacility | hpiOrganisation""" - HPI facility OR organisation identifier from Health Provider Index
-    """registrationAuthorityNumber""" (optional) - The practitioner number and Registration Authority that issued it
+  App/PMS sets the following user metadata in ""Request-Context""
+    """**hpiPractitioner**""" - practitioner's Common Person Number (CPN) from Health Provider Index
+    """**hpiFacility | hpiOrganisation**""" - HPI facility OR organisation identifier from Health Provider Index
 end note
 
-APIC -> APIG: ""GET /DocumentReference?{search-params}""
+APIC -> APIG++: ""GET /DocumentReference?{search-params}""
 
 APIG -> APIG: validate OAUTH token\n<size:10>(issuer,sig)</size>
 
-APIG -> SCRAPI++ #SkyBlue: ""GET"" /**DocumentReference**?<params>
+APIG -> SCRAPI++-- #SkyBlue: ""GET"" /**DocumentReference**?<params>
 
 break#Red 
   alt Bad/missing access OAUTH token (issuer, scope, audience, expiry)
@@ -68,25 +64,30 @@ end
 
 SCRAPI -> FHIR++: Search for Prior Terms Acceptance Form\n
 note left of SCRAPI
-<size:18>**FHIR search based on available params**
+  <size:18>Search for FHIR QuestionnaireResponses  ""GET /v1/**QuestionnaireResponse**""
+  <size:18>Queries based on available params:
 
-By practitioner and facility:
-  <size:16>""GET /v1/**QuestionnaireResponse**""
-      ""?**questionnaire**=**https://fhir-ig.digital.health.nz/screening/Questionnaire/InformationAccessTermsOfUseAcceptance**""
+  <size:16>**Org/facility** acceptance search by **facility**:
+        ""?**questionnaire**=https://fhir-ig.digital.health.nz/screening/Questionnaire/**TermsOfUseOrgFacility**""
+        ""&**subject**=https://standards.digital.health.nz/ns/hpi-facility-id|**FZZ958-K**""
+
+  <size:16>**Org/facility** acceptance search by **org**:
+        ""?**questionnaire**=https://fhir-ig.digital.health.nz/screening/Questionnaire/**TermsOfUseOrgFacilityr**""
+        ""&**subject**=https://standards.digital.health.nz/ns/hpi-organisation-id|**GZZ956-B**""
+
+  <size:16>**Practitioner** acceptance search by **facility**:
+      ""?**questionnaire**=https://fhir-ig.digital.health.nz/screening/Questionnaire/**TermsOfUsePractitioner**""
       ""&**author**=https://standards.digital.health.nz/ns/hpi-person-id|**91ZABY**""
       ""&**subject**=https://standards.digital.health.nz/ns/hpi-facility-id|**FZZ958-K**""
 
-By practitioner and org:
+  <size:16>**Practitioner** acceptance search by **org**:
       ""**author**=https://standards.digital.health.nz/ns/hpi-person-id|**91ZABY**""
       ""&**subject**=https://standards.digital.health.nz/ns/hpi-organisation-id|**GZZ956-B**""
-
-By practitioner assigned RA number:
-      ""**source**=https://standards.digital.health.nz/ns/medical-council-id|**123456**""
 end note
 
 return MATCHES
 
-SCRAPI -> SCRAPI: Confirm Practitioner and Facility Terms Acceptance
+SCRAPI -> SCRAPI: Confirm matching Practitioner and Org/Facility Terms of Use acceptance
 
 alt #LightGreen normal report generation
 SCRAPI -> SCRAPI: get data from backend APIs
