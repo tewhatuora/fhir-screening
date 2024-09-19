@@ -54,6 +54,7 @@ parameters:
   - DocumentReference/*     #  Because this IG attaches HTML, by default, in the .content section, not in .text narrative
   - Bundle/*
   - Patient/*
+  - Questionnaire/*
 
 #   validation: [allow-any-extensions, no-broken-links]
 #
