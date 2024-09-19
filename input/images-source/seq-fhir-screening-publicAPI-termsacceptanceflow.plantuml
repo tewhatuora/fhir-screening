@@ -64,8 +64,9 @@ alt#Orange The practitioner user has not previously accepted the Terms of Access
     SCRAPI -> MAGICFORM++ #Orchid: Generate Terms Acceptance Form\n  <size:12>""POST /v1/auth/{formName}/generate-questionnaire-link""
     
     note left of MAGICFORM
-      A Terms Acceptance form is prepopulated with practitioner, 
-      organisation and/or facility details as sent by the PMS. 
+      The facade prepares a Terms Acceptance form by sending information
+      about the practitioner, organisation | facility in magic link
+      claims. 
     end note
 
     MAGICFORM -> MAGICFORM: Prepare Form
