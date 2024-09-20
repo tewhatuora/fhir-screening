@@ -17,7 +17,7 @@ Description: "Captures acceptance of Terms Of Use by NZ health practitioners acc
 
 * name = "TermsOfUseOrgFacility"
 * title = "Terms of Use - NZ health organisations and facilities where there is access to screening information"
-* purpose = "Captures acceptance of Terms Of Use by NZ health practitioners accessing screening information"
+* purpose = "Captures acceptance of Terms Of Use by an NZ health organisation or facility (where practitioners will access screening information)"
 * subjectType[0] = #Location
 * subjectType[+] = #Organization
 
