@@ -2,7 +2,7 @@ Instance: TermsOfUseOrgFacility
 InstanceOf: Questionnaire
 Usage: #definition
 
-Description: "Captures acceptance of Terms Of Use by NZ health practitioners accessing screening information"
+Description: "Captures acceptance of Terms Of Use by an NZ health organisation or facility (where practitioners will access screening information)"
 
 * url = Canonical(TermsOfUseOrgFacility)
 
