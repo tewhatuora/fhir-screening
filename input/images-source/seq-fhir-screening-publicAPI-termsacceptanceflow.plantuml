@@ -38,12 +38,12 @@ APIC -> SCRAPI++ #SkyBlue: Get screening summaries by NHI\n  <size:12>""GET /**D
 SCRAPI -> FHIR++: Search for completed Terms Acceptance \nForm by Practitioner at current Org | Facility\n
 note left of FHIR
   <size:16>""GET /v1/**QuestionnaireResponse**""
-      ""?**questionnaire**=**https://fhir-ig.digital.health.nz/screening/Questionnaire/TermsOfUsePractitioner**""
-      ""&**author**=https://standards.digital.health.nz/ns/hpi-person-id|**91ZABY**""
-      ""&**subject**=https://standards.digital.health.nz/ns/hpi-organisation-id|**GZZ956-B**""
+    ""?**questionnaire**=**https://fhir-ig.digital.health.nz/screening/Questionnaire/TermsOfUsePractitioner**""
+        ""&**author:identifier**=91ZABY""
+        ""&**subject:identifier**=GZZ956-B""
 
 Or where facility identified rather than org
-      ""&**subject**=https://standards.digital.health.nz/ns/hpi-facility-id|**FZZ958-K**""
+      ""&**subject:identifier**=FZZ958-K""
 end note
 
 return Empty ""Bundle""

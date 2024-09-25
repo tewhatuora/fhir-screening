@@ -69,20 +69,20 @@ note left of SCRAPI
 
   <size:16>**Org/facility** acceptance search by **facility**:
         ""?**questionnaire**=https://fhir-ig.digital.health.nz/screening/Questionnaire/**TermsOfUseOrgFacility**""
-        ""&**subject**=https://standards.digital.health.nz/ns/hpi-facility-id|**FZZ958-K**""
+        ""&**subject:identifier**=FZZ958-K""
 
   <size:16>**Org/facility** acceptance search by **org**:
         ""?**questionnaire**=https://fhir-ig.digital.health.nz/screening/Questionnaire/**TermsOfUseOrgFacilityr**""
-        ""&**subject**=https://standards.digital.health.nz/ns/hpi-organisation-id|**GZZ956-B**""
+        ""&**subject:identifier**=GZZ956-B""
 
   <size:16>**Practitioner** acceptance search by **facility**:
       ""?**questionnaire**=https://fhir-ig.digital.health.nz/screening/Questionnaire/**TermsOfUsePractitioner**""
-      ""&**author**=https://standards.digital.health.nz/ns/hpi-person-id|**91ZABY**""
-      ""&**subject**=https://standards.digital.health.nz/ns/hpi-facility-id|**FZZ958-K**""
+      ""&**author:identifier**=91ZABY""
+      ""&**subject:identifier**=FZZ958-K""
 
   <size:16>**Practitioner** acceptance search by **org**:
-      ""**author**=https://standards.digital.health.nz/ns/hpi-person-id|**91ZABY**""
-      ""&**subject**=https://standards.digital.health.nz/ns/hpi-organisation-id|**GZZ956-B**""
+      ""&**author:identifier**=91ZABY""
+      ""&**subject:identifier**=GZZ956-B""
 end note
 
 return MATCHES
