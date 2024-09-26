@@ -72,7 +72,7 @@ Description: "Example of response to search for dormant NHI where there is parti
 // results entry 3 - OperationOutcome informational message
 * entry[+].search.mode = #outcome
 * entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/OperationOutcome/OperationOutcomeInstance-1"
-* entry[=].resource insert SearchInformationalOperationOutcome([[OperationOutcomeInstance-1]],[[The NHI requested is dormant and linked to a live identifier so the live NHI has been returned]])
+* entry[=].resource insert OperationOutcome([[OperationOutcomeInstance-1]],[[The NHI requested is dormant and linked to a live identifier so the live NHI has been returned]])
 
 
 
@@ -92,7 +92,7 @@ Description: "Example of search response Bundle with #match entries but an outco
 // results entry 1 - the OperationOutcome
 * entry[+].search.mode = #outcome
 * entry[=].fullUrl =  "https://fhir.api-test.digital.health.nz/R4/OperationOutcome/OperationOutcomeInstance-1"
-* entry[=].resource insert SearchInformationalOperationOutcome([[OperationOutcomeInstance-1]],[[This NHI has no screening information to display. The participant has withdrawn from the National Cervical Screening Programme.]])
+* entry[=].resource insert OperationOutcome([[OperationOutcomeInstance-1]],[[This NHI has no screening information to display. The participant has withdrawn from the National Cervical Screening Programme.]])
 
 
 

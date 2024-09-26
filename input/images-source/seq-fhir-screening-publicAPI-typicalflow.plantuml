@@ -53,16 +53,19 @@ APIG -> APIG: validate OAUTH token\n<size:10>(issuer,sig)</size>
 
 APIG -> SCRAPI++-- #SkyBlue: ""GET"" /**DocumentReference**?<params>
 
-break#Red 
-  alt Bad/missing access OAUTH token (issuer, scope, audience, expiry)
+group error scenarios
+  break#Red Bad/missing access OAUTH token (issuer, scope, audience, expiry)
     SCRAPI -[dashed]x APIC: HTTP ""401"" error: Unauthorized
   end
-  alt Bad/missing ""Request-Context"" custom header
+  break#Red Bad/missing ""Request-Context"" custom header
     SCRAPI -[dashed]x APIC: HTTP ""400"" error: Bad Request
+  end
+  break#Red Practitioner | Organisation | Facility Id not valid
+    SCRAPI -x APIC: HTTP ""400"" Bad Request (""**HPI_INVALID**"")
   end
 end
 
-SCRAPI -> FHIR++: Search for Prior Terms Acceptance Form\n
+SCRAPI -> FHIR++: Search for Prior Terms Acceptance Forms
 note left of SCRAPI
   <size:18>Search for FHIR QuestionnaireResponses  ""GET /v1/**QuestionnaireResponse**""
   <size:18>Queries based on available params:
@@ -87,7 +90,13 @@ end note
 
 return MATCHES
 
-SCRAPI -> SCRAPI: Confirm matching Practitioner and Org/Facility Terms of Use acceptance
+SCRAPI -> SCRAPI: Check matching Org/Facility Terms of Use acceptance
+
+ break#Red No Terms of Use acceptance by org/fac
+    SCRAPI -x APIC: HTTP ""403"" Forbidden (""**NO_TOU_ORGFAC**"")
+  end
+
+SCRAPI -> SCRAPI: Confirm matching Practitioner Terms of Use acceptance
 
 alt #LightGreen normal report generation
 SCRAPI -> SCRAPI: get data from backend APIs
