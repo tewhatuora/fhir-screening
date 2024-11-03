@@ -63,8 +63,10 @@ menu:
   Business view: businessview.html
   Use cases: usecases.html
   Example screening summaries:
-    HTML participant summary: sample-participant-report.html
-    HTML screening history report: sample-history-report.html
+    HTML summary with results: summary-with-results.html
+    PDF summary with results: screening-summary.pdf
+    #HTML participant summary: sample-participant-report.html
+    #HTML screening history report: sample-history-report.html
   Artifacts: artifacts.html
   App Developer Support:
     View OpenAPI: new-tab https://fhir-ig.digital.health.nz/openapi/index.html?urls.primaryName=FHIR+Screening+API
