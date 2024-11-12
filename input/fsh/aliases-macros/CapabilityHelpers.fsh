@@ -42,7 +42,7 @@ RuleSet: APIStandardsDocumentation
   |**Context property**|**Value**|
   |:------------------|:---------|
   | `userIdentifier`  | The userid of the user as authenticated by the PMS/health application (REQUIRED) |
-  | `purposeOfUse`    | Set to `"SCREENING"` (REQUIRED)                                                  |
+  | `purposeOfUse`    | Set to `"NZSCREEN"` (REQUIRED)                                                  |
   | `userFullName`    | Full name of the user of the PMS/health application.` (REQUIRED)    |
   | `userRole`        | Role of the user of the PMS/health application. Set to `"PROV" (REQUIRED)                        |
   | `orgIdentifier` | The Common Person Number (aka HPI Practitioner identifier) of the practitioner using the application (REQUIRED) |
