@@ -43,8 +43,8 @@ RuleSet: APIStandardsDocumentation
   |:------------------|:---------|
   | `userIdentifier`  | The userid of the user as authenticated by the PMS/health application (REQUIRED) |
   | `purposeOfUse`    | Set to `"SCREENING"` (REQUIRED)                                                  |
-  | `userFullName`    | Full name of the user of the PMS/health application. Set to `"PROV"` (REQUIRED)    |
-  | `userRole`        | Role of the user of the PMS/health application (REQUIRED)                        |
+  | `userFullName`    | Full name of the user of the PMS/health application.` (REQUIRED)    |
+  | `userRole`        | Role of the user of the PMS/health application. Set to `"PROV" (REQUIRED)                        |
   | `orgIdentifier` | The Common Person Number (aka HPI Practitioner identifier) of the practitioner using the application (REQUIRED) |
   | `facilityIdentifier` | HPI identifier for the organisation or facility where the user is located -- at least one is REQUIRED |
   
