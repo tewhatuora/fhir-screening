@@ -43,9 +43,10 @@ RuleSet: APIStandardsDocumentation
   |:------------------|:---------|
   | `userIdentifier`  | The userid of the user as authenticated by the PMS/health application (REQUIRED) |
   | `purposeOfUse`    | Set to `"SCREENING"` (REQUIRED)                                                  |
-  | `userFullName`    | Full name of the user of the PMS/health application. (REQUIRED)                  |
-  | `hpiPractitioner` | The Common Person Number (aka HPI Practitioner identifier) of the practitioner using the application (REQUIRED) |
-  | `hpiOrganisation` or `hpiFacility` | HPI identifier for the organisation or facility where the user is located -- at least one is REQUIRED |
+  | `userFullName`    | Full name of the user of the PMS/health application. Set to `"PROV"` (REQUIRED)    |
+  | `userRole`        | Role of the user of the PMS/health application (REQUIRED)                        |
+  | `orgIdentifier` | The Common Person Number (aka HPI Practitioner identifier) of the practitioner using the application (REQUIRED) |
+  | `facilityIdentifier` | HPI identifier for the organisation or facility where the user is located -- at least one is REQUIRED |
   
   A schema definition and examples for `Request-Context` can be [found here](https://github.com/tewhatuora/schemas/blob/main/json-schema/Request-Context-v2.json)
 
