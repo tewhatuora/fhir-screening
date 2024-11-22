@@ -42,13 +42,38 @@ RuleSet: APIStandardsDocumentation
   |**Context property**|**Value**|
   |:------------------|:---------|
   | `userIdentifier`  | The userid of the user as authenticated by the PMS/health application (REQUIRED) |
+  | `secondaryIdentifier` | The secondary identifier for the user - this **MUST** be the end users Common Person Number (aka HPI Practitioner identifier) of the practitioner using the application (REQUIRED) |
   | `purposeOfUse`    | Set to `"NZSCREEN"` (REQUIRED)                                                  |
   | `userFullName`    | Full name of the user of the PMS/health application.` (REQUIRED)    |
   | `userRole`        | Role of the user of the PMS/health application. Set to `"PROV" (REQUIRED)                        |
-  | `orgIdentifier` | The Common Person Number (aka HPI Practitioner identifier) of the practitioner using the application (REQUIRED) |
-  | `facilityIdentifier` | HPI identifier for the organisation or facility where the user is located -- at least one is REQUIRED |
+  | `orgIdentifier`   | The HPI Organisation Number (aka HPI Organisation identifier) for the organisation in which the API consumer application is deployed (REQUIRED) |
+  | `facilityIdentifier` | HPI identifier for the facility where the user is located (REQUIRED) |
   
-  A schema definition and examples for `Request-Context` can be [found here](https://github.com/tewhatuora/schemas/blob/main/json-schema/Request-Context-v2.json)
+  A schema definition and examples for `Request-Context` can be [found here](https://github.com/tewhatuora/schemas/blob/main/json-schema/Request-Context.json)
+
+  #### Example Request-Context Header Payload
+  **Base64 Encoded**
+  ```
+  eyJ1c2VySWRlbnRpZmllciI6InBhdCIsInVzZXJSb2xlIjoiUFJPViIsInNlY29uZGFyeUlkZW50aWZpZXIiOnsidXNlIjoib2ZmaWNpYWwiLCJzeXN0ZW0iOiJodHRwczovL3N0YW5kYXJkcy5kaWdpdGFsLmhlYWx0aC5uei9ucy9ocGktcGVyc29uLWlkIiwidmFsdWUiOiI5OVpaWlMifSwicHVycG9zZU9mVXNlIjpbIlBST1YiXSwidXNlckZ1bGxOYW1lIjoiQmV2ZXJseSBDcnVzaGVyIiwib3JnSWRlbnRpZmllciI6IkcwMDAwMS1HIiwiZmFjaWxpdHlJZGVudGlmaWVyIjoiRlpaOTk5LUIifQ
+  ```
+  **Decoded JSON**
+  ```json
+  {
+  "userIdentifier": "pat",
+  "userRole": "PROV",
+  "secondaryIdentifier": {
+    "use": "official",
+    "system": "https://standards.digital.health.nz/ns/hpi-person-id",
+    "value": "99ZZZS"
+  },
+  "purposeOfUse": [
+    "NZSCREEN"
+  ],
+  "userFullName": "Beverly Crusher",
+  "orgIdentifier": "G00001-G",
+  "facilityIdentifier": "FZZ999-B"
+}
+```
 
   ### Error status codes
 
