@@ -56,17 +56,17 @@ Description: "Captures acceptance of Terms Of Use by an NZ health organisation o
 * item[=].item[=].item[=].text.extension.url = "http://hl7.org/fhir/StructureDefinition/rendering-xhtml"
 * item[=].item[=].item[=].text.extension.valueString = "<p><strong>Below are the details your system has provided us. Please confirm they are correct before proceeding. If they are incorrect please do not proceed and contact your practice administrator.</strong></p>"
 
-* item[=].item[=].item[+].linkId = "facOrgId"
+* item[=].item[=].item[+].linkId = "orgId"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].readOnly = true
-* item[=].item[=].item[=].text = "HPI Facility or Organisation Id"
+* item[=].item[=].item[=].text = "HPI Organisation Id"
 * item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-claims-extract"
 * item[=].item[=].item[=].extension.valueString = "subject.identifier.value"
 
-* item[=].item[=].item[+].linkId = "facOrgName"
+* item[=].item[=].item[+].linkId = "orgName"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].readOnly = true
-* item[=].item[=].item[=].text = "HPI Facility or Organisation name"
+* item[=].item[=].item[=].text = "HPI Organisation name"
 * item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-claims-extract"
 * item[=].item[=].item[=].extension.valueString = "subject.display"
 
