@@ -1,29 +1,29 @@
 
-// //////// //////// //////// //////// //////// //////// //////// //////// ////////
+/************/
 Instance: APIError-MissingOrgFacilityToU
 InstanceOf: OperationOutcome
 Usage: #example
-Description: "Public API response when no Terms of Use acceptance record was found for the health organisation/facility"
+Description: "Public API response when no Terms of Use acceptance record was found for the health organisation"
 
 * issue[+].severity = #error
 * issue[=].code = #value
 * issue[=].details.coding.code = #NO_TOU_ORGFAC     // home grown code for now
-* issue[=].diagnostics = "No Terms of Use acceptance was found for the organisation or facility in the context of this API request"
+* issue[=].diagnostics = "No Terms of Use acceptance was found for the organisation in the context of this API request"
 
 
-// //////// //////// //////// //////// //////// //////// //////// //////// ////////
+/************/
 Instance: APIError-InvalidHPI
 InstanceOf: OperationOutcome
 Usage: #example
-Description: "Public API response when Request-Context set by PMS/API consumer contains a Practitioner, Organisation or Facility Id that is not valid"
+Description: "Public API response when Request-Context set by PMS/API consumer contains a Practitioner, Organisation that is not valid"
 
 * issue[+].severity = #error
 * issue[=].code = #value
 * issue[=].details = #HPI_INVALID                 // home grown code for now
-* issue[=].diagnostics = "THe practitioner Id does not validate in HPI lookup"
+* issue[=].diagnostics = "The practitioner Id does not validate in HPI lookup"
 
 
-// //////// //////// //////// //////// //////// //////// //////// //////// ////////
+/************/
 Instance: APIError-CompleteTermsOfUseForm
 InstanceOf: OperationOutcome
 Usage: #example
@@ -38,3 +38,32 @@ Description: "Public API response when it has determined a Practitioner needs to
 * issue[=].code = #informational
 * issue[=].details = #PRACTITIONER_TOU_ACCEPT_NEEDED                 // home grown code for now
 * issue[=].diagnostics = "https://forms.health.nz/TermsOfUsePractitioner?token=eyJ...M2v-U"
+
+/************/
+Instance: APIError-Unauthorised
+InstanceOf: OperationOutcome
+Usage: #example
+Description: """
+            Access to cervical screening summary documents is **restricted**.<br>
+                This API uses informaton that is held in the Health Practitioner Index (HPI) in order to validate information that is provided by
+                the API Consumer in their `Request-Context` header. Below are some examples where access to data may be declined.<br>
+                - A request is made to the API by practitioners who **DO NOT** hold a Nursing Council (NC) or Medical Council (MC) registration that is currently active.
+                - A request is made to the API by a practitioner who is recorded as deceased in the HPI.
+                - A request is made to the API by a practitioner who does not hold a **current** registration
+            """
+* issue[+].severity = #error
+* issue[=].code = #suppressed
+* issue[=].details = #UNAUTHORISED_PRACTITIONER_TYPE                 // home grown code for now
+* issue[=].diagnostics = "Access to cervical screening summaries is restricted to medical council or nursing council registrations."
+
+* issue[+].severity = #error
+* issue[=].code = #suppressed
+* issue[=].details = #UNAUTHORISED_PRACTITIONER_DECEASED                 // home grown code for now
+* issue[=].diagnostics = "Practitioner deceased."
+
+* issue[+].severity = #error
+* issue[=].code = #suppressed
+* issue[=].details = #UNAUTHORISED_REGISTRATION_NOT_CURRENT                 // home grown code for now
+* issue[=].diagnostics = "Practitioner registration must be current."
+
+
