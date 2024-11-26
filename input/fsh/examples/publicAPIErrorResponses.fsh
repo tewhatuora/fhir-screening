@@ -68,6 +68,11 @@ Description: """
 
 * issue[+].severity = #error
 * issue[=].code = #suppressed
+* issue[=].details = #UNAUTHORISED_APC_EXPIRED                // home grown code for now
+* issue[=].diagnostics = "Access to cervical screening summaries is restricted to pratitioners with an active annual practicing certificate (APC)"
+
+* issue[+].severity = #error
+* issue[=].code = #suppressed
 * issue[=].details = #UNAUTHORISED_PRACTITIONER_DECEASED                 // home grown code for now
 * issue[=].diagnostics = "Practitioner deceased."
 

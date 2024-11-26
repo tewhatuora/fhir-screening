@@ -96,11 +96,11 @@ RuleSet: APIStandardsDocumentation
 
   |**Code**|**Meaning**   |**OperationOutcome** in response?|**Description**|
   |:--:|:-----------------|:----------------------------------|:----------------------------------|
-  |200|OK                 |Yes, when there are additional messages about a match result|The request was successful, and the response body contains the representation requested|
+  |200|OK                 |Yes, When there are additional messages about a match result|The request was successful, and the response body contains the representation requested|
   |302|FOUND              |No |A common redirect response; you can GET the representation at the URI in the Location response header|
-  |400|BAD REQUEST        |Missing or bad `Recurity-Context` custom header; FHIR request payload does not validate against Implementation Guide|
-  |401|UNAUTHORIZED       |The supplied credentials, if any, are not sufficient to access the resource|
-  |403|FORBIDDEN          |Insufficient privilege to access the requested FHIR resource/operation - see [OperationOutcome-APIError-Unauthorised](../OperationOutcome-APIError-Unauthorised.html)|
+  |400|BAD REQUEST        |Yes|Missing or bad `Recurity-Context` custom header;<br>FHIR request payload does not validate against Implementation Guide|
+  |401|UNAUTHORIZED       |Yes|The supplied credentials, if any, are not sufficient to access the resource|
+  |403|FORBIDDEN          |Yes|Insufficient privilege to access the requested FHIR resource/operation. See [OperationOutcome-APIError-Unauthorised](./OperationOutcome-APIError-Unauthorised.html)|
   |429|TOO MANY REQUESTS  |No |Your application is sending too many simultaneous requests|
   |500|SERVER ERROR       |No |An internal server error prevented return of the representation response|
   |503|SERVICE UNAVAILABLE|No |The server is temporarily unable to return the representation. Please wait and try again later|
