@@ -26,20 +26,11 @@ Usage: #definition
 * rest.security.extension.extension[=].valueUri = "https://ppd.auth.services.health.nz/realms/hnz-integration/protocol/openid-connect/token"
 * rest.security.extension[+].url = "http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities"
 * rest.security.extension[=].valueCode = #client-confidential-symmetric
-// * rest.security.service = http://hl7.org/fhir/restful-security-service#OAuth
-// * rest.security.extension[0].url = "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris"
-// * rest.security.extension[=].extension[0].url = "token"
-// * rest.security.extension[=].extension[=].valueUri = "https://ppd.auth.services.health.nz/realms/hnz-integration/protocol/openid-connect/token"
-// * rest.security.extension[+].url = "http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities"
-// * rest.security.extension[=].valueCode = #client-confidential-symmetric
 
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[+].url = Canonical(HnzCustomHeadersExtension)
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[key].valueString = "Correlation-Id"
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[value].valueUri = "https://raw.githubusercontent.com/tewhatuora/schemas/main/shared-care/Correlation-Id.json"
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[required].valueBoolean = false
-// * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[+].extension[key].valueString = "x-api-key"
-// * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[value].valueUri = "https://raw.githubusercontent.com/tewhatuora/schemas/main/shared-care/Api-Key.json"
-// * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[required].valueBoolean = true
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[+].extension[key].valueString = "Request-Context"
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[value].valueUri = "https://raw.githubusercontent.com/tewhatuora/schemas/main/openapi-definitions/Request-Context.json"
 * extension[HnzApiSpecBuilderExtension].extension[globalHeaders].extension[=].extension[required].valueBoolean = true
@@ -69,16 +60,6 @@ See https://github.com/tewhatuora/schemas/blob/main/json-schema/Request-Context-
 * rest.resource[=].searchInclude = "DocumentReference:subject"
 * rest.resource[=].searchRevInclude = #not-supported
 
-// * rest.resource[=].searchParam[0].name = "identifier"
-// * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-masterIdentifier"
-// * rest.resource[=].searchParam[=].type = #token
-// * rest.resource[=].searchParam[=].documentation = "The identifier of the versioned master document"
-
-// * rest.resource[=].searchParam[0].name = "_profile"
-// * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#Resource-profile"
-// * rest.resource[=].searchParam[=].type = #reference
-// * rest.resource[=].searchParam[=].documentation = "Filter document instances tagged with the **NZ screening document** profile eg. ?_profile=https://build.fhir.org/ig/tewhatuora/fhir-screening.fhir.ig/StructureDefinition/nz-screening-summary"
-
 * rest.resource[=].searchParam[+].name = "subject"
 * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#DocumentReference-subject"
 * rest.resource[=].searchParam[=].type = #reference
@@ -100,23 +81,3 @@ See https://github.com/tewhatuora/schemas/blob/main/json-schema/Request-Context-
 * rest.resource[=].searchParam[=].definition = "https://www.hl7.org/implement/standards/FHIR/search.html#_include"
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].documentation = "The optional parameter _include is used to follow links 'forward'. For example, to include relevant Patient resources for requested Encounter matches, based on the Encounter.subject element, using either the subject or patient search parameters.." 
-
-
-// * rest.resource[=].searchParam[+].name = "type"
-// * rest.resource[=].searchParam[=].definition = "https://hl7.org/fhir/searchparameter-registry.html#clinical-type"
-// * rest.resource[=].searchParam[=].type = #token
-// * rest.resource[=].searchParam[=].documentation = "Filters the kind of document" 
-
-// virtual Patient instances for conveying patient demographic 
-// * rest.resource[+].type = #Patient
-// * rest.resource[=].profile = Canonical(http://hl7.org.nz/fhir/StructureDefinition/NzPatient)
-// * rest.resource[=]
-// * rest.resource[=].readHistory = false
-// * rest.resource[=].updateCreate = false
-// * rest.resource[=].conditionalCreate = false
-// * rest.resource[=].conditionalRead = #not-supported
-// * rest.resource[=].conditionalUpdate = false
-// * rest.resource[=].conditionalDelete = #not-supported
-// * rest.resource[=] insert ResourceDocumentation([[This API serves Patient instances ONLY by inclusion in a DocumentReference search result.  API consumers have no direct access to the FHIR Patient resource type.]])
-// * rest.resource[=].searchInclude = ""
-// * rest.resource[=].searchRevInclude = ""

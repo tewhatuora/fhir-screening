@@ -15,13 +15,23 @@ Description: "Public API response when no Terms of Use acceptance record was fou
 Instance: APIError-InvalidHPI
 InstanceOf: OperationOutcome
 Usage: #example
-Description: "Public API response when Request-Context set by PMS/API consumer contains a Practitioner, Organisation that is not valid"
+Description: "Public API response when Request-Context set by PMS/API consumer contains a Practitioner that is not valid"
 
 * issue[+].severity = #error
 * issue[=].code = #value
 * issue[=].details = #HPI_INVALID                 // home grown code for now
 * issue[=].diagnostics = "The practitioner Id does not validate in HPI lookup"
 
+/************/
+Instance: APIError-InvalidHPIOrganisation
+InstanceOf: OperationOutcome
+Usage: #example
+Description: "Public API response when Request-Context set by PMS/API consumer contains an Organisation that is not valid"
+
+* issue[+].severity = #error
+* issue[=].code = #value
+* issue[=].details = #HPI_INVALID                 // home grown code for now
+* issue[=].diagnostics = "The organisation Id does not validate in HPI lookup"
 
 /************/
 Instance: APIError-CompleteTermsOfUseForm
@@ -66,4 +76,7 @@ Description: """
 * issue[=].details = #UNAUTHORISED_REGISTRATION_NOT_CURRENT                 // home grown code for now
 * issue[=].diagnostics = "Practitioner registration must be current."
 
-
+* issue[+].severity = #error
+* issue[=].code = #suppressed
+* issue[=].details = #UNAUTHORISED_ORGANISATION_INACTIVE                 // home grown code for now
+* issue[=].diagnostics = "Organisation must be active."
