@@ -79,6 +79,8 @@ menu:
     Gender NSS-FHIR translation: gender.html
     Search behaviour: search.html
     Download IG : full-ig.zip
+  Compliance Testing:
+    Screening Summary API Compliance Tests: api-compliance.html
 contact:
    - name: HNZ Integration Team
      telecom:
